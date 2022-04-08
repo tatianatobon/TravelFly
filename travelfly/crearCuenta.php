@@ -1,6 +1,5 @@
 <?php include('conexion.php'); ?>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +20,7 @@
                     <a class="navbar-brand" href="#"><img src="Logotipo.png" alt="" width="55" height="55" class="rounded img-fluid d-inline-block align-text-top"></a>
                 </div>
                 <div class="navbar-nav mr-auto">
-                    <a href=" "><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</a>
+                    <a href="inicioSesion.html "><span class="glyphicon glyphicon-log-out"></span> Volver</a>
                 </div>
             </div>
         </nav>
@@ -34,18 +33,23 @@
 		<div class="contenedorFormulario">
 			<form action="guardar_usuario.php" method="post">
 
-				<input type="text" class="form-control" name="nombre" class="form-control" placeholder="Nombres" pattern="[A-Za-z-Zñóéí,.-]+" maxlength="30" required>
+				<label>Nombres</label>
+				<input type="text" class="form-control" name="nombre" class="form-control" placeholder="Ingresa tu Nombre" pattern="[A-Za-z-Zñóéí,.-]+" maxlength="30" required>
 
-				<input type="text" class="form-control" name="apellido" class="form-control" placeholder="Apellidos" pattern="[A-Za-z-Zñóéí,.-]+" maxlength="30" required>
+				<label>Apellidos</label>
+				<input type="text" class="form-control" name="apellido" class="form-control" placeholder="Ingresa tu Apellido" pattern="[A-Za-z-Zñóéí,.-]+" maxlength="30" required>
 
-				<input type="text" class="form-control" name="documento" class="form-control" placeholder="Documento" pattern="[0-9]+" minlength="10" maxlength="10" required>
+				<label>Documento</label>
+				<input type="text" class="form-control" name="documento" class="form-control" placeholder="Ingresa tu numero de Documento" pattern="[0-9]+" minlength="10" maxlength="10" required>
 
-				<input type="text" class="form-control" name="celular" class="form-control" placeholder="Celular" pattern="[0-9]+" minlength="10" maxlength="10" required>
+				<label>Numero de celular</label>
+				<input type="text" class="form-control" name="celular" class="form-control" placeholder="Ingresa tu Numero de Celular" pattern="[0-9]+" minlength="10" maxlength="10" required>
 
-					<label for="fechaNacimiento">Fecha nacimiento</label>
-				  	<input type="date" name="fechaNacimiento" style="width:38%;color: #515A5A;" placeholder="Fecha de nacimiento" required class="form-control" min = "1940-01-01" max = "2004-01-01">
+				<label>Fecha nacimiento</label>
+				<input type="date" name="fechaNacimiento" style="width:38%;color: #515A5A;" placeholder="Fecha de nacimiento" required class="form-control" min = "1940-01-01" max = "2004-01-01">
 
-				<select name="id_genero" style="width:38%; color: #515A5A;" >
+				<label>Genero</label><br>
+				<select name="id_genero" style="width:38%; color: #515A5A;">
 						<?php
 							$consulta_mysql='select * from genero';
 							$resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);
@@ -56,11 +60,11 @@
 							}
 						?>
 				</select>
+				<br><br>
+
 				<div style="display: inline-block;text-align: left;">
-					<div style="text-align: center;">
-						País
-					</div>
-					<img src="" id="flag" width="60px" style="vertical-align: top;">
+					<div style="text-align: left;">País Nacimiento</div>
+					<img src="" id="flag" width="40px" style="vertical-align: top;">
 					<select id="paises" name="pais "onchange="actualizarEstados();actualizarCiudades();actualizarBandera()"></select>
 				</div>
 				<div style="display: inline-block;text-align: left;">
@@ -73,17 +77,24 @@
 					<br>
 					<select id="ciudades" name="ciudad"></select>
 				</div>
+				<br>
 
-				<input type="text" name="direccion" placeholder="Dirección" required class="form-control" maxlength="30">
+				<label>Direccion</label><br>
+				<input type="text" name="direccion" placeholder="Ingresa tu Direccion" class="form-control" maxlength="30" required>
 
-				<input type="text" class="form-control" name="email" class="form-control" placeholder="Correo electrónico"  maxlength="30">
+				<label>Email</label><br>
+				<input type="email" class="form-control" name="email" class="form-control" placeholder="Ingresa tu Correo"  maxlength="30" required>
 
-				<input type="text" class="form-control" name="user" class="form-control" placeholder="Username"  maxlength="30">
+				<label>Usuario</label><br>
+				<input type="text" class="form-control" name="user" class="form-control" placeholder="Crea un Usuario"  maxlength="30" required>
 
-				<input type="password" name="pass" placeholder="Contraseña" required class="form-control" maxlength="30">
+				
 
-				<input type="password" name="confirmPass" placeholder="Confirmar Contraseña" maxlength="30">
-
+				<label>Contraseña</label><br>
+				<input type="password" name="pass" placeholder="Ingresa una Contraseña"  class="form-control" maxlength="30" pattern=".{8,}" required>
+				<spam> "la contraseña debe contener 8 caracteres"</spam><br><br>
+				<label>Confirmar Contraseña</label><br>
+				<input type="password" name="confirmPass" placeholder="Confirma la Contraseña" class="form-control" maxlength="30" pattern=".{8,}" >
 
 				<div class="file-select" id="src-file1" >
 					<center>

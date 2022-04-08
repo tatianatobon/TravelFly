@@ -30,11 +30,13 @@
                         <a class="navbar-brand" href="#"><img src="Logotipo.png" alt="" width="55" height="55" class="rounded img-fluid d-inline-block align-text-top"></a>
                     </div>
                     <div class="navbar-nav mr-auto">
-                        <a href="salir.php"><span class="glyphicon glyphicon-log-out"></span> Sign off</a>
+                        <a href="indexCuenta.html"><span class="glyphicon glyphicon-log-out"></span> volver</a>
                     </div>
                 </div>   
             </nav>
         </div>
+            
+        
         <br>
         <br>
         <center>
