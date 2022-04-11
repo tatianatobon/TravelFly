@@ -27,7 +27,7 @@
             <nav class="navbar navbar-light" style="background-color: #00CAFC;">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="#"><img src="Logotipo.png" alt="" width="55" height="55" class="rounded img-fluid d-inline-block align-text-top"></a>
+                        <a class="navbar-brand" href="#"><img src="img/Logotipo.png" alt="" width="55" height="55" class="rounded img-fluid d-inline-block align-text-top"></a>
                     </div>
                     <div class="navbar-nav mr-auto">
                         <a href="salir.php"><span class="glyphicon glyphicon-log-out"></span> Sign off</a>

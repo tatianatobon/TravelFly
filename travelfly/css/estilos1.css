@@ -1,0 +1,111 @@
+body {
+    background-image: url("https://i.postimg.cc/V5PQ9xXg/hotel.jpg");
+    background-size: 87rem;
+    background-repeat:no-repeat;
+    background-position-x:center;
+    background-position-y:center;
+    height: 200px;
+    background-position: 0px 50px;
+}
+  
+.eye{
+    position:absolute;
+    height:87px;
+    width:226px;
+    top: 450px;
+    left : 280px;
+    z-index: 4;
+  }
+  
+    
+.eye2{
+    position:absolute;
+    height:87;
+    width:226px;
+    top: 450px;
+    left : 587px;
+    z-index: 4;
+  }
+
+.eye3{
+    position:absolute;
+    height:87;
+    width:226px;
+    top: 450px;
+    left : 880px;
+    z-index: 4;
+  }
+
+  .contenedor{
+    position:absolute;
+    height:87px;
+    width:226px;
+    top: 537px;
+    left : 280px;
+    z-index: 4;
+  }
+  
+    
+.contenedor1{
+    position:absolute;
+    height:87px;
+    width:226px;
+    top: 537px;
+    left : 587px;
+    z-index: 4;
+  }
+
+.contenedor2{
+    position:absolute;
+    height:87px;
+    width:226px;
+    top:537px;
+    left : 880px;
+    z-index: 4;
+  }
+
+  .contenedorReserva{
+    position:absolute;
+    height:30px;
+    width:200px;
+    top:190px;
+    left : 240px;
+    z-index: 4;
+  } 
+ 
+  .contenedorReserva2{
+    position:absolute;
+    height:30px;
+    width:200px;
+    top:190px;
+    left :420px;
+    z-index: 4;
+  } 
+
+  .contenedorReserva3{
+    position:absolute;
+    height:30px;
+    width:120px;
+    top:190px;
+    left : 618px;
+    z-index: 4;
+  } 
+
+  .contenedorReserva4{
+    position:absolute;
+    height:30px;
+    width:200px;
+    top:190px;
+    left : 736px;
+    z-index: 4;
+  } 
+
+  
+  .contenedorReservas{
+    position:absolute;
+    height:180px;
+    width:800px;
+    top:220px;
+    left : 240px;
+    z-index: 4;
+  } 
