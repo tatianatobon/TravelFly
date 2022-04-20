@@ -38,8 +38,8 @@
                 <!-- Modal Salir-->
                 <div class="modal fade" id="modalSalir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" >
-                        <div class="modal-content">
-                            <div class="modal-header" style="background-color: #00CAFC;">
+                        <div class="modal-content ">
+                            <div class="modal-header bg-primary" >
                                 <h5 class="modal-title" id="exampleModalLabel" style="color: #FFFFFF; text-align: center;">Advertencia!!</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
                             </div>

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-04-2022 a las 17:43:08
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 7.4.28
+-- Tiempo de generación: 11-04-2022 a las 19:17:22
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -95,9 +95,19 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido`, `documento`, `celular
 (1, 'Juan Esteban', 'Duque Posso', '1113456741', '3182950546', '2022-03-10', 1, 'Colombia', 'Valle del Cauca', 'Cartago', 'carrera 1G # 35 a 13', 'juanPosso@gmail.com', 'juan1', '123456', '123456', '', 3),
 (2, 'Luis Sebastian', 'Urbano Luna ', '1112792007', '3145351793', '2022-03-01', 1, 'Colombia', 'Nariño', 'Belen', 'Carrera 1G # 35 A 13', 'sebastian.urbano1@utp.edu.co', 'Sebas1013', 'sebas1013', 'sebas1013', NULL, 1),
 (3, 'Danna Sofia', 'Torrez Marin', '1112756778', '3203450546', '2022-03-01', 2, 'Colombia', 'Risaralda', 'Pereira', 'Carrera 10 # 21 13', 'danna_s@gmail.com', 'dannastar', 'danna12345', NULL, NULL, 2),
-(4, 'Tatiana', 'Tobón Diaz', '1004678779', '3157235232', '2000-08-22', 2, '82', '1717', 'Pereira', 'calle 52 12 23', 'tatiana.tobon@utp.edu.co', 'tatianaT', '1234', '1234', '', 3),
-(5, 'cristian', 'Ramirez', '1088023557', '2164389667', '1998-12-20', 1, '', 'Risaralda', 'Apía', 'calle 52 12 23', 'cristian.ramirez1@utp.edu.co', 'cristian1', '1234', '1234', '', 3),
-(6, '          ', '          ', '1213323223', '3157235232', '2003-12-31', 1, '', 'Afghanistan', 'Baglan', 'ewee', 'cesar', '', 'Pereira-2022', 'Pereira-2022', '', 3);
+(4, 'Alice', 'Matius Haunter', '1117451781', '3203124578', '2012-04-03', 1, 'Colombia', 'Nariño', 'Belen', 'calle 25 A 13', 'alice.sao@gmail.com', 'Alice123', '123456789', '123456789', NULL, 2),
+(5, 'Alejandra', 'Salazar Martinez', '1117547895', '3182950355', '2003-10-01', 1, 'Colombia', 'Amazonas', 'Córdoba', 'calle 13 12-56', 'salazar.m@gmail.com', 'Salazar_Aleja', '12345678', '12345678', '', 2),
+(6, 'Miguel Angel', 'Botero Cardenas', '1110774156', '3147895244', '2000-02-17', 1, 'Colombia', 'Guayas', 'Acacia', 'transversal 1ra #13-55', 'mm_angel@gmail.com', 'Migue_Angel', '98745612', '78945612', '', 2),
+(8, 'Severus Thomas', 'Wallas Wayne', '1113754111', '3152950355', '1997-05-10', 1, 'Estados Unidos', 'Ohio', 'Marysville', 'avenida 33 #15A32', 'stww.13@gmail.com', 'snape', 'facil12345', 'facil12345', '', 2),
+(9, 'Harry', 'percibal Nuñez', '1117895456', '3122145678', '1997-10-31', 1, 'Estados Unidos', 'Alabama', 'Vernon', 'carrera 1234', 'hhpercibal@gmail.com', 'harry1', 'potter123', 'potter123', '', 2),
+(10, 'Lola Mento', 'Garcia Noreña', '1112475125', '3214569841', '2000-06-16', 2, 'Mónaco', 'Monaco', 'La Condamine', 'calle 1ra # 32-78', 'Ll.garcia@gmail.com', 'Garcia12', 'garcia12345', 'Lola Mento', '', 2),
+(11, 'Ignacio ', 'Peña Alberdi', '1115789551', '3174567899', '2003-09-11', 1, 'Argentina', 'Buenos Aires', 'Arbolito', 'carrera 12 # 45G13', 'pena_A12@gmail.com', 'Peña_ign', 'ignacio12345', 'Peña Alberdi', '', 2),
+(12, 'Venceslas ', 'Cardona Heras', '2555841132', '3257881125', '2000-07-13', 1, 'Grecia', 'Grevena', 'Gréos', 'carrera 15A 13', 'Vences@gmail.com', 'Vences123', 'Vences789', 'Vences789', '', 2),
+(13, 'Walter Josep ', 'Costa Maza', '7855112266', '3225588411', '2001-06-14', 1, 'Brasil', 'Parana', 'Alto Piquiri', 'calle 1T12-6', 'walter123@gmail.com', 'walter_bra', 'bra123456', 'bra123456', '', 2),
+(14, 'Angelly Sofia', 'Lozano Muñoz', '1110787455', '3203215447', '1999-02-10', 2, 'Alemania', 'Bayern', 'München', 'carrera 1Q # 45-55', 'angelly@gmail.com', 'ange1233', '123456789', '123456789', '', 2),
+(15, 'Joshua Gabriel', 'Urbano Arias', '1110789410', '3211547852', '2003-12-31', 1, 'Colombia', 'Valle del Cauca', 'Cartago', 'carrera 1G # 35 a 13', 'joshua@gmail.com', 'joshua_guia', 'joshua123', 'joshua123', '', 2),
+(16, 'Angela Estefanía', 'Jimenez Ordoñez', '1117851122', '3147852115', '2000-06-15', 2, 'Colombia', 'Narino', 'Pasto', 'calle 13 con 5ta ', 'angela.j@gmail.com', 'angela_jimenez', 'jimenez123', 'jimenez123', '', 2),
+(18, 'Richard', 'Simpson Ramirez', '1117855411', '3217894455', '2000-02-24', 1, 'Estados Unidos', 'Illinois', 'Carlinville', 'avenida 1f #14-55', 'simpson@gmail.com', 'Rsimpson', '12345678', '12345678', '', 2);
 
 --
 -- Índices para tablas volcadas
@@ -143,7 +153,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Restricciones para tablas volcadas
