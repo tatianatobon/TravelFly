@@ -2,7 +2,7 @@
 <div class="modal fade" id="modalEditar<?php echo $fila['id_usuario']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header bg-primary" >
+            <div class="modal-header" style="background-color: #00CAFC;">
                 <h5 class="modal-title" id="exampleModalLabel" style="color: #FFFFFF; text-align: center;">Editar Datos</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -26,7 +26,6 @@
                         <label>Fecha nacimiento</label>
                         <input type="date" name="fechaNacimiento" style="width:38%;color: #515A5A;" value="<?php echo $fila['fechaNacimiento']?>" class="form-control" min = "1940-01-01" max = "2004-01-01" disabled>
                                                 
-
                         <label>Genero</label>
                         <select name="id_genero" style="width:38%; color: #515A5A;">
                             <?php
@@ -40,20 +39,6 @@
                             ?>
                         </select>
                                             
-                        <div style="display: inline-block;text-align: left;">
-                            <div style="text-align: left;">País Nacimiento</div>
-                            <img src="" id="flag" width="40px" style="vertical-align: top;">
-                            <select id="paises" name="pais" value="<?php echo $fila['pais']?>" disabled onchange="actualizarEstados();actualizarCiudades();actualizarBandera()"></select>
-                        </div>
-                        <div style="display: inline-block;text-align: left;">
-                            Estado
-                            <select id="estados" name="estado" value="<?php echo $fila['estado']?>" disabled onchange="actualizarCiudades()"></select>
-                        </div>
-                        <div style="display: inline-block;text-align: left;">
-                            Ciudad
-                            <select id="ciudades" disabled name="ciudad" value="<?php echo $fila['ciudad']?>"></select>
-                        </div>
-
                         <label>Direccion</label>
                         <input type="text" name="direccion" value="<?php echo $fila['direccion']?>" class="form-control" maxlength="30">
 
