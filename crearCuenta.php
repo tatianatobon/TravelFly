@@ -24,7 +24,7 @@
         				<a class="navbar-brand" href="#"><img src="img/Logotipo.png" alt="" width="60" height="60" class="rounded img-fluid d-inline-block align-text-top"></a>
         			</div>
         			<div class="navbar-nav mr-auto">
-        				<a href="inicioSesion.html" style="color: #FFFFFF;">Volver <i class="bi bi-arrow-return-right"></i></a>
+        				<a href="InicioSesion.html" style="color: #FFFFFF;">Volver <i class="bi bi-arrow-return-right"></i></a>
         			</div>
         		</div>
         	</nav>
