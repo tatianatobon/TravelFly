@@ -106,7 +106,7 @@
 
 			        <div class="botonRecuperar">
 			          	<center>
-			            	<button type="submit" class="botonCorto" onclick="valida_envia()>Registrarse</button>
+			            	<button type="submit" class="botonCorto" onclick="valida_envia()">Registrarse</button>
 			          	</center>
 			        </div>
 			    </form>
