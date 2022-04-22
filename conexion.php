@@ -1,5 +1,5 @@
 <?php
-	$enlace = mysqli_connect("localhost", "root", "", "travelfly");
+	$enlace = mysqli_connect("localhost", "root", "Jose123-", "travelfly");
 
 	if (mysqli_connect_errno()) {
     	printf("Falló la conexión: %s\n", mysqli_connect_error());

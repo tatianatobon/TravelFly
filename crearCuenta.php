@@ -106,7 +106,7 @@
 
 			        <div class="botonRecuperar">
 			          	<center>
-			            	<button type="submit" class="botonCorto">Registrarse</button>
+			            	<button type="submit" onclick="verificar()" class="botonCorto">Registrarse</button>
 			          	</center>
 			        </div>
 			    </form>
@@ -127,6 +127,15 @@
 	        actualizarBandera()
 	        actualizarEstados()
 	        actualizarCiudades()
+			verificar()
+			function verificar() {
+				if ( $("#nombre-input").val().trim().length > 0 ) {
+				alert("El campo contiene un string válido que no son espacios");
+				}
+				else {
+				alert("El campo contiene espacios y está vacío");
+				}
+			}
 
 	        function actualizarPaises() {
 	             document.getElementById("paises").innerHTML = $optionPaises()
