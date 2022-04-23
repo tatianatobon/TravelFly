@@ -29,20 +29,16 @@
         		</div>
         	</nav>
         </div>
-        <div class="contenedorCuadro">
+        <div class="contenedorCuadro col-sm-12 col-lg-5">
         	<div class="contenedorFormulario">
-        		<img src="img/Logotipo.png" style="display:block;margin:auto">
-        		<form action="guardar_usuario.php" method="post" enctype="multipart/form-data" id="formulario-register" >
+			<p style="text-align: center;"><img src="img/Logotipo.png" alt="" class="rounded img-fluid d-inline-block align-text-top" ></p>
+        		<form action="guardar_usuario.php" method="post" enctype="multipart/form-data" id="formulario-register" name="fvalida" >
         			<label>Nombres</label>
-					<div class="nombre">
-        				<input type="text" class="form-control" id="nombre" name="nombre" class="form-control" placeholder="Ingresa tu Nombre" pattern="[A-Za-z-Zñóéí ]+" maxlength="30" required>
-					</div>
+        			<input type="text" class="form-control" id="nombre" name="nombre" class="form-control" placeholder="Ingresa tu Nombre" pattern="[A-Za-z-Zñóéíáú ]+" minlength="3" maxlength="30" required />
+					
 			        <label>Apellidos</label>
-					<div class="apellido">
-						<input type="text" class="form-control" id="apellido" name="apellido" class="form-control" placeholder="Ingresa tu Apellido" pattern="[A-Za-z-Zñóéí ]+" maxlength="30" required>
-					</div>
-			        
-
+			        <input type="text" class="form-control" id="apellido" name="apellido"class="form-control"  placeholder="Ingresa tu Apellido" pattern="[A-Za-z-Zñóéíáú ]+" minlength="3" maxlength="30" required value>
+					
 			        <label>Documento</label>
 			        <input type="text" class="form-control" name="documento" class="form-control" placeholder="Ingresa tu numero de Documento" pattern="[0-9]+" minlength="10" maxlength="10" required>
 
@@ -84,17 +80,17 @@
 			        <br>
 
 			        <label>Direccion</label><br>
-			        <input type="text" name="direccion" placeholder="Ingresa tu Direccion" class="form-control" maxlength="30" required>
+			        <input type="text" name="direccion" placeholder="Ingresa tu Direccion" class="form-control" minlength="7" maxlength="30" required>
 
 			        <label>Email</label><br>
-			        <input type="email" class="form-control" name="email" class="form-control" placeholder="Ingresa tu Correo" maxlength="30" required>
+			        <input type="email" class="form-control" name="email" class="form-control" placeholder="Ingresa tu Correo" minlength="12" maxlength="30" required>
 
 			        <label>Usuario</label><br>
-			        <input type="text" class="form-control" name="user" class="form-control" placeholder="Crea un Usuario"  maxlength="30" required>
+			        <input type="text" class="form-control" name="user" class="form-control" placeholder="Crea un Usuario"  minlength="3" maxlength="30" required>
 
 			        <label>Contraseña</label><br>
 			        <input type="password" name="pass" placeholder="Ingresa una Contraseña"  class="form-control" maxlength="30" pattern=".{8,}" required>
-			        <spam> "la contraseña debe contener 8 caracteres"</spam><br>
+			        <spam style="color: #9b9b9b; size: 5px; text-align: center;"> "La contraseña debe contener 8 caracteres"</spam><br> 
 			        <label>Confirmar Contraseña</label><br>
 			        <input type="password" name="confirmPass" placeholder="Confirma la Contraseña" class="form-control" maxlength="30" pattern=".{8,}" >
 
@@ -157,6 +153,57 @@
 	             let estado = document.getElementById("estados").value
 	             document.getElementById("ciudades").innerHTML = $optionCiudades(pais, estado)
 	        }
-	    </script>
+	
+			function valida_envia(){
+				if (document.fvalida.nombre.value.length==0){
+						alert("Tiene que escribir su nombre")
+						document.fvalida.nombre.focus()
+						return 0;
+				}
+				if (document.fvalida.apellido.value.length==0){
+						alert("Tiene que escribir sus apellidos")
+						document.fvalida.apellido.focus()
+						return 0;
+				}
+				if (document.fvalida.documento.value.length==0){
+						alert("Falta por ingresar su documento")
+						document.fvalida.documento.focus()
+						return 0;
+				}
+				if (document.fvalida.celular.value.length==0){
+						alert("Debe ingresar su numero de celular")
+						document.fvalida.celular.focus()
+						return 0;
+				}
+				if (document.fvalida.direccion.value.length==0){
+						alert("Debe ingresar la direccion de su hogar")
+						document.fvalida.direccion.focus()
+						return 0;
+				}
+				if (document.fvalida.email.value.length==0){
+						alert("Debe ingresar su correo electronico")
+						document.fvalida.email.focus()
+						return 0;
+				}
+				if (document.fvalida.user.value.length==0){
+						alert("Falta por ingresar su usuario")
+						document.fvalida.user.focus()
+						return 0;
+				}
+				if (document.fvalida.pass.value.length==0){
+						alert("Debe ingresar una contraseña")
+						document.fvalida.pass.focus()
+						return 0;
+				}
+				if (document.fvalida.confirmPass.value.length==0){
+						alert("Debe confirmar la contraseña")
+						document.fvalida.confirmPass.focus()
+						return 0;
+				}
+				//el formulario se envia
+				alert("Muchas Gracias!!! Su usuario ha sido creado");
+				document.fvalida.submit();
+			}
+		</script>
     </body>
 </html>
