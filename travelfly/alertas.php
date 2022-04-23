@@ -11,7 +11,7 @@
 
 <?php }else if($recibido == 2){?>
 <div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>Exito!</strong> El Usuario fue creado.
+    <strong>Exito!</strong> El Usuario fue creado correctamente.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 

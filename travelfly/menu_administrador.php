@@ -42,9 +42,10 @@
     <ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
       <!-- Sidebar - imagen -->
       <center>
-        <a class="navbar-brand" href="#"><img src="img/Logotipo.png" alt="" width="80" height="0" class="rounded img-fluid d-inline-block align-text-top"></a>
+        <a class="navbar-brand" href="#"><img src="img/Logotipo.png" alt="" width="60" height="0" class="rounded img-fluid d-inline-block align-text-top"></a>
       </center>
       <hr class="sidebar-divider my-0">
+      <br>
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
         <a class="nav-link" href="#">

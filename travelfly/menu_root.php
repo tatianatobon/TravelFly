@@ -83,10 +83,8 @@
                 <thead>
                     <tr>
                         <th><center>Nombre Completo</center></th>
-                        <th><center>Usuario</center></th>
                         <th><center>Documento</center></th>
                         <th><center>Celular</center></th>
-                        <th><center>Direccion</center></th>
                         <th><center>Correo</center></th>
                         <th><center>Opciones</center></th>
                     </tr>
@@ -99,23 +97,15 @@
                     while($fila = mysqli_fetch_array($resultado)){?>      
                         <tr>
                             <td><center><?php echo $fila['nombre'];?> <?php echo $fila['apellido'];?></center></td>
-                            <td><center><?php echo $fila['user'];?></center></td>
                             <td><center><?php echo $fila['documento'];?></center></td>
                             <td><center><?php echo $fila['celular'];?></center></td>
-                            <td><center><?php echo $fila['direccion'];?></center></td>
                             <td><center><?php echo $fila['email'];?></center></td>
-                            <td>
-                                <center>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditar<?php echo $fila['id_usuario']; ?>"><i class="bi bi-pencil-square"></i></button>
-
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar<?php echo $fila['id_usuario']; ?>"><i class="bi bi-trash-fill"></i></button>
-                                </center>
-                            </td>
+                            <td><center>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar<?php echo $fila['id_usuario']; ?>"><i class="bi bi-trash-fill"></i></button>
+                            <center></td>
                         </tr>
                         <!-- Modal crear Administrador -->
                         <?php include('modal_crear_admi.php'); ?>
-                        <!-- Modal Editar Administrador -->
-                        <?php include('modal_editar_admi.php'); ?>
                         <!-- Modal Editar Administrador -->
                         <?php include('modal_eliminar_admi.php'); ?>
                     <?php  } 

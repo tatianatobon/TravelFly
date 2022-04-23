@@ -1,4 +1,6 @@
-<?php include('conexion.php'); ?>
+<?php include('conexion.php'); 
+$recibido=0;
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +31,8 @@
         		</div>
         	</nav>
         </div>
+		<!-- Alertas Crear -->
+		<?php include('alertas.php'); ?>
         <div class="contenedorCuadro">
         	<div class="contenedorFormulario">
         		<img src="img/Logotipo.png" style="display:block;margin:auto">
@@ -192,9 +196,6 @@
 						document.fvalida.confirmPass.focus()
 						return 0;
 				}
-				//el formulario se envia
-				alert("Muchas Gracias!!! Su usuario ha sido creado");
-				document.fvalida.submit();
 			}
 		</script>
     </body>
