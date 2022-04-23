@@ -135,6 +135,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <!-- Paises,Departamentos y Ciudades -->
     <script src="https://jeff-aporta.github.io/main/00Libs/Sites/sites.min.js"></script>
+    <!-- Api de paises -->
     <script>
         actualizarPaises()
         actualizarBandera()
@@ -162,6 +163,59 @@
              document.getElementById("ciudades").innerHTML = $optionCiudades(pais, estado)
         }
     </script>
+    <!-- Mensajes Input -->
+	<script> 
+		function valida_envia(){
+			if (document.fvalida.nombre.value.length==0){
+					alert("Tiene que escribir su nombre")
+					document.fvalida.nombre.focus()
+					return 0;
+			}
+			if (document.fvalida.apellido.value.length==0){
+					alert("Tiene que escribir sus apellidos")
+					document.fvalida.apellido.focus()
+					return 0;
+			}
+			if (document.fvalida.documento.value.length==0){
+					alert("Falta por ingresar su documento")
+					document.fvalida.documento.focus()
+					return 0;
+			}
+			if (document.fvalida.celular.value.length==0){
+					alert("Debe ingresar su numero de celular")
+					document.fvalida.celular.focus()
+					return 0;
+			}
+			if (document.fvalida.direccion.value.length==0){
+					alert("Debe ingresar la direccion de su hogar")
+					document.fvalida.direccion.focus()
+					return 0;
+			}
+			if (document.fvalida.email.value.length==0){
+					alert("Debe ingresar su correo electronico")
+					document.fvalida.email.focus()
+					return 0;
+			}
+			if (document.fvalida.user.value.length==0){
+					alert("Falta por ingresar su usuario")
+					document.fvalida.user.focus()
+					return 0;
+			}
+			if (document.fvalida.pass.value.length==0){
+					alert("Debe ingresar una contraseña")
+					document.fvalida.pass.focus()
+					return 0;
+			}
+			if (document.fvalida.confirmPass.value.length==0){
+					alert("Debe confirmar la contraseña")
+					document.fvalida.confirmPass.focus()
+					return 0;
+			}
+			//el formulario se envia
+			alert("Muchas Gracias!!! Su usuario ha sido creado");
+			document.fvalida.submit();
+		}
+	</script>
     <!-- Funciones DataTable -->
     <script type="text/javascript">
         $(document).ready(function(){
@@ -170,6 +224,7 @@
                 autoWidth: false,
                 "language": {
                     "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "sProcessing": "Procesando...",
                     "zeroRecords": "No se han encontrado resultados",
                     "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
                     "infoEmpty": "Mostrando registros del 0 al 0 total de 0 registros",

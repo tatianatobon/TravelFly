@@ -40,7 +40,7 @@
 			        <input type="text" class="form-control" name="apellido" class="form-control" placeholder="Ingresa tu Apellido" required pattern="[A-Za-z-Zñóéí ]+" minlength="3" maxlength="30">
 
 			        <label>Documento</label>
-			        <input type="text" class="form-control" name="documento" class="form-control" placeholder="Ingresa tu numero de Documento" pattern="[0-9]+" minlength="10" maxlength="10" required>
+			        <input type="text" class="form-control" name="documento" class="form-control" placeholder="Ingresa tu numero de Documento" pattern="[0-9]+" minlength="8" maxlength="10" required>
 
 			        <label>Numero de celular</label>
 			        <input type="text" class="form-control" name="celular" class="form-control" placeholder="Ingresa tu Numero de Celular" pattern="[0-9]+" minlength="10" maxlength="10" required>
@@ -116,6 +116,7 @@
 	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	    <!-- Paises,Departamentos y Ciudades -->
 	    <script src="https://jeff-aporta.github.io/main/00Libs/Sites/sites.min.js"></script>
+		<!-- Api de paises -->
 	    <script>
 	        actualizarPaises()
 	        actualizarBandera()
@@ -143,6 +144,7 @@
 	             document.getElementById("ciudades").innerHTML = $optionCiudades(pais, estado)
 	        }
 	    </script>
+		<!-- Mensajes Input -->
 		<script> 
 			function valida_envia(){
 				if (document.fvalida.nombre.value.length==0){

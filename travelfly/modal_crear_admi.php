@@ -10,13 +10,13 @@
                 <div class="modal-content">
                     <form action="guardar_administrador.php" method="post" id="formulario" enctype="multipart/form-data">
                         <label>Nombres</label>
-                        <input type="text" class="form-control" name="nombre" class="form-control" placeholder="Ingresa tu Nombre" pattern="[A-Za-z-Zñóéíá, .-]+" maxlength="30" required>
+                        <input type="text" class="form-control" name="nombre" class="form-control" placeholder="Ingresa tu Nombre" required pattern="[A-Za-z-Zñóéí ]+" minlength="3" maxlength="30">
 
                         <label>Apellidos</label>
-                        <input type="text" class="form-control" name="apellido" class="form-control" placeholder="Ingresa tu Apellido" pattern="[A-Za-z-Zñóéíá, .-]+" maxlength="30" required>
+                        <input type="text" class="form-control" name="apellido" class="form-control" placeholder="Ingresa tu Apellido" required pattern="[A-Za-z-Zñóéí ]+" minlength="3" maxlength="30">
 
                         <label>Documento</label>
-                        <input type="text" class="form-control" name="documento" class="form-control" placeholder="Ingresa tu numero de Documento" pattern="[0-9]+" minlength="10" maxlength="10" required>
+                        <input type="text" class="form-control" name="documento" class="form-control" placeholder="Ingresa tu numero de Documento" pattern="[0-9]+" minlength="8" maxlength="10" required>
 
                         <label>Numero de celular</label>
                         <input type="text" class="form-control" name="celular" class="form-control" placeholder="Ingresa tu Numero de Celular" pattern="[0-9]+" minlength="10" maxlength="10" required>
