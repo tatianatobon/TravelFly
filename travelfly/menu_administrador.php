@@ -27,16 +27,21 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/estilo2.css" rel="stylesheet">
+  
 	<!-- Bootstrap CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<!-- Data Table -->
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 	<!-- Icons -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="style.css" href="DataTables/datatables.min.css"/>
 </head>
 
 <body id="page-top">
+    <?php
+      $consulta = "SELECT * FROM usuario INNER JOIN rol ON usuario.id_rol = rol.id_rol WHERE rol.id_rol = '2' ORDER BY id_usuario";
+      $resultado = mysqli_query($enlace, $consulta);
+      $fila = mysqli_fetch_array($resultado)
+    ?>
   <div id="wrapper">
     <!-- Sidebar -->
     <ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -47,32 +52,26 @@
       <hr class="sidebar-divider my-0">
       <br>
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="#">
-        <i class="bi bi-gear-fill"></i>
-          <span>Editar Datos</span></a>
+      <li class="nav-item">
+        <a class="nav-link collapsed volCol" href="" data-toggle="modal" data-target="#modalEditar" aria-expanded="true" aria-controls="collapseUtilities" data-idprograma="<?php echo $fila['id_usuario']; ?>">
+        <i class="bi bi-gear-fill"></i><span>Editar Datos</span></a>
+        </a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">
-        <i class="bi bi-send-fill"></i>
-          <span>Listar Vuelos</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="bi bi-send-fill"></i><span>Listar Vuelos</span></a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">
-        <i class="bi bi-person-circle"></i>
-          <span>Listar Usuarios</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="bi bi-person-circle"></i><span>Listar Usuarios</span></a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">
-        <i class="bi bi-mailbox2"></i>
-          <span>Noticias</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="bi bi-mailbox2"></i><span>Noticias</span></a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">
-        <i class="bi bi-chat-square-text-fill"></i>
-          <span>Foro</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="bi bi-chat-square-text-fill"></i><span>Foro</span></a>
       </li>
     </ul>
+    <!-- Modal Editar Administrador -->
+    <?php include('modal_editar_admi.php'); ?>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
       <div id="content">
@@ -105,6 +104,9 @@
             </div>
             </li>
           </ul>
+          <?php
+            mysqli_close($enlace);
+          ?>
         </nav>
     </div>
   </div>

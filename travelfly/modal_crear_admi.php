@@ -22,16 +22,18 @@
                         <input type="text" class="form-control" name="celular" class="form-control" placeholder="Ingresa tu Numero de Celular" pattern="[0-9]+" minlength="10" maxlength="10" required>
                   
                         <div style="display: inline-block;text-align: left;">
-                            <div style="text-align: left;">País Nacimiento</div>
-                            <img src="" id="flag" width="40px" style="vertical-align: top;">
-                            <select id="paises" name="pais" onchange="actualizarEstados();actualizarCiudades();actualizarBandera()"></select>
+			          	<div style="text-align: left;">País Nacimiento</div>
+			          		<img src="" id="flag" width="40px" style="vertical-align: top;">
+			          		<select id="paises" name="pais" onchange="actualizarEstados();actualizarCiudades();actualizarBandera()"></select>
                         </div>
                         <div style="display: inline-block;text-align: left;">
                             Estado
+                            <br>
                             <select id="estados" name="estado" onchange="actualizarCiudades()"></select>
                         </div>
                         <div style="display: inline-block;text-align: left;">
                             Ciudad
+                            <br>
                             <select id="ciudades" name="ciudad"></select>
                         </div>
 
