@@ -5,7 +5,31 @@
     background-position-x:center;
     background-position-y:center;
     min-height: 400px;
+    text-align: center;
     
+}
+.btn-menu{
+  display: inline-block;
+  user-select: none;
+}
+.btn-menu label{
+  background: lightgray;
+  padding: 10px;
+
+}
+.btn-menu input[type="radio"]{
+  display:none;
+}
+.btn-menu input[type="radio"]:checked+label{
+  background: dodgerblue;
+  color: white;
+}
+#vista{
+  background:white;
+  padding: 10px;
+  width: 85vw;
+  min-height: 300px;
+  margin: auto;
 }
 /*
 /* Imagen utilizada en pantallas de anchura 480 px y superior 
