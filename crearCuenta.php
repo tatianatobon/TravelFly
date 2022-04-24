@@ -96,7 +96,7 @@ $recibido=0;
 			        <input type="password" name="pass" placeholder="Ingresa una Contraseña" id="cr1" class="form-control" maxlength="30" pattern=".{8,}" required>
 			        <spam style="color: #9b9b9b; size: 5px; text-align: center;"> "La contraseña debe contener 8 caracteres"</spam><br> 
 			        <label>Confirmar Contraseña</label><br>
-			        <input type="password" name="confirmPass" placeholder="Confirma la Contraseña" id="cr2" onchange=verificarContrasena() class="form-control" maxlength="30" pattern=".{8,}" >
+			        <input type="password" name="confirmPass" placeholder="Confirma la Contraseña" id="cr2" onclick=verificarContrasena() class="form-control" maxlength="30" pattern=".{8,}" >
 
 			        <div class="file-select" id="src-file1" >
 			          	<center>
