@@ -16,7 +16,7 @@
 
 		switch ($_SESSION['id_rol']){
 			case 1:
-				header("Location: listar_Administrador.php");
+				header("Location: menu_root.php");
 				break;
 			case 2:
 				header("Location: menu_administrador.php");
