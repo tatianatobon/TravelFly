@@ -83,10 +83,8 @@
                 <thead>
                     <tr>
                         <th><center>Nombre Completo</center></th>
-                        <th><center>Usuario</center></th>
                         <th><center>Documento</center></th>
                         <th><center>Celular</center></th>
-                        <th><center>Direccion</center></th>
                         <th><center>Correo</center></th>
                         <th><center>Opciones</center></th>
                     </tr>
@@ -99,23 +97,15 @@
                     while($fila = mysqli_fetch_array($resultado)){?>      
                         <tr>
                             <td><center><?php echo $fila['nombre'];?> <?php echo $fila['apellido'];?></center></td>
-                            <td><center><?php echo $fila['user'];?></center></td>
                             <td><center><?php echo $fila['documento'];?></center></td>
                             <td><center><?php echo $fila['celular'];?></center></td>
-                            <td><center><?php echo $fila['direccion'];?></center></td>
                             <td><center><?php echo $fila['email'];?></center></td>
-                            <td>
-                                <center>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditar<?php echo $fila['id_usuario']; ?>"><i class="bi bi-pencil-square"></i></button>
-
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar<?php echo $fila['id_usuario']; ?>"><i class="bi bi-trash-fill"></i></button>
-                                </center>
-                            </td>
+                            <td><center>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar<?php echo $fila['id_usuario']; ?>"><i class="bi bi-trash-fill"></i></button>
+                            <center></td>
                         </tr>
                         <!-- Modal crear Administrador -->
                         <?php include('modal_crear_admi.php'); ?>
-                        <!-- Modal Editar Administrador -->
-                        <?php include('modal_editar_admi.php'); ?>
                         <!-- Modal Editar Administrador -->
                         <?php include('modal_eliminar_admi.php'); ?>
                     <?php  } 
@@ -135,6 +125,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <!-- Paises,Departamentos y Ciudades -->
     <script src="https://jeff-aporta.github.io/main/00Libs/Sites/sites.min.js"></script>
+    <!-- Api de paises -->
     <script>
         actualizarPaises()
         actualizarBandera()
@@ -162,6 +153,59 @@
              document.getElementById("ciudades").innerHTML = $optionCiudades(pais, estado)
         }
     </script>
+    <!-- Mensajes Input -->
+	<script> 
+		function valida_envia(){
+			if (document.fvalida.nombre.value.length==0){
+					alert("Tiene que escribir su nombre")
+					document.fvalida.nombre.focus()
+					return 0;
+			}
+			if (document.fvalida.apellido.value.length==0){
+					alert("Tiene que escribir sus apellidos")
+					document.fvalida.apellido.focus()
+					return 0;
+			}
+			if (document.fvalida.documento.value.length==0){
+					alert("Falta por ingresar su documento")
+					document.fvalida.documento.focus()
+					return 0;
+			}
+			if (document.fvalida.celular.value.length==0){
+					alert("Debe ingresar su numero de celular")
+					document.fvalida.celular.focus()
+					return 0;
+			}
+			if (document.fvalida.direccion.value.length==0){
+					alert("Debe ingresar la direccion de su hogar")
+					document.fvalida.direccion.focus()
+					return 0;
+			}
+			if (document.fvalida.email.value.length==0){
+					alert("Debe ingresar su correo electronico")
+					document.fvalida.email.focus()
+					return 0;
+			}
+			if (document.fvalida.user.value.length==0){
+					alert("Falta por ingresar su usuario")
+					document.fvalida.user.focus()
+					return 0;
+			}
+			if (document.fvalida.pass.value.length==0){
+					alert("Debe ingresar una contraseña")
+					document.fvalida.pass.focus()
+					return 0;
+			}
+			if (document.fvalida.confirmPass.value.length==0){
+					alert("Debe confirmar la contraseña")
+					document.fvalida.confirmPass.focus()
+					return 0;
+			}
+			//el formulario se envia
+			alert("Muchas Gracias!!! Su usuario ha sido creado");
+			document.fvalida.submit();
+		}
+	</script>
     <!-- Funciones DataTable -->
     <script type="text/javascript">
         $(document).ready(function(){
@@ -170,6 +214,7 @@
                 autoWidth: false,
                 "language": {
                     "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "sProcessing": "Procesando...",
                     "zeroRecords": "No se han encontrado resultados",
                     "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
                     "infoEmpty": "Mostrando registros del 0 al 0 total de 0 registros",
