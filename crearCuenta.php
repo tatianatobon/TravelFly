@@ -15,7 +15,7 @@ $recibido=0;
 	    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 	    <!-- Icons -->
 	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-
+		<script defer src="js/crearCuenta.js"></script>
 	    <title>Crear Cuenta</title>
   	</head>
   	<body>
@@ -93,10 +93,10 @@ $recibido=0;
 			        <input type="text" class="form-control" name="user" class="form-control" placeholder="Crea un Usuario"  minlength="3" maxlength="30" required>
 
 			        <label>Contraseña</label><br>
-			        <input type="password" name="pass" placeholder="Ingresa una Contraseña"  class="form-control" maxlength="30" pattern=".{8,}" required>
+			        <input type="password" name="pass" placeholder="Ingresa una Contraseña" id="cr1" class="form-control" maxlength="30" pattern=".{8,}" required>
 			        <spam style="color: #9b9b9b; size: 5px; text-align: center;"> "La contraseña debe contener 8 caracteres"</spam><br> 
 			        <label>Confirmar Contraseña</label><br>
-			        <input type="password" name="confirmPass" placeholder="Confirma la Contraseña" class="form-control" maxlength="30" pattern=".{8,}" >
+			        <input type="password" name="confirmPass" placeholder="Confirma la Contraseña" id="cr2" onchange=verificarContrasena() class="form-control" maxlength="30" pattern=".{8,}" >
 
 			        <div class="file-select" id="src-file1" >
 			          	<center>
