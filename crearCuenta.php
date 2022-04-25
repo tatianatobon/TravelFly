@@ -41,10 +41,8 @@ $recibido=0;
 			<p style="text-align: center;"><img src="img/Logotipo.png" alt="" class="rounded img-fluid d-inline-block align-text-top" ></p>
         		<form action="guardar_usuario.php" method="post" enctype="multipart/form-data" id="formulario-register" name="fvalida" >
 					<div class="campos-vacios">
-					<div class="mb-3 mt-3">
-                      <label for="email" class="form-label">Nombres:</label>
-                      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-                    </div>
+					
+					
 						<div class="nombre">
 							<label>Nombres</label>
 							<input type="text" class="form-control" id="nombre" name="nombre" class="form-control" placeholder="Ingresa tu Nombre" pattern="[A-Za-z-Zñóéíáú ]+" minlength="3" maxlength="30" required />
