@@ -37,12 +37,17 @@ $recibido=0;
         	<div class="contenedorFormulario">
 			<p style="text-align: center;"><img src="img/Logotipo.png" alt="" class="rounded img-fluid d-inline-block align-text-top" ></p>
         		<form action="guardar_usuario.php" method="post" enctype="multipart/form-data" id="formulario-register" name="fvalida" >
-        			<label>Nombres</label>
-        			<input type="text" class="form-control" id="nombre" name="nombre" class="form-control" placeholder="Ingresa tu Nombre" pattern="[A-Za-z-Zñóéíáú ]+" minlength="3" maxlength="30" required />
-					
-			        <label>Apellidos</label>
-			        <input type="text" class="form-control" id="apellido" name="apellido"class="form-control"  placeholder="Ingresa tu Apellido" pattern="[A-Za-z-Zñóéíáú ]+" minlength="3" maxlength="30" required value>
-					
+					<div class="campos-vacios">
+						<div class="nombre">
+							<label>Nombres</label>
+							<input type="text" class="form-control" id="nombre" name="nombre" class="form-control" placeholder="Ingresa tu Nombre" pattern="[A-Za-z-Zñóéíáú ]+" minlength="3" maxlength="30" required />
+						</div>
+						<div class="apellido">
+							<label>Apellidos</label>
+							<input type="text" class="form-control" id="apellido" name="apellido"class="form-control"  placeholder="Ingresa tu Apellido" pattern="[A-Za-z-Zñóéíáú ]+" minlength="3" maxlength="30" required value>
+						</div>		
+					</div>
+        			
 			        <label>Documento</label>
 			        <input type="text" class="form-control" name="documento" class="form-control" placeholder="Ingresa tu numero de Documento" pattern="[0-9]+" minlength="10" maxlength="10" required>
 

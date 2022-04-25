@@ -1,6 +1,6 @@
 <?php
 	$enlace = mysqli_connect("localhost", "root", "Jose123-", "travelfly");
-
+  // password en el server: Jose123-
 	if (mysqli_connect_errno()) {
     	printf("Falló la conexión: %s\n", mysqli_connect_error());
     	exit();
