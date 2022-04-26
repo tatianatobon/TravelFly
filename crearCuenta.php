@@ -170,8 +170,8 @@ $recibido=0;
 	
 			function valida_envia(){
 				
-				if(!verificarContrasena()){
-					return
+				if(verificarContrasena()){
+					return 0;
 				}
 				if (document.fvalida.nombre.value.length==0){
 						alert("Tiene que escribir su nombre")
