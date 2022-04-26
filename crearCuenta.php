@@ -37,7 +37,7 @@ $recibido=0;
         </div>
 		<!-- Alertas Crear -->
 		<?php include('alertas.php'); ?>
-        <div class="contenedorCuadro col-sm-12 col-lg-5">
+        <div class="contenedorCuadro">
         	<div class="contenedorFormulario">
 			<p style="text-align: center;"><img src="img/Logotipo.png" alt="" class="rounded img-fluid d-inline-block align-text-top" ></p>
         		<form onsubmit="return valida_envia()" action="guardar_usuario.php" method="post" enctype="multipart/form-data" id="formulario-register" name="fvalida" >
