@@ -1,3 +1,9 @@
+let searchParams = new URLSearchParams(new URL(window.location).search)
+if(searchParams.has("recibido")){
+    if(searchParams.get("recibido") == 2){
+        openurl("inicio.html")
+    }
+}
 function verificarContrasena(){
     contrasena1=document.getElementById("cr1").value
     contrasena2=document.getElementById("cr2").value
