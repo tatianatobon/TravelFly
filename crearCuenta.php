@@ -39,8 +39,9 @@ $recibido=0;
         <div class="contenedorCuadro col-sm-12 col-lg-5">
         	<div class="contenedorFormulario">
 			<p style="text-align: center;"><img src="img/Logotipo.png" alt="" class="rounded img-fluid d-inline-block align-text-top" ></p>
-        		<form action="guardar_usuario.php" method="post" enctype="multipart/form-data" id="formulario-register" name="fvalida" >
-					<div class="campos-vacios">
+        		<form onsubmit="return valida_envia()" action="guardar_usuario.php" method="post" enctype="multipart/form-data" id="formulario-register" name="fvalida" >
+					
+				<div class="campos-vacios">
 					
 					
 						<div class="nombre">
@@ -116,7 +117,7 @@ $recibido=0;
 
 			        <div class="botonRecuperar">
 			          	
-			            	<button type="submit" class="botonCorto" onclick="valida_envia();">Registrarse</button>
+			            	<button type="submit" class="botonCorto">Registrarse</button>
 			          	
 			        </div>
 			    </form>
@@ -171,52 +172,52 @@ $recibido=0;
 			function valida_envia(){
 				
 				if(verificarContrasena()){
-					return 0;
+					return false
 				}
 				if (document.fvalida.nombre.value.length==0){
 						alert("Tiene que escribir su nombre")
 						document.fvalida.nombre.focus()
-						return 0;
+						return false
 				}
 				if (document.fvalida.apellido.value.length==0){
 						alert("Tiene que escribir sus apellidos")
 						document.fvalida.apellido.focus()
-						return 0;
+						return false
 				}
 				if (document.fvalida.documento.value.length==0){
 						alert("Falta por ingresar su documento")
 						document.fvalida.documento.focus()
-						return 0;
+						return false
 				}
 				if (document.fvalida.celular.value.length==0){
 						alert("Debe ingresar su numero de celular")
 						document.fvalida.celular.focus()
-						return 0;
+						return false
 				}
 				if (document.fvalida.direccion.value.length==0){
 						alert("Debe ingresar la direccion de su hogar")
 						document.fvalida.direccion.focus()
-						return 0;
+						return false
 				}
 				if (document.fvalida.email.value.length==0){
 						alert("Debe ingresar su correo electronico")
 						document.fvalida.email.focus()
-						return 0;
+						return false
 				}
 				if (document.fvalida.user.value.length==0){
 						alert("Falta por ingresar su usuario")
 						document.fvalida.user.focus()
-						return 0;
+						return false
 				}
 				if (document.fvalida.pass.value.length==0){
 						alert("Debe ingresar una contraseña")
 						document.fvalida.pass.focus()
-						return 0;
+						return false
 				}
 				if (document.fvalida.confirmPass.value.length==0){
 						alert("Debe confirmar la contraseña")
 						document.fvalida.confirmPass.focus()
-						return 0;
+						return false
 				}
 			}
 		</script>
