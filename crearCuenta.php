@@ -19,6 +19,7 @@ $recibido=0;
 	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
 		<script defer src="js/crearCuenta.js"></script>
+		<script src="js/tools.js"></script>
 	    <title>Crear Cuenta</title>
   	</head>
   	<body>
@@ -219,6 +220,9 @@ $recibido=0;
 						document.fvalida.confirmPass.focus()
 						return false
 				}
+				setTimeout(() => {
+					openurl("inicio.html")
+				}, 3000);
 				return true;
 			}
 		</script>
