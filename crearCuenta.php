@@ -45,8 +45,8 @@ $recibido=0;
 				<div class="campos-vacios">
 					
 					
-						<div class="nombree">
-							<label>Nombre</label>
+						<div class="nombre">
+							<label>Nombres</label>
 							<input type="text" class="form-control" id="nombre" name="nombre" class="form-control" placeholder="Ingresa tu Nombre" pattern="[A-Za-z-Zñóéíáú ]+" minlength="3" maxlength="30" required />
 						</div>
 						<div class="apellido">
