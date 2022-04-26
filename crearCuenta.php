@@ -219,6 +219,7 @@ $recibido=0;
 						document.fvalida.confirmPass.focus()
 						return false
 				}
+				return true;
 			}
 		</script>
     </body>
