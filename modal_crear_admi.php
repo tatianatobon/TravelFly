@@ -8,16 +8,19 @@
             </div>
             <div class="modal-body">
                 <div class="modal-content">
-                    <form action="guardar_administrador.php" method="post" id="formulario" enctype="multipart/form-data">
-                        <label>Nombres</label>
-                        <input type="text" class="form-control" name="nombre" class="form-control" placeholder="Ingresa tu Nombre" required pattern="[A-Za-z-Zñóéí ]+" minlength="3" maxlength="30">
-
-                        <label>Apellidos</label>
-                        <input type="text" class="form-control" name="apellido" class="form-control" placeholder="Ingresa tu Apellido" required pattern="[A-Za-z-Zñóéí ]+" minlength="3" maxlength="30">
-
-                        <label>Documento</label>
+                    <form action="guardar_administrador.php" method="post" id="formulario" enctype="multipart/form-data" name="fvalida">
+                        <div class="campos-vacios">
+						<div class="nombre">
+						<label>Nombres</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" class="form-control" placeholder="Ingresa tu Nombre" required pattern="[A-Za-z-Zñóéí ]+" minlength="3" maxlength="30">
+                        </div>
+						<div class="apellido">
+						<label>Apellidos</label>
+                        <input type="text" class="form-control" id="apellido" name="apellido" class="form-control" placeholder="Ingresa tu Apellido" required pattern="[A-Za-z-Zñóéí ]+" minlength="3" maxlength="30">
+                        </div>		
+					</div>
+						<label>Documento</label>
                         <input type="text" class="form-control" name="documento" class="form-control" placeholder="Ingresa tu numero de Documento" pattern="[0-9]+" minlength="8" maxlength="10" required>
-
                         <label>Numero de celular</label>
                         <input type="text" class="form-control" name="celular" class="form-control" placeholder="Ingresa tu Numero de Celular" pattern="[0-9]+" minlength="10" maxlength="10" required>
                   
@@ -36,13 +39,10 @@
                             <br>
                             <select id="ciudades" name="ciudad"></select>
                         </div>
-
                         <label>Email</label>
                         <input type="email" class="form-control" name="email" class="form-control" placeholder="Ingresa tu Correo"  maxlength="30" required>
-
                         <label>Contraseña</label>
                         <input type="password" name="pass" placeholder="Ingresa una Contraseña"  class="form-control" maxlength="30" pattern=".{8,}" required>
-
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-success">Crear Administrador</button>
                         </div>
@@ -52,3 +52,16 @@
         </div>
     </div>
 </div>
+<!-- formulario.js -->
+		<script src="js/formularios.js"></script>
+	    <script>
+			verificar()
+				funcioon verificar(){
+					if ( $("#nombre-input").val().trim().length > 0 ) {
+					alert("El campo contiene un string válido que no son espacios");
+					}
+					else {
+					alert("El campo contiene espacios y está vacío");
+					}
+				}
+			</script>
