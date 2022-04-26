@@ -171,7 +171,7 @@ $recibido=0;
 	
 			function valida_envia(){
 				
-				if(verificarContrasena()){
+				if(!verificarContrasena()){
 					return false
 				}
 				if (document.fvalida.nombre.value.length==0){
