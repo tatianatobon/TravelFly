@@ -1,6 +1,6 @@
 function verificarContrasena(){
-    contrasena1=document.getElementById("cr1")
-    contrasena2=document.getElementById("cr2")
+    contrasena1=document.getElementById("cr1").value
+    contrasena2=document.getElementById("cr2").value
     if(contrasena1==contrasena2){
         alert("las contraseñas son iguales")
     }

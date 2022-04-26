@@ -109,15 +109,15 @@ $recibido=0;
 			        <input type="password" name="confirmPass" placeholder="Confirma la Contraseña" id="cr2"  class="form-control" maxlength="30" pattern=".{8,}" >
 
 			        <div class="file-select" id="src-file1" >
-			          	<center>
+			          	
 			            	<input type="file" name="foto" aria-label="Archivo">
-			          	</center>
+			          	
 			        </div>
 
 			        <div class="botonRecuperar">
-			          	<center>
+			          	
 			            	<button type="submit" class="botonCorto" onclick="valida_envia();">Registrarse</button>
-			          	</center>
+			          	
 			        </div>
 			    </form>
 			</div>
