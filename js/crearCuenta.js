@@ -3,7 +3,7 @@ console.log(searchParams)
 if(searchParams.has("recibido")){
     if(searchParams.get("recibido") == 2){
         console.log("respuesta = 2 ")
-        openurl("inicio.html")
+        
     }
 }
 function verificarContrasena(){
