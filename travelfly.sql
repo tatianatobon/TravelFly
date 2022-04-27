@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-04-2022 a las 19:17:22
+-- Tiempo de generación: 27-04-2022 a las 06:47:43
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.0.13
 
@@ -74,13 +74,13 @@ CREATE TABLE `usuario` (
   `documento` varchar(10) NOT NULL,
   `celular` varchar(10) NOT NULL,
   `fechaNacimiento` date NOT NULL,
-  `id_genero` int(10) NOT NULL,
+  `id_genero` int(10) DEFAULT NULL,
   `pais` varchar(30) NOT NULL,
   `estado` varchar(30) NOT NULL,
   `ciudad` varchar(30) NOT NULL,
-  `direccion` varchar(30) NOT NULL,
+  `direccion` varchar(30) DEFAULT NULL,
   `email` varchar(30) NOT NULL,
-  `user` varchar(30) NOT NULL,
+  `user` varchar(30) DEFAULT NULL,
   `pass` varchar(30) NOT NULL,
   `confirmPass` varchar(30) DEFAULT NULL,
   `foto` longblob DEFAULT NULL,
@@ -102,12 +102,18 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido`, `documento`, `celular
 (9, 'Harry', 'percibal Nuñez', '1117895456', '3122145678', '1997-10-31', 1, 'Estados Unidos', 'Alabama', 'Vernon', 'carrera 1234', 'hhpercibal@gmail.com', 'harry1', 'potter123', 'potter123', '', 2),
 (10, 'Lola Mento', 'Garcia Noreña', '1112475125', '3214569841', '2000-06-16', 2, 'Mónaco', 'Monaco', 'La Condamine', 'calle 1ra # 32-78', 'Ll.garcia@gmail.com', 'Garcia12', 'garcia12345', 'Lola Mento', '', 2),
 (11, 'Ignacio ', 'Peña Alberdi', '1115789551', '3174567899', '2003-09-11', 1, 'Argentina', 'Buenos Aires', 'Arbolito', 'carrera 12 # 45G13', 'pena_A12@gmail.com', 'Peña_ign', 'ignacio12345', 'Peña Alberdi', '', 2),
-(12, 'Venceslas ', 'Cardona Heras', '2555841132', '3257881125', '2000-07-13', 1, 'Grecia', 'Grevena', 'Gréos', 'carrera 15A 13', 'Vences@gmail.com', 'Vences123', 'Vences789', 'Vences789', '', 2),
 (13, 'Walter Josep ', 'Costa Maza', '7855112266', '3225588411', '2001-06-14', 1, 'Brasil', 'Parana', 'Alto Piquiri', 'calle 1T12-6', 'walter123@gmail.com', 'walter_bra', 'bra123456', 'bra123456', '', 2),
 (14, 'Angelly Sofia', 'Lozano Muñoz', '1110787455', '3203215447', '1999-02-10', 2, 'Alemania', 'Bayern', 'München', 'carrera 1Q # 45-55', 'angelly@gmail.com', 'ange1233', '123456789', '123456789', '', 2),
 (15, 'Joshua Gabriel', 'Urbano Arias', '1110789410', '3211547852', '2003-12-31', 1, 'Colombia', 'Valle del Cauca', 'Cartago', 'carrera 1G # 35 a 13', 'joshua@gmail.com', 'joshua_guia', 'joshua123', 'joshua123', '', 2),
 (16, 'Angela Estefanía', 'Jimenez Ordoñez', '1117851122', '3147852115', '2000-06-15', 2, 'Colombia', 'Narino', 'Pasto', 'calle 13 con 5ta ', 'angela.j@gmail.com', 'angela_jimenez', 'jimenez123', 'jimenez123', '', 2),
-(18, 'Richard', 'Simpson Ramirez', '1117855411', '3217894455', '2000-02-24', 1, 'Estados Unidos', 'Illinois', 'Carlinville', 'avenida 1f #14-55', 'simpson@gmail.com', 'Rsimpson', '12345678', '12345678', '', 2);
+(18, 'Richard', 'Simpson Ramirez', '1117855411', '3217894455', '2000-02-24', 1, 'Estados Unidos', 'Illinois', 'Carlinville', 'avenida 1f #14-55', 'simpson@gmail.com', 'Rsimpson', '12345678', '12345678', '', 2),
+(26, 'tarzan', 'Urbano Luna ', '1113552659', '3145857898', '2003-12-29', 1, 'Tailandia', 'Amnat Charoen', 'Amnat Charoen', 'carrera 1G # 35 a 13', 'tarzan@1013', 'rey', '123456789', '123456789', '', 3),
+(27, 'Felipe', 'Rangel Palacios', '98358265', '3115226622', '2003-12-29', 1, 'Afganistán', 'Afghanistan', 'Baglan', 'carrera 1G # 35 a 13', 'fpalacios@gmail.com', 'felipe13', '12345678', '12345678', '', 3),
+(31, 'Gohan', 'Torrez Lozano', '1112225548', '3214755112', '0000-00-00', NULL, 'Japón', 'Osaka', 'Daito', NULL, 'gohan@gmail.com', NULL, '12345678', NULL, NULL, 2),
+(37, 'Luis Sebastian', 'Torrez Lozano', '1214454887', '1215121202', '2003-12-30', 1, 'Afganistán', 'Afghanistan', 'Baglan', 'carrera 1G # 35 a 13', 'ssgi@gmail.com', '11211', '112345678', '12345678', '', 3),
+(38, 'Sebastian', 'Torrez Lozano', '1544871212', '3122154595', '0000-00-00', NULL, 'Afganistán', 'Afghanistan', 'Baglan', NULL, 'sluna@utp.edu.co', NULL, '12345678', NULL, NULL, 2),
+(39, 'luis', 'suarez', '1445421212', '3351121212', '0000-00-00', NULL, 'Afganistán', 'Afghanistan', 'Baglan', NULL, 'ssuarez@gmail.com', NULL, '12345678', NULL, NULL, 2),
+(40, 'juanito', 'perez arcila', '1114788552', '3202145875', '2003-12-30', 1, 'Afganistán', 'Afghanistan', 'Baglan', 'carrera 1G # 35 a 13', 'arci@gmail.com', '12345678', '12345678', '12345678', '', 3);
 
 --
 -- Índices para tablas volcadas
@@ -153,7 +159,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Restricciones para tablas volcadas
