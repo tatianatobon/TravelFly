@@ -220,9 +220,7 @@ $recibido=0;
 						document.fvalida.confirmPass.focus()
 						return false
 				}
-				setTimeout(() => {
-					openurl("inicio.html")
-				}, 3000);
+			
 				return true;
 			}
 		</script>
