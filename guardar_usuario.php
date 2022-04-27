@@ -16,7 +16,7 @@
 		'$id_genero', '$pais', '$estado', '$ciudad', '$direccion', '$email', '$user', '$pass', '$confirmPass', '$foto', '3')";
 
 		mysqli_query($enlace, $consulta);
-		header("Location: crearCuenta.php?recibido=2");
+		header("Location: inicio.html");
 	}
 	mysqli_close($enlace);
 ?>	
