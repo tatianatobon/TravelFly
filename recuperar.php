@@ -23,11 +23,11 @@
         $tucorreo = "From: travelfly.server@gmail.com";
 
         if(mail($paracorreo, $titulo, $mensaje, $tucorreo)){
-            echo "<script> alert('Contraseña enviada'); window.location= 'index.html' </script>";
+            echo "<script> alert('Contraseña enviada'); window.location= 'inicio.html' </script>";
         }else{
-            echo "<script> alert('Error'); window.location= 'index.html' </script>";
+            echo "<script> alert('Error'); window.location= 'inicio.html' </script>";
         }
     }else{
-        echo "<script> alert('Este correo no existe'); window.location= 'index.html' </script>";
+        echo "<script> alert('Este correo no existe'); window.location= 'inicio.html' </script>";
     }
 ?>	

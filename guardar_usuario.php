@@ -11,5 +11,5 @@
 
 	mysqli_query($enlace, $consulta);
 	mysqli_close($enlace);
-	header("Location: index.html");
+	header("Location: inicio.html");
 ?>	
