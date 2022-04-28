@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
                 <div class="modal-content">
-                    <form action="guardar_administrador.php" method="post" id="formulario" enctype="multipart/form-data">
+                    <form onsubmit="return verificarespacios()" action="guardar_administrador.php" method="post" id="formulario" enctype="multipart/form-data">
                         <label>Nombres</label>
                         <input type="text" id="nombre" class="form-control" name="nombre" class="form-control" placeholder="Ingresa tu Nombre" required pattern="[A-Za-z-Zñóéí ]+" minlength="3" maxlength="30">
 

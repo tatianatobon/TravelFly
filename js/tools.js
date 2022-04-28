@@ -22,9 +22,15 @@ function openurl(url) {
     fireClickEvent(a);
 }
 function verificarespacios(){
-    nombre=document.getElementById("nombre").value
-    apellido=document.getElementById("apellido").value
-    if(nombre==""){
-        alert("no puede comensar con espacios")
+    nombre=document.getElementById("nombre").value.trim()
+    apellido=document.getElementById("apellido").value.trim()
+    if(!nombre){
+        alert("no puede comenzar con espacios")
+        return false
     }
+    if(!apellido){
+        alert("no puede comenzar con espacios")
+        return false
+    }
+    return true
 }
