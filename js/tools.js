@@ -21,3 +21,10 @@ function openurl(url) {
     a.href = url;
     fireClickEvent(a);
 }
+function verificarespacios(){
+    nombre=document.getElementById("nombre").value
+    apellido=document.getElementById("apellido").value
+    if(nombre==""){
+        alert("no puede comensar con espacios")
+    }
+}
