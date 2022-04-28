@@ -9,11 +9,13 @@ if(searchParams.has("recibido")){
 function verificarContrasena(){
     contrasena1=document.getElementById("cr1").value
     contrasena2=document.getElementById("cr2").value
-    if(contrasena1==contrasena2){
-        alert("las contraseñas son iguales")
+    if(contrasena1.includes(" ")){
+        alert("no puede contener espacios")
+        return false
     }
-    else{
+    if(contrasena1!=contrasena2){     
         alert("las contraseñas son diferentes")
+        return false
     }
-    return contrasena1==contrasena2
+    return true
 }
