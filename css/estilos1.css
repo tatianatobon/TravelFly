@@ -1,0 +1,158 @@
+.imagendefondo {
+    background-image: url("https://i.postimg.cc/V5PQ9xXg/hotel.jpg");
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-position-x:center;
+    background-position-y:center;
+    min-height: 400px;
+    text-align: center;
+    
+}
+.btn-menu{
+  display: inline-block;
+  user-select: none;
+}
+.btn-menu label{
+  background: lightgray;
+  padding: 10px;
+
+}
+.btn-menu input[type="radio"]{
+  display:none;
+}
+.btn-menu input[type="radio"]:checked+label{
+  background: dodgerblue;
+  color: white;
+}
+#vista{
+  background:white;
+  padding: 10px;
+  width: 85vw;
+  min-height: 300px;
+  margin: auto;
+}
+/*
+/* Imagen utilizada en pantallas de anchura 480 px y superior 
+@media (min-width: 480px) {
+  body {
+      background: url("background-480w.png");
+  }
+}
+
+/* Imagen utilizada en pantallas de anchura 768 px y superior 
+@media (min-width: 768px) {
+  body {
+      background: url("background-768w.png");
+  }
+}
+
+/* Imagen utilizada en pantallas de anchura 1200 px y superior 
+@media (min-width: 1200px) {
+  body {
+      background: url("background-1200w.png");
+  }
+}
+
+*/
+
+.eye{
+    position:absolute;
+    height:87px;
+    width:226px;
+    top: 450px;
+    left : 280px;
+    z-index: 4;
+  }
+  
+    
+.eye2{
+    position:absolute;
+    height:87;
+    width:226px;
+    top: 450px;
+    left : 587px;
+    z-index: 4;
+  }
+
+.eye3{
+    position:absolute;
+    height:87;
+    width:226px;
+    top: 450px;
+    left : 880px;
+    z-index: 4;
+  }
+
+  .contenedor{
+    position:absolute;
+    height:87px;
+    width:226px;
+    top: 537px;
+    left : 280px;
+    z-index: 4;
+  }
+  
+    
+.contenedor1{
+    position:absolute;
+    height:87px;
+    width:226px;
+    top: 537px;
+    left : 587px;
+    z-index: 4;
+  }
+
+.contenedor2{
+    position:absolute;
+    height:87px;
+    width:226px;
+    top:537px;
+    left : 880px;
+    z-index: 4;
+  }
+
+  .contenedorReserva{
+    position:absolute;
+    height:30px;
+    width:200px;
+    top:190px;
+    left : 240px;
+    z-index: 4;
+  } 
+ 
+  .contenedorReserva2{
+    position:absolute;
+    height:30px;
+    width:200px;
+    top:190px;
+    left :420px;
+    z-index: 4;
+  } 
+
+  .contenedorReserva3{
+    position:absolute;
+    height:30px;
+    width:120px;
+    top:190px;
+    left : 618px;
+    z-index: 4;
+  } 
+
+  .contenedorReserva4{
+    position:absolute;
+    height:30px;
+    width:200px;
+    top:190px;
+    left : 736px;
+    z-index: 4;
+  } 
+
+  
+  .contenedorReservas{
+    position:absolute;
+    height:180px;
+    width:800px;
+    top:220px;
+    left : 240px;
+    z-index: 4;
+  } 
