@@ -58,7 +58,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="bi bi-send-fill"></i><span>Listar Vuelos</span></a>
+        <a class="nav-link" href="listar_vuelo.php"><i class="bi bi-send-fill"></i><span>Listar Vuelos</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#"><i class="bi bi-person-circle"></i><span>Listar Usuarios</span></a>
