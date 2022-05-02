@@ -64,8 +64,8 @@
         <div id="collapseTree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Tipo de Vuelo:</h6>
-              <a class="collapse-item" href="listar_vuelo.php">Vuelo Nacional</a>
-              <a class="collapse-item" href="#">Vuelo Internacional</a>
+              <a class="collapse-item" href="listar_vuelo_nacional.php">Vuelo Nacional</a>
+              <a class="collapse-item" href="listar_vuelo_internacional.php">Vuelo Internacional</a>
           </div>
         </div>
       </li>

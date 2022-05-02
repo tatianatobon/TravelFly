@@ -116,7 +116,7 @@
           <div class="row">
             <div class="col-1">
               <div class="text-center">
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCrear"><i class="bi bi-person-plus-fill"></i></button>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCrear"><i class="bi bi-send-plus-fill"></i></button>
               </div>
             </div>
           </div>
@@ -125,16 +125,19 @@
             <table id="tablaAdmi" class="table table-striped" style="width:100%">
               <thead>
                 <tr>
-                  <th><center>Nombre Completo</center></th>
-                  <th><center>Documento</center></th>
-                  <th><center>Celular</center></th>
-                  <th><center>Correo</center></th>
+                  <th><center>Ciudad Origen</center></th>
+                  <th><center>Ciudad Destino</center></th>
+                  <th><center>Fecha Salida</center></th>
+                  <th><center>Hora Salida</center></th>
+                  <th><center>Tiempo de Vuelo</center></th>
                   <th><center>Opciones</center></th>
                 </tr>
               </thead>
               <tbody>
                 <?php
-                $consulta = "SELECT * FROM usuario INNER JOIN rol ON usuario.id_rol = rol.id_rol WHERE rol.id_rol = '2' ORDER BY id_usuario";
+                $consulta = "SELECT * FROM vuelo INNER JOIN origen_nacional ON vuelo.id_nacional_origen = origen_nacional.id_nacional_origen 
+                INNER JOIN destino_nacional ON vuelo.id_nacional_destino = origen_nacional.id_nacional_destino INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo
+                WHERE tipo_vuelo.id_tipo_vuelo = '1' ORDER BY id_vuelo";
                 $resultado = mysqli_query($enlace, $consulta);
 
                 while($fila = mysqli_fetch_array($resultado)){?>      
