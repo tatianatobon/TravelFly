@@ -58,7 +58,16 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="listar_vuelo.php"><i class="bi bi-send-fill"></i><span>Listar Vuelos</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTree" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="bi bi-send-fill"></i><span>Listar Vuelos</span>
+        </a>
+        <div id="collapseTree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Tipo de Vuelo:</h6>
+              <a class="collapse-item" href="listar_vuelo.php">Vuelo Nacional</a>
+              <a class="collapse-item" href="#">Vuelo Internacional</a>
+          </div>
+        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#"><i class="bi bi-person-circle"></i><span>Listar Usuarios</span></a>

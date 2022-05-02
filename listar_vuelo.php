@@ -27,7 +27,6 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/estilo2.css" rel="stylesheet">
-  
 	<!-- Bootstrap CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<!-- Data Table -->
@@ -37,17 +36,13 @@
 </head>
 
 <body id="page-top">
-    <?php
-      $consulta = "SELECT * FROM usuario INNER JOIN rol ON usuario.id_rol = rol.id_rol WHERE rol.id_rol = '2' ORDER BY id_usuario";
-      $resultado = mysqli_query($enlace, $consulta);
-      $fila = mysqli_fetch_array($resultado)
-    ?>
+    
   <div id="wrapper">
     <!-- Sidebar -->
     <ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
       <!-- Sidebar - imagen -->
       <center>
-        <a class="navbar-brand" href="#"><img src="img/Logotipo.png" alt="" width="65" height="0" class="rounded img-fluid d-inline-block align-text-top"></a>
+        <a class="navbar-brand" href="menu_administrador.php"><img src="img/Logotipo.png" alt="" width="65" height="0" class="rounded img-fluid d-inline-block align-text-top"></a>
       </center>
       <hr class="sidebar-divider my-0">
       <br>
@@ -58,7 +53,16 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="bi bi-send-fill"></i><span>Listar Vuelos</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTree" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="bi bi-send-fill"></i><span>Listar Vuelos</span>
+        </a>
+        <div id="collapseTree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Tipo de Vuelo:</h6>
+              <a class="collapse-item" href="listar_vuelo.php">Vuelo Nacional</a>
+              <a class="collapse-item" href="#">Vuelo Internacional</a>
+          </div>
+        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#"><i class="bi bi-person-circle"></i><span>Listar Usuarios</span></a>
@@ -74,38 +78,98 @@
     <?php include('modal_editar_admi.php'); ?>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
-        <div id="content">
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                <ul class="navbar-nav ml-auto">
-                    <div class="navbar-nav mr-auto">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSalir">Cerrar Sesión <i class="bi bi-box-arrow-right"></i></button>
-                        <!-- Modal Salir-->
-                        <div class="modal fade" id="modalSalir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" >
-                                <div class="modal-content">
-                                    <div class="modal-header bg-primary" >
-                                        <h5 class="modal-title" id="exampleModalLabel" style="color: #FFFFFF; text-align: center;">Advertencia!!</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <center><h4>¿Está seguro de salir?</h4></center>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a href="salir.php"><button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Si</button></a>
-                                        <a href="listar_vuelo.php"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" >No</button></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+      <div id="content">
+        <div>
+          <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <ul class="navbar-nav ml-auto">
+              <div class="navbar-nav mr-auto">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSalir">Cerrar Sesión <i class="bi bi-box-arrow-right"></i></button>
+                <!-- Modal Salir-->
+                <div class="modal fade" id="modalSalir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" >
+                    <div class="modal-content">
+                      <div class="modal-header bg-primary" >
+                        <h5 class="modal-title" id="exampleModalLabel" style="color: #FFFFFF; text-align: center;">Advertencia!!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+                      </div>
+                    <div class="modal-body">
+                      <center><h4>¿Está seguro de salir?</h4></center>
                     </div>
-                </ul>
-                <?php
-                    mysqli_close($enlace);
-                ?>
-            </nav>
-            
+                    <div class="modal-footer">
+                      <a href="salir.php"><button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Si</button></a>
+                      <a href="listar_vuelo.php"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" >No</button></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ul>
+          </nav>
         </div>
+        <b>
+        <center>
+            <font face="Times New Roman" size="8" color="Black">Listado de Vuelos</font>
+        </center>
+        <!-- DataTable -->
+        </b>
+        <div class="container-fluid">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-1">
+              <div class="text-center">
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCrear"><i class="bi bi-person-plus-fill"></i></button>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="table-responsive">
+            <table id="tablaAdmi" class="table table-striped" style="width:100%">
+              <thead>
+                <tr>
+                  <th><center>Nombre Completo</center></th>
+                  <th><center>Documento</center></th>
+                  <th><center>Celular</center></th>
+                  <th><center>Correo</center></th>
+                  <th><center>Opciones</center></th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                $consulta = "SELECT * FROM usuario INNER JOIN rol ON usuario.id_rol = rol.id_rol WHERE rol.id_rol = '2' ORDER BY id_usuario";
+                $resultado = mysqli_query($enlace, $consulta);
+
+                while($fila = mysqli_fetch_array($resultado)){?>      
+                  <tr>
+                    <td><center><?php echo $fila['nombre'];?> <?php echo $fila['apellido'];?></center></td>
+                    <td><center><?php echo $fila['documento'];?></center></td>
+                    <td><center><?php echo $fila['celular'];?></center></td>
+                    <td><center><?php echo $fila['email'];?></center></td>
+                    <td><center>
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditar<?php echo $fila['id_usuario']; ?>"><i class="bi bi-pencil-square"></i>
+                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar<?php echo $fila['id_usuario']; ?>"><i class="bi bi-trash-fill"></i>
+                    </button><center></td>
+                  </tr>
+                  <!-- Modal crear Administrador -->
+                  <?php include('modal_crear_admi.php'); ?>
+                  <!-- Modal Editar Administrador -->
+                   <?php include('modal_eliminar_admi.php'); ?>
+                <?php  } 
+                  mysqli_close($enlace);
+                ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </div>
+      </div>
     </div>
+    
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <!-- Data Table -->
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"></script>
+  <!-- Bootstrap js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <script type="text/javascript" src="DataTables/datatables.min.js"></script>
@@ -120,27 +184,28 @@
   <!-- Page level plugins -->
   <script src="vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <!-- Funciones DataTable -->
   <script type="text/javascript">
-    $(document).ready(function(){
-      $('#tablaAdmi').DataTable({
-        responsive: true,
-        autoWidth: false,
-        "language": {
-          "lengthMenu": "Mostrar _MENU_ registros por página",
-          "sProcessing": "Procesando...",
-          "zeroRecords": "No se han encontrado resultados",
-          "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-          "infoEmpty": "Mostrando registros del 0 al 0 total de 0 registros",
-          "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-          "search": "Buscar:",
-          "oPaginate": {
-            "sNext": "Siguiente",
-            "sPrevious": "Anterior"
-          },
-        }
-      });
-    });
-  </script>
+        $(document).ready(function(){
+            $('#tablaAdmi').DataTable({
+                responsive: true,
+                autoWidth: false,
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "sProcessing": "Procesando...",
+                    "zeroRecords": "No se han encontrado resultados",
+                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "infoEmpty": "Mostrando registros del 0 al 0 total de 0 registros",
+                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "search": "Buscar:",
+                    "oPaginate": {
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
