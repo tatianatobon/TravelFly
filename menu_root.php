@@ -29,36 +29,36 @@
     <body>
     <div>
         <nav class="navbar navbar-inverse navbar-dark bg-primary">
-          <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#"><img src="img/Logotipo.png" alt="" width="60" height="60" class="rounded img-fluid d-inline-block align-text-top"></a>
-            </div>
-            <div class="navbar-nav mr-auto">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSalir">Cerrar Sesión <i class="bi bi-box-arrow-right"></i></button>
-                <!-- Modal Salir-->
-                <div class="modal fade" id="modalSalir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" >
-                        <div class="modal-content ">
-                            <div class="modal-header bg-primary" >
-                                <h5 class="modal-title" id="exampleModalLabel" style="color: #FFFFFF; text-align: center;">Advertencia!!</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
-                            </div>
-                            <div class="modal-body">
-                                <center>
-                                    <h4>¿Está seguro de salir?</h4>  
-                                </center>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="salir.php"><button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Si</button>
-                                </a>
-                                <a href="menu_root.php"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" >No</button>
-                                </a>
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#"><img src="img/Logotipo.png" alt="" width="60" height="60" class="rounded img-fluid d-inline-block align-text-top"></a>
+                </div>
+                <div class="navbar-nav mr-auto">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSalir">Cerrar Sesión <i class="bi bi-box-arrow-right"></i></button>
+                    <!-- Modal Salir-->
+                    <div class="modal fade" id="modalSalir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" >
+                            <div class="modal-content ">
+                                <div class="modal-header bg-primary" >
+                                    <h5 class="modal-title" id="exampleModalLabel" style="color: #FFFFFF; text-align: center;">Advertencia!!</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+                                </div>
+                                <div class="modal-body">
+                                    <center>
+                                        <h4>¿Está seguro de salir?</h4>  
+                                    </center>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="salir.php"><button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Si</button>
+                                    </a>
+                                    <a href="menu_root.php"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" >No</button>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-          </div>
         </nav>
     </div>
     <br><b>
