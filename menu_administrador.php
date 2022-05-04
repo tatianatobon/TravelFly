@@ -54,10 +54,12 @@
       <br>
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link collapsed volCol" href="" data-toggle="modal" data-target="#modalEditar" aria-expanded="true" aria-controls="collapseUtilities" data-idprograma="<?php echo $fila['id_usuario']; ?>">
-        <i class="bi bi-gear-fill"></i><span>Editar Datos</span></a>
+        
+        <a class="nav-link collapsed volCol" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" data-idprograma="<?php echo $fila['id_usuario']; ?>">
+        <i class="bi bi-gear-fill" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample2"></i><span>Editar Datos</span></a>
         </a>
-      </li>
+
+  </li>
       <li class="nav-item">
         <a class="nav-link" href="#"><i class="bi bi-send-fill"></i><span>Listar Vuelos</span></a>
       </li>
@@ -71,8 +73,80 @@
         <a class="nav-link" href="#"><i class="bi bi-chat-square-text-fill"></i><span>Foro</span></a>
       </li>
     </ul>
+
+    <div class=" row d-flex justify-content-center;"  >
+	  <div class="collapse collapse-horizontal; " id="multiCollapseExample1"  >
+		<div class="card card-body " style="width:1230px; "  >
     <!-- Modal Editar Administrador -->
-    <?php include('modal_editar_admi.php'); ?>
+
+            <div class="modal-body">
+                <div class="modal-content">
+                    <form action="editar_administrador.php" method="post" id="formulario" enctype="multipart/form-data">
+                        <input type="hidden" name="id_usuario" value="<?php echo $fila['id_usuario'];?>">
+
+                        <label>Nombres</label>
+                        <input type="text" class="form-control" name="nombre" class="form-control" value="<?php echo $fila['nombre']?>" pattern="[A-Za-z-Zñóéíá, .-]+" maxlength="30">
+
+                        <label>Apellidos</label>
+                        <input type="text" class="form-control" name="apellido" class="form-control" value="<?php echo $fila['apellido']?>" pattern="[A-Za-z-Zñóéíá, .-]+" maxlength="30">
+
+                        <label>Documento</label>
+                        <input type="text" class="form-control" name="documento" class="form-control" value="<?php echo $fila['documento']?>" pattern="[0-9]+" minlength="10" maxlength="10" disabled>
+
+                        <label>Numero de celular</label>
+                        <input type="text" class="form-control" name="celular" class="form-control" value="<?php echo $fila['celular']?>" pattern="[0-9]+" minlength="10" maxlength="10">
+
+                        <label>Fecha nacimiento</label>
+                        <input type="date" name="fechaNacimiento" style="width:38%;color: #515A5A;" value="<?php echo $fila['fechaNacimiento']?>" class="form-control" min = "1940-01-01" max = "2004-01-01" disabled>
+                                                
+                        <label>Genero</label>
+                        <select name="id_genero" style="width:38%; color: #515A5A;">
+                            <?php
+                                $consulta_mysql='select * from genero';
+                                $resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);
+                                while($lista=mysqli_fetch_assoc($resultado_consulta_mysql)){
+                                echo "<option  value='".$lista["id_genero"]."'>";
+                                echo $lista["tipo_genero"];
+                                echo "</option>";
+                                }
+                            ?>
+                        </select>
+                                            
+                        <label>Direccion</label>
+                        <input type="text" name="direccion" value="<?php echo $fila['direccion']?>" class="form-control" maxlength="30">
+
+                        <label>Email</label>
+                        <input type="email" class="form-control" name="email" class="form-control" value="<?php echo $fila['email']?>" maxlength="30">
+
+                        <label>Usuario</label>
+                        <input type="text" class="form-control" name="user" class="form-control" value="<?php echo $fila['user']?>" maxlength="30">
+
+                        <label>Contraseña</label>
+                        <input type="password" name="pass" value="<?php echo $fila['pass']?>" class="form-control" maxlength="30" pattern=".{8,}">
+                        <spam> "la contraseña debe contener 8 caracteres"</spam>
+
+                        <label>Confirmar Contraseña</label>
+                        <input type="password" name="confirmPass" value="<?php echo $fila['confirmPass']?>" class="form-control" maxlength="30" pattern=".{8,}">
+
+                        <label>Elige una Foto de Perfil</label>
+                        <input type="file" name="foto" id="foto" class="form-control" value="<?php echo $fila['foto']?>">
+
+                        <div class="modal-footer">
+                            <center>
+                                <button type="submit" class="btn btn-success">Editar Administrador</button>
+                            </center>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+        
+	
+	
+    
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
       <div id="content">

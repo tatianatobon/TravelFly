@@ -11,9 +11,9 @@
 	$resultado = mysqli_query($enlace, $consulta);
 	
 	if ($resultado){
-			header("Location: menu_administrador.php?recibido=3");
+			header("Location: menu_usuario.php?recibido=2");	
 	}else{
-		header("Location: menu_administrador.php?recibido=4");
+		header("Location: menu_usuario.php?recibido=4");
 	}
 	mysqli_close($enlace);
 ?>	
