@@ -80,14 +80,19 @@
       
     </ul>
 
-    
-    <div class=" row d-flex justify-content-center; " >
-	  <div class="collapse collapse-horizontal; " id="multiCollapseExample1" >
-		<div class="card card-body " style="width:1230px; "  >
+    <div class=" row d-flex justify-content-center">
+
+	  <div class="collapse collapse-horizontal " id="multiCollapseExample1"  >
+		<div class="card card-body " style="margin-top: 70px; width: 200%"   >
     <!-- Modal Editar Administrador -->
 
-    <div class="modal-body">
-                <div class="modal-content">
+            <div class="modal-body" >
+                <div class="modal-content" style="
+  padding: 20px;
+  margin: auto;
+  border: solid;
+  border-radius: 10px;">
+  
                     <form action="editar_usuario.php" method="post" id="formulario" enctype="multipart/form-data">
                         <input type="hidden" name="id_usuario" value="<?php echo $fila['id_usuario'];?>">
 

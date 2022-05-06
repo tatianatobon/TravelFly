@@ -74,13 +74,18 @@
       </li>
     </ul>
 
-    <div class=" row d-flex justify-content-center;"  >
-	  <div class="collapse collapse-horizontal; " id="multiCollapseExample1"  >
-		<div class="card card-body " style="width:1230px; "  >
+    <div class=" row d-flex justify-content-center">
+
+	  <div class="collapse collapse-horizontal " id="multiCollapseExample1"  >
+		<div class="card card-body " style="margin-top: 70px; width: 200%"   >
     <!-- Modal Editar Administrador -->
 
-            <div class="modal-body">
-                <div class="modal-content">
+            <div class="modal-body" >
+                <div class="modal-content" style="
+  padding: 20px;
+  margin: auto;
+  border: solid;
+  border-radius: 10px;">
                     <form action="editar_administrador.php" method="post" id="formulario" enctype="multipart/form-data">
                         <input type="hidden" name="id_usuario" value="<?php echo $fila['id_usuario'];?>">
 
@@ -97,10 +102,10 @@
                         <input type="text" class="form-control" name="celular" class="form-control" value="<?php echo $fila['celular']?>" pattern="[0-9]+" minlength="10" maxlength="10">
 
                         <label>Fecha nacimiento</label>
-                        <input type="date" name="fechaNacimiento" style="width:38%;color: #515A5A;" value="<?php echo $fila['fechaNacimiento']?>" class="form-control" min = "1940-01-01" max = "2004-01-01" disabled>
+                        <input type="date" name="fechaNacimiento" style="color: #515A5A;" value="<?php echo $fila['fechaNacimiento']?>" class="form-control" min = "1940-01-01" max = "2004-01-01" disabled>
                                                 
-                        <label>Genero</label>
-                        <select name="id_genero" style="width:38%; color: #515A5A;">
+                        <label>Genero</label><br>
+                        <select name="id_genero" style=" color: #515A5A;" class="form-control-lg">
                             <?php
                                 $consulta_mysql='select * from genero';
                                 $resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);
@@ -111,7 +116,7 @@
                                 }
                             ?>
                         </select>
-                                            
+                        <br>                    
                         <label>Direccion</label>
                         <input type="text" name="direccion" value="<?php echo $fila['direccion']?>" class="form-control" maxlength="30">
 
