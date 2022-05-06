@@ -64,6 +64,16 @@
       
       <li class="nav-item">
         <a class="nav-link" href="#"><i class="bi bi-send-fill"></i><span>Compras</span></a>
+        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdown">
+                    <li><a class="dropdown-item" href="#">New project...</a></li>
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                </ul>
+
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#"><i class="bi bi-person-circle"></i><span>Historial de vuelos</span></a>
