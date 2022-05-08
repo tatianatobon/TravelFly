@@ -136,11 +136,11 @@
               </thead>
               <tbody>
                 <?php
-                $consulta = "SELECT origen_nacional.ciudad_origen, vuelo.fecha_hora_salida, destino_nacional.ciudad_destino, 
-                DATE_ADD(vuelo.fecha_hora_salida, INTERVAL vuelo.tiempo_vuelo HOUR), vuelo.costo_vuelo 
+                $consulta = "SELECT vuelo.id_vuelo, origen_nacional.ciudad_origen, vuelo.fecha_hora_salida, destino_nacional.ciudad_destino, 
+                DATE_ADD(vuelo.fecha_hora_salida, INTERVAL vuelo.tiempo_vuelo HOUR) AS fecha_hora_llegada, vuelo.costo_vuelo 
                 FROM vuelo INNER JOIN origen_nacional ON vuelo.id_nacional_origen = origen_nacional.id_nacional_origen 
                 INNER JOIN destino_nacional ON vuelo.id_nacional_destino = destino_nacional.id_nacional_destino 
-                INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo WHERE tipo_vuelo.id_tipo_vuelo = '1'; ORDER BY id_vuelo";
+                INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo WHERE tipo_vuelo.id_tipo_vuelo = '1' ORDER BY id_vuelo;";
                 $resultado = mysqli_query($enlace, $consulta);
 
                 while($fila = mysqli_fetch_array($resultado)){?>      
@@ -151,14 +151,12 @@
                     <td><center><?php echo $fila['fecha_hora_llegada'];?></center></td>
                     <td><center><?php echo $fila['costo_vuelo'];?></center></td>
                     <td><center>
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditar<?php echo $fila['id_vuelo']; ?>"><i class="bi bi-pencil-square"></i>
-                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar<?php echo $fila['id_vuelo']; ?>"><i class="bi bi-trash-fill"></i>
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarVuelo<?php echo $fila['id_vuelo']; ?>"><i class="bi bi-pencil-square"></i>
+                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEliminarVuelo<?php echo $fila['id_vuelo']; ?>"><i class="bi bi-trash-fill"></i>
                     </button><center></td>
                   </tr>
                   <!-- Modal crear Vuelo -->
-                  <?php include('modal_crear_vuelo_nacional.php'); ?>
-                  <!-- Modal Editar Vuelo -->
-                   <?php include('modal_eliminar_admi.php'); ?>
+                  <?php include('modales_vuelos_nacionales.php'); ?>
                 <?php  } 
                   mysqli_close($enlace);
                 ?>
