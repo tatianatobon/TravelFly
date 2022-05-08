@@ -59,8 +59,9 @@
         <div id="collapseTree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Tipo de Vuelo:</h6>
-              <a class="collapse-item" href="listar_vuelo.php">Vuelo Nacional</a>
-              <a class="collapse-item" href="#">Vuelo Internacional</a>
+              <a class="collapse-item" href="listar_vuelo_nacional.php">Nacional</a>
+              <a class="collapse-item" href="listar_vuelo_internacional1.php">Colombia --> Internacional</a>
+              <a class="collapse-item" href="listar_vuelo_internacional2.php">Internacional --> Colombia</a>
           </div>
         </div>
       </li>
@@ -107,7 +108,7 @@
         </div>
         <b>
         <center>
-            <font face="Times New Roman" size="8" color="Black">Listado de Vuelos</font>
+            <font face="Times New Roman" size="8" color="Black">Listado de Vuelos Nacionales</font>
         </center>
         <!-- DataTable -->
         </b>
@@ -116,7 +117,7 @@
           <div class="row">
             <div class="col-1">
               <div class="text-center">
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCrear"><i class="bi bi-send-plus-fill"></i></button>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCrearVuelo"><i class="bi bi-send-plus-fill"></i></button>
               </div>
             </div>
           </div>
@@ -126,34 +127,37 @@
               <thead>
                 <tr>
                   <th><center>Ciudad Origen</center></th>
+                  <th><center>Fecha y Hora de Salida</center></th>
                   <th><center>Ciudad Destino</center></th>
-                  <th><center>Fecha Salida</center></th>
-                  <th><center>Hora Salida</center></th>
-                  <th><center>Tiempo de Vuelo</center></th>
+                  <th><center>Fecha y Hora de Llegada</center></th>
+                  <th><center>Valor Vuelo</center></th>
                   <th><center>Opciones</center></th>
                 </tr>
               </thead>
               <tbody>
                 <?php
-                $consulta = "SELECT * FROM vuelo INNER JOIN origen_nacional ON vuelo.id_nacional_origen = origen_nacional.id_nacional_origen 
-                INNER JOIN destino_nacional ON vuelo.id_nacional_destino = origen_nacional.id_nacional_destino INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo
-                WHERE tipo_vuelo.id_tipo_vuelo = '1' ORDER BY id_vuelo";
+                $consulta = "SELECT origen_nacional.ciudad_origen, vuelo.fecha_hora_salida, destino_nacional.ciudad_destino, 
+                DATE_ADD(vuelo.fecha_hora_salida, INTERVAL vuelo.tiempo_vuelo HOUR), vuelo.costo_vuelo 
+                FROM vuelo INNER JOIN origen_nacional ON vuelo.id_nacional_origen = origen_nacional.id_nacional_origen 
+                INNER JOIN destino_nacional ON vuelo.id_nacional_destino = destino_nacional.id_nacional_destino 
+                INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo WHERE tipo_vuelo.id_tipo_vuelo = '1'; ORDER BY id_vuelo";
                 $resultado = mysqli_query($enlace, $consulta);
 
                 while($fila = mysqli_fetch_array($resultado)){?>      
                   <tr>
-                    <td><center><?php echo $fila['nombre'];?> <?php echo $fila['apellido'];?></center></td>
-                    <td><center><?php echo $fila['documento'];?></center></td>
-                    <td><center><?php echo $fila['celular'];?></center></td>
-                    <td><center><?php echo $fila['email'];?></center></td>
+                    <td><center><?php echo $fila['ciudad_origen'];?></center></td>
+                    <td><center><?php echo $fila['fecha_hora_salida'];?></center></td>
+                    <td><center><?php echo $fila['ciudad_destino'];?></center></td>
+                    <td><center><?php echo $fila['fecha_hora_llegada'];?></center></td>
+                    <td><center><?php echo $fila['costo_vuelo'];?></center></td>
                     <td><center>
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditar<?php echo $fila['id_usuario']; ?>"><i class="bi bi-pencil-square"></i>
-                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar<?php echo $fila['id_usuario']; ?>"><i class="bi bi-trash-fill"></i>
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditar<?php echo $fila['id_vuelo']; ?>"><i class="bi bi-pencil-square"></i>
+                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar<?php echo $fila['id_vuelo']; ?>"><i class="bi bi-trash-fill"></i>
                     </button><center></td>
                   </tr>
-                  <!-- Modal crear Administrador -->
-                  <?php include('modal_crear_admi.php'); ?>
-                  <!-- Modal Editar Administrador -->
+                  <!-- Modal crear Vuelo -->
+                  <?php include('modal_crear_vuelo_nacional.php'); ?>
+                  <!-- Modal Editar Vuelo -->
                    <?php include('modal_eliminar_admi.php'); ?>
                 <?php  } 
                   mysqli_close($enlace);

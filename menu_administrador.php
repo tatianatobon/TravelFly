@@ -47,7 +47,7 @@
     <ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
       <!-- Sidebar - imagen -->
       <center>
-        <a class="navbar-brand" href="#"><img src="img/Logotipo.png" alt="" width="65" height="0" class="rounded img-fluid d-inline-block align-text-top"></a>
+        <a class="navbar-brand" href="menu_administrador.php"><img src="img/Logotipo.png" alt="" width="65" height="0" class="rounded img-fluid d-inline-block align-text-top"></a>
       </center>
       <hr class="sidebar-divider my-0">
       <br>
@@ -64,8 +64,9 @@
         <div id="collapseTree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Tipo de Vuelo:</h6>
-              <a class="collapse-item" href="listar_vuelo_nacional.php">Vuelo Nacional</a>
-              <a class="collapse-item" href="listar_vuelo_internacional.php">Vuelo Internacional</a>
+              <a class="collapse-item" href="listar_vuelo_nacional.php">Nacional</a>
+              <a class="collapse-item" href="listar_vuelo_internacional1.php">Colombia --> Internacional</a>
+              <a class="collapse-item" href="listar_vuelo_internacional2.php">Internacional --> Colombia</a>
           </div>
         </div>
       </li>
