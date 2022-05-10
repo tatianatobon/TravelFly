@@ -65,8 +65,8 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Tipo de Vuelo:</h6>
               <a class="collapse-item" href="listar_vuelo_nacional.php">Nacional</a>
-              <a class="collapse-item" href="listar_vuelo_internacional1.php">Colombia --> Internacional</a>
-              <a class="collapse-item" href="listar_vuelo_internacional2.php">Internacional --> Colombia</a>
+              <a class="collapse-item" href="listar_vuelo_internacionalida.php">Colombia --> Internacional</a>
+              <a class="collapse-item" href="listar_vuelo_internacionalregreso.php">Internacional --> Colombia</a>
           </div>
         </div>
       </li>

@@ -60,8 +60,8 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Tipo de Vuelo:</h6>
               <a class="collapse-item" href="listar_vuelo_nacional.php">Nacional</a>
-              <a class="collapse-item" href="listar_vuelo_internacionalida.php">Colombia --> Internacional</a>
-              <a class="collapse-item" href="listar_vuelo_internacionalregreso.php">Internacional --> Colombia</a>
+              <a class="collapse-item" href="listar_vuelo_internacional1.php">Colombia --> Internacional</a>
+              <a class="collapse-item" href="listar_vuelo_internacional2.php">Internacional --> Colombia</a>
           </div>
         </div>
       </li>
@@ -136,11 +136,10 @@
               </thead>
               <tbody>
                 <?php
-                $consulta = "SELECT vuelo.id_vuelo, origen_nacional.ciudad_origen, vuelo.fecha_hora_salida, destino_nacional.ciudad_destino, 
-                DATE_ADD(DATE_ADD(vuelo.fecha_hora_salida, INTERVAL vuelo.tiempo_vuelo HOUR), INTERVAL vuelo.tiempo_vuelo MINUTE) AS fecha_hora_llegada, vuelo.costo_vuelo FROM vuelo 
-                INNER JOIN origen_nacional ON vuelo.id_nacional_origen = origen_nacional.id_nacional_origen 
-                INNER JOIN destino_nacional ON vuelo.id_nacional_destino = destino_nacional.id_nacional_destino 
-                INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo WHERE tipo_vuelo.id_tipo_vuelo = '1' ORDER BY id_vuelo;";
+                $consulta = "SELECT vuelo.id_vuelo, origen.ciudad_origen, vuelo.fecha_hora_salida, destino.ciudad_destino, 
+                DATE_ADD(DATE_ADD(vuelo.fecha_hora_salida, INTERVAL destino.tiempo_dif_ida HOUR), INTERVAL vuelo.tiempo_vuelo HOUR) AS fecha_hora_llegada, vuelo.costo_vuelo FROM vuelo 
+                INNER JOIN origen ON vuelo.id_ciudad_origen = origen.id_ciudad_origen INNER JOIN destino ON vuelo.id_ciudad_destino = destino.id_ciudad_destino 
+                INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo WHERE tipo_vuelo.id_tipo_vuelo = '2' ORDER BY id_vuelo;";
                 $resultado = mysqli_query($enlace, $consulta);
 
                 while($fila = mysqli_fetch_array($resultado)){?>      
@@ -156,7 +155,7 @@
                     </button><center></td>
                   </tr>
                   <!-- Modal crear Vuelo -->
-                  <?php include('modales_vuelos_nacionales.php'); ?>
+                  <?php include('modales_vuelos_internacionales.php'); ?>
                 <?php  } 
                   mysqli_close($enlace);
                 ?>
