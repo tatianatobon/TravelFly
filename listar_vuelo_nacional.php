@@ -137,8 +137,8 @@
               <tbody>
                 <?php
                 $consulta = "SELECT vuelo.id_vuelo, origen_nacional.ciudad_origen, vuelo.fecha_hora_salida, destino_nacional.ciudad_destino, 
-                DATE_ADD(vuelo.fecha_hora_salida, INTERVAL vuelo.tiempo_vuelo HOUR) AS fecha_hora_llegada, vuelo.costo_vuelo 
-                FROM vuelo INNER JOIN origen_nacional ON vuelo.id_nacional_origen = origen_nacional.id_nacional_origen 
+                DATE_ADD(DATE_ADD(vuelo.fecha_hora_salida, INTERVAL vuelo.tiempo_vuelo HOUR), INTERVAL vuelo.tiempo_vuelo MINUTE) AS fecha_hora_llegada, vuelo.costo_vuelo FROM vuelo 
+                INNER JOIN origen_nacional ON vuelo.id_nacional_origen = origen_nacional.id_nacional_origen 
                 INNER JOIN destino_nacional ON vuelo.id_nacional_destino = destino_nacional.id_nacional_destino 
                 INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo WHERE tipo_vuelo.id_tipo_vuelo = '1' ORDER BY id_vuelo;";
                 $resultado = mysqli_query($enlace, $consulta);

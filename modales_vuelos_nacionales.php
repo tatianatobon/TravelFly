@@ -68,7 +68,7 @@
             </div>
             <div class="modal-body">
                 <div class="modal-content">
-                    <form action="editar_administrador.php" method="post" id="formulario" enctype="multipart/form-data">
+                    <form action="editar_vuelo_nacional.php" method="post" id="formulario" enctype="multipart/form-data">
                         <input type="hidden" name="id_vuelo" value="<?php echo $fila['id_vuelo'];?>">
 
                         <label>Ciudad Salida</label>
@@ -109,6 +109,35 @@
                         <div class="modal-footer">
                             <center>
                                 <button type="submit" class="btn btn-success">Editar Vuelo</button>
+                            </center>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!-- Modal Eliminar Vuelos -->
+<div class="modal fade" id="modalEliminarVuelo<?php echo $fila['id_vuelo']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary" >
+                <h5 class="modal-title" id="exampleModalLabel" style="color: #FFFFFF; text-align: center;">¿Realmente desea Cancelar el Vuelo?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-content">
+                    <form action="eliminar_vuelo_nacional.php" method="post" id="formulario" enctype="multipart/form-data">
+                    	<input type="hidden" name="id_vuelo" value="<?php echo $fila['id_vuelo'];?>">
+
+                        <strong><h4><center><?php echo $fila['ciudad_origen'];?> - <?php echo $fila['ciudad_destino'];?></center></h4></strong>
+                        <strong><h4><center>El cual sale el: <?php echo $fila['fecha_hora_salida'];?></center></h4></strong>
+
+                        <div class="modal-footer">
+                            <center>
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
                             </center>
                         </div>
                     </form>
