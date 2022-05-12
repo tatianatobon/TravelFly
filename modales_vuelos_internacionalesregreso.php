@@ -54,8 +54,8 @@
                         <label>Ingrese Costo del Vuelo</label>
                         <input type="number" class="form-control" name="costo_vuelo" class="form-control" placeholder="Ingresa el costo del vuelo" pattern="[0-9]+" minlength="5" maxlength="10" required>
 
-                        <label>Elige una Foto de Perfil</label>
-                        <input type="file" name="foto" class="form-control">
+                        <label>Elige una Foto del Lugar de Destino</label>
+                        <input type="file" name="foto_vuelo" class="form-control">
 
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-success">Crear Vuelo</button>
