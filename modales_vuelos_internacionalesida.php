@@ -9,7 +9,7 @@
             <div class="modal-body">
                 <div class="modal-content">
                     <form action="guardar_vuelo_internacionalida.php" method="post" id="formulario" enctype="multipart/form-data">
-                        <label>Ciudad Salida</label>
+                        <label>Elija La Ciudad Salida</label>
                         <select name="id_ciudad_origen" style="width:38%; color: #515A5A;" required>
                             <?php
                                 $consulta_mysql='select * from origen';
@@ -23,9 +23,9 @@
                         </select>
 
                         <label>Fecha y Hora de Salida</label>
-                        <input type="datetime-local" class="form-control" name="fecha_hora_salida" class="form-control" placeholder=" " min = "2022-05-01" required>
+                        <input type="datetime-local" class="form-control" style="width:70%; color: #515A5A;" name="fecha_hora_salida" class="form-control" placeholder=" " min = "2022-05-01" required>
                         
-                        <label>Ciudad Destino</label>
+                        <label>Elija La Ciudad Destino</label>
                         <select name="id_ciudad_destino" style="width:38%; color: #515A5A;" required>
                             <?php
                                 $consulta_mysql='select * from destino';
@@ -38,13 +38,23 @@
                             ?>
                         </select>
 
-                        <label>Tiempo de Vuelo</label>
-                        <input type="time" class="form-control" name="tiempo_vuelo" class="form-control" placeholder="" required>
+                        <label>Elija Cantidad de Horas de Viaje</label>
+                        <select name="id_cant_horas" style="width:15%; color: #515A5A;" required>
+                            <?php
+                                $consulta_mysql='select * from tiempo_vuelo';
+                                $resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);
+                                while($lista=mysqli_fetch_assoc($resultado_consulta_mysql)){
+                                echo "<option  value='".$lista["id_cant_horas"]."'>";
+                                echo $lista["cantidad_horas"];
+                                echo "</option>";
+                                }
+                            ?>
+                        </select>
 
-                        <label>Costo del Vuelo</label>
+                        <label>Ingrese Costo del Vuelo</label>
                         <input type="number" class="form-control" name="costo_vuelo" class="form-control" placeholder="Ingresa el costo del vuelo" pattern="[0-9]+" minlength="5" maxlength="10" required>
 
-                        <label>Elige una Foto de Perfil</label>
+                        <label>Elige una Foto del Lugar de Destino</label>
                         <input type="file" name="foto" class="form-control">
 
                         <div class="modal-footer">
@@ -71,7 +81,7 @@
                     <form action="editar_vuelo_internacionalida.php" method="post" id="formulario" enctype="multipart/form-data">
                         <input type="hidden" name="id_vuelo" value="<?php echo $fila['id_vuelo'];?>">
 
-                        <label>Ciudad Salida</label>
+                        <label>Ciudad de Salida</label>
                         <select name="id_ciudad_origen" style="width:38%; color: #515A5A;" disabled>
                             <?php
                                 $consulta_mysql='select * from origen';
@@ -85,9 +95,9 @@
                         </select>
 
                         <label>Fecha y Hora de Salida</label>
-                        <input type="datetime-local" class="form-control" name="fecha_hora_salida" class="form-control" placeholder=" " min ="2022-05-01"  value="<?php echo $fila['fecha_hora_salida']?>"  required>
+                        <input type="datetime-local" class="form-control" style="width:70%; color: #515A5A;" name="fecha_hora_salida" class="form-control" placeholder=" " min ="2022-05-01"  value="<?php echo $fila['fecha_hora_salida']?>"  required>
                         
-                        <label>Ciudad Destino</label>
+                        <label>Ciudad de Destino</label>
                         <select name="id_ciudad_destino" style="width:38%; color: #515A5A;" disabled>
                             <?php
                                 $consulta_mysql='select * from destino';
@@ -100,10 +110,20 @@
                             ?>
                         </select>
 
-                        <label>Tiempo de Vuelo</label>
-                        <input type="time" class="form-control" name="tiempo_vuelo" class="form-control" placeholder=""  required>
+                        <label>Elija Cantidad de Horas de Viaje</label>
+                        <select name="id_cant_horas" style="width:15%; color: #515A5A;" required>
+                            <?php
+                                $consulta_mysql='select * from tiempo_vuelo';
+                                $resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);
+                                while($lista=mysqli_fetch_assoc($resultado_consulta_mysql)){
+                                echo "<option  value='".$lista["id_cant_horas"]."'>";
+                                echo $lista["cantidad_horas"];
+                                echo "</option>";
+                                }
+                            ?>
+                        </select>
 
-                        <label>Costo del Vuelo</label>
+                        <label>Ingrese Costo del Vuelo</label>
                         <input type="number" class="form-control" name="costo_vuelo" class="form-control" value="<?php echo $fila['costo_vuelo']?>" placeholder="Ingresa el costo del vuelo" pattern="[0-9]+" minlength="5" maxlength="10" required>
 
                         <div class="modal-footer">
