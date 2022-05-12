@@ -138,16 +138,16 @@
               <tbody>
                 <?php
                 $consulta = "SELECT vuelo.id_vuelo, origen.ciudad_origen, vuelo.fecha_hora_salida, destino.ciudad_destino, 
-                DATE_ADD(DATE_ADD(vuelo.fecha_hora_salida, INTERVAL destino.tiempo_dif_ida HOUR), INTERVAL vuelo.tiempo_vuelo HOUR) AS fecha_hora_llegada, vuelo.costo_vuelo, (vuelo.costo_vuelo + 230000) AS costo_primera_clase FROM vuelo 
+                DATE_ADD(DATE_ADD(vuelo.fecha_hora_salida, INTERVAL destino.tiempo_dif_regreso HOUR), INTERVAL vuelo.tiempo_vuelo HOUR) AS fecha_hora_llegada, vuelo.costo_vuelo, (vuelo.costo_vuelo + 230000) AS costo_primera_clase FROM vuelo 
                 INNER JOIN origen ON vuelo.id_ciudad_origen = origen.id_ciudad_origen INNER JOIN destino ON vuelo.id_ciudad_destino = destino.id_ciudad_destino 
-                INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo WHERE tipo_vuelo.id_tipo_vuelo = '2' ORDER BY id_vuelo;";
+                INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo WHERE tipo_vuelo.id_tipo_vuelo = '3' ORDER BY id_vuelo;";
                 $resultado = mysqli_query($enlace, $consulta);
 
                 while($fila = mysqli_fetch_array($resultado)){?>      
                   <tr>
-                    <td><center><?php echo $fila['ciudad_origen'];?></center></td>
-                    <td><center><?php echo $fila['fecha_hora_salida'];?></center></td>
                     <td><center><?php echo $fila['ciudad_destino'];?></center></td>
+                    <td><center><?php echo $fila['fecha_hora_salida'];?></center></td>
+                    <td><center><?php echo $fila['ciudad_origen'];?></center></td>
                     <td><center><?php echo $fila['fecha_hora_llegada'];?></center></td>
                     <td><center><?php echo $fila['costo_vuelo'];?></center></td>
                     <td><center><?php echo $fila['costo_primera_clase'];?></center></td>
@@ -157,7 +157,7 @@
                     </button><center></td>
                   </tr>
                   <!-- Modal crear Vuelo -->
-                  <?php include('modales_vuelos_internacionalesida.php'); ?>
+                  <?php include('modales_vuelos_internacionalesregreso.php'); ?>
                 <?php  } 
                   mysqli_close($enlace);
                 ?>

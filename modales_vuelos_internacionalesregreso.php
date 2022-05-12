@@ -8,15 +8,15 @@
             </div>
             <div class="modal-body">
                 <div class="modal-content">
-                    <form action="guardar_vuelo_internacionalida.php" method="post" id="formulario" enctype="multipart/form-data">
+                    <form action="guardar_vuelo_internacionalregreso.php" method="post" id="formulario" enctype="multipart/form-data">
                         <label>Ciudad Salida</label>
-                        <select name="id_ciudad_origen" style="width:38%; color: #515A5A;" required>
+                        <select name="id_ciudad_destino" style="width:38%; color: #515A5A;" required>
                             <?php
-                                $consulta_mysql='select * from origen';
+                                $consulta_mysql='select * from destino';
                                 $resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);
                                 while($lista=mysqli_fetch_assoc($resultado_consulta_mysql)){
-                                echo "<option  value='".$lista["id_ciudad_origen"]."'>";
-                                echo $lista["ciudad_origen"];
+                                echo "<option  value='".$lista["id_ciudad_destino"]."'>";
+                                echo $lista["ciudad_destino"];
                                 echo "</option>";
                                 }
                             ?>
@@ -26,13 +26,13 @@
                         <input type="datetime-local" class="form-control" name="fecha_hora_salida" class="form-control" placeholder=" " min = "2022-05-01" required>
                         
                         <label>Ciudad Destino</label>
-                        <select name="id_ciudad_destino" style="width:38%; color: #515A5A;" required>
+                        <select name="id_ciudad_origen" style="width:38%; color: #515A5A;" required>
                             <?php
-                                $consulta_mysql='select * from destino';
+                                $consulta_mysql='select * from origen';
                                 $resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);
                                 while($lista=mysqli_fetch_assoc($resultado_consulta_mysql)){
-                                echo "<option  value='".$lista["id_ciudad_destino"]."'>";
-                                echo $lista["ciudad_destino"];
+                                echo "<option  value='".$lista["id_ciudad_origen"]."'>";
+                                echo $lista["ciudad_origen"];
                                 echo "</option>";
                                 }
                             ?>
@@ -68,17 +68,17 @@
             </div>
             <div class="modal-body">
                 <div class="modal-content">
-                    <form action="editar_vuelo_nacional.php" method="post" id="formulario" enctype="multipart/form-data">
+                    <form action="editar_vuelo_internacionalregreso.php" method="post" id="formulario" enctype="multipart/form-data">
                         <input type="hidden" name="id_vuelo" value="<?php echo $fila['id_vuelo'];?>">
 
                         <label>Ciudad Salida</label>
-                        <select name="id_nacional_origen" style="width:38%; color: #515A5A;" disabled>
+                        <select name="id_ciudad_destino" style="width:38%; color: #515A5A;" disabled>
                             <?php
-                                $consulta_mysql='select * from origen_nacional';
+                                $consulta_mysql='select * from destino';
                                 $resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);
                                 while($lista=mysqli_fetch_assoc($resultado_consulta_mysql)){
-                                echo "<option  value='".$lista["id_nacional_origen"]."'>";
-                                echo $fila["ciudad_origen"];
+                                echo "<option  value='".$lista["id_ciudad_destino"]."'>";
+                                echo $fila["ciudad_destino"];
                                 echo "</option>";
                                 }
                             ?>
@@ -88,12 +88,12 @@
                         <input type="datetime-local" class="form-control" name="fecha_hora_salida" class="form-control" placeholder=" " min ="2022-05-01"  value="<?php echo $fila['fecha_hora_salida']?>"  required>
                         
                         <label>Ciudad Destino</label>
-                        <select name="id_nacional_destino" style="width:38%; color: #515A5A;" disabled>
+                        <select name="id_ciudad_origen" style="width:38%; color: #515A5A;" disabled>
                             <?php
-                                $consulta_mysql='select * from destino_nacional';
+                                $consulta_mysql='select * from destino';
                                 $resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);
                                 while($lista=mysqli_fetch_assoc($resultado_consulta_mysql)){
-                                echo "<option  value='".$lista["id_nacional_destino"]."'>";
+                                echo "<option  value='".$lista["id_ciudad_destino"]."'>";
                                 echo $fila["ciudad_destino"];
                                 echo "</option>";
                                 }
@@ -129,10 +129,10 @@
             </div>
             <div class="modal-body">
                 <div class="modal-content">
-                    <form action="eliminar_vuelo_nacional.php" method="post" id="formulario" enctype="multipart/form-data">
+                    <form action="eliminar_vuelo_internacionalregreso.php" method="post" id="formulario" enctype="multipart/form-data">
                     	<input type="hidden" name="id_vuelo" value="<?php echo $fila['id_vuelo'];?>">
 
-                        <strong><h4><center><?php echo $fila['ciudad_origen'];?> - <?php echo $fila['ciudad_destino'];?></center></h4></strong>
+                        <strong><h4><center><?php echo $fila['ciudad_destino'];?> - <?php echo $fila['ciudad_origen'];?></center></h4></strong>
                         <strong><h4><center>El cual sale el: <?php echo $fila['fecha_hora_salida'];?></center></h4></strong>
 
                         <div class="modal-footer">
