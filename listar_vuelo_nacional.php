@@ -142,10 +142,21 @@
                 INNER JOIN origen_nacional ON vuelo.id_nacional_origen = origen_nacional.id_nacional_origen 
                 INNER JOIN destino_nacional ON vuelo.id_nacional_destino = destino_nacional.id_nacional_destino 
                 INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo
-                INNER JOIN tiempo_vuelo ON vuelo.id_cant_horas = tiempo_vuelo.id_cant_horas WHERE tipo_vuelo.id_tipo_vuelo = '1' ORDER BY id_vuelo;";
+                INNER JOIN tiempo_vuelo ON vuelo.id_cant_horas = tiempo_vuelo.id_cant_horas WHERE tipo_vuelo.id_tipo_vuelo = '1' AND vuelo.estado = 'Activo' ORDER BY id_vuelo;";
                 $resultado = mysqli_query($enlace, $consulta);
 
-                while($fila = mysqli_fetch_array($resultado)){?>      
+                while($fila = mysqli_fetch_array($resultado)){?>
+                  <?php
+                    date_default_timezone_set("America/Bogota");
+                    $fecha_actual = date("Y-m-d H:i:s");
+                    $fecha_entrada = $fila['fecha_hora_salida'];
+
+                    if($fecha_actual >= $fecha_entrada){
+                      $consulta = "UPDATE vuelo SET estado = 'Realizado' WHERE id_vuelo = $fila[id_vuelo]";
+                      mysqli_query($enlace, $consulta);
+                    }
+                  ?>    
+
                   <tr>
                     <td><center><?php echo $fila['ciudad_origen'];?></center></td>
                     <td><center><?php echo $fila['fecha_hora_salida'];?></center></td>
