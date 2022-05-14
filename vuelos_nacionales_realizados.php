@@ -109,10 +109,9 @@
         <div class="container-fluid">
         <div class="card-body">
           <div class="row">
-            <div class="col-2">
+            <div class="col-1">
               <div class="text-center">
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCrearVuelo"><i class="bi bi-plus-circle"></i></button>
-                <a class="btn btn-primary" href="vuelos_nacionales_realizados.php" role="button"><i class="bi bi-send-check"></i> Vuelos Realizados</a>
+                  <a class="btn btn-primary" href="listar_vuelo_nacional.php" role="button"><i class="bi bi-box-arrow-left"></i> Volver</a>
               </div>
             </div>
           </div>
@@ -127,31 +126,20 @@
                   <th><center>Fecha y Hora de Llegada</center></th>
                   <th><center>Valor Vuelo Clase Economica</center></th>
                   <th><center>Valor Vuelo Primera Clase</center></th>
-                  <th><center>Opciones</center></th>
+                  <th><center>Estado</center></th>
                 </tr>
               </thead>
               <tbody>
                 <?php
-                $consulta = "SELECT vuelo.id_vuelo, origen_nacional.ciudad_origen, vuelo.fecha_hora_salida, destino_nacional.ciudad_destino, 
+                $consulta = "SELECT vuelo.id_vuelo, origen_nacional.ciudad_origen, vuelo.fecha_hora_salida, destino_nacional.ciudad_destino, vuelo.estado,
                 DATE_ADD(vuelo.fecha_hora_salida, INTERVAL tiempo_vuelo.cantidad_horas HOUR) AS fecha_hora_llegada, vuelo.costo_vuelo, (vuelo.costo_vuelo + 80000) AS costo_primera_clase FROM vuelo 
                 INNER JOIN origen_nacional ON vuelo.id_nacional_origen = origen_nacional.id_nacional_origen 
                 INNER JOIN destino_nacional ON vuelo.id_nacional_destino = destino_nacional.id_nacional_destino 
                 INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo
-                INNER JOIN tiempo_vuelo ON vuelo.id_cant_horas = tiempo_vuelo.id_cant_horas WHERE tipo_vuelo.id_tipo_vuelo = '1' AND vuelo.estado = 'Activo' ORDER BY id_vuelo;";
+                INNER JOIN tiempo_vuelo ON vuelo.id_cant_horas = tiempo_vuelo.id_cant_horas WHERE tipo_vuelo.id_tipo_vuelo = '1' AND vuelo.estado = 'Realizado' ORDER BY id_vuelo;";
                 $resultado = mysqli_query($enlace, $consulta);
 
                 while($fila = mysqli_fetch_array($resultado)){?>
-                  <?php
-                    date_default_timezone_set("America/Bogota");
-                    $fecha_actual = date("Y-m-d H:i:s");
-                    $fecha_entrada = $fila['fecha_hora_salida'];
-
-                    if($fecha_actual >= $fecha_entrada){
-                      $consulta = "UPDATE vuelo SET estado = 'Realizado' WHERE id_vuelo = $fila[id_vuelo]";
-                      mysqli_query($enlace, $consulta);
-                    }
-                  ?>    
-
                   <tr>
                     <td><center><?php echo $fila['ciudad_origen'];?></center></td>
                     <td><center><?php echo $fila['fecha_hora_salida'];?></center></td>
@@ -159,13 +147,8 @@
                     <td><center><?php echo $fila['fecha_hora_llegada'];?></center></td>
                     <td><center><?php echo $fila['costo_vuelo'];?></center></td>
                     <td><center><?php echo $fila['costo_primera_clase'];?></center></td>
-                    <td><center>
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarVuelo<?php echo $fila['id_vuelo']; ?>"><i class="bi bi-pencil-square"></i>
-                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEliminarVuelo<?php echo $fila['id_vuelo']; ?>"><i class="bi bi-trash-fill"></i>
-                    </button><center></td>
+                    <td><center><?php echo $fila['estado'];?></button><center></td>
                   </tr>
-                  <!-- Modal crear Vuelo -->
-                  <?php include('modales_vuelos_nacionales.php'); ?>
                 <?php  } 
                   mysqli_close($enlace);
                 ?>

@@ -11,8 +11,8 @@
 	$archivo = $_FILES['foto_vuelo']['file'];
 	$subir = move_uploaded_file($archivo, $ruta);
 
-	$consulta = "INSERT INTO vuelo(id_tipo_vuelo, fecha_hora_salida, id_nacional_origen, id_nacional_destino, costo_vuelo, foto_vuelo, id_estado, id_cant_horas) 
-		VALUES ('1', '$fecha_hora_salida', '$id_nacional_origen', '$id_nacional_destino', '$costo_vuelo', '$nom_imagen', 'Activo', '$id_cant_horas')";
+	$consulta = "INSERT INTO vuelo(id_tipo_vuelo, fecha_hora_salida, id_nacional_origen, id_nacional_destino, costo_vuelo, foto_vuelo, estado, id_cant_horas, cant_sillas) 
+		VALUES ('1', '$fecha_hora_salida', '$id_nacional_origen', '$id_nacional_destino', '$costo_vuelo', '$nom_imagen', 'Activo', '$id_cant_horas','200')";
 	mysqli_query($enlace, $consulta);
 	mysqli_close($enlace);
 	header("Location: listar_vuelo_nacional.php");

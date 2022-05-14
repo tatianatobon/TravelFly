@@ -6,7 +6,7 @@
 		$$var=$val;
 	}
 
-	$consulta = "DELETE FROM vuelo WHERE id_vuelo = '$id_vuelo'";
+	$consulta = "UPDATE vuelo SET estado = 'Cancelado' WHERE id_vuelo ='$id_vuelo'";
 	$resultado = mysqli_query($enlace, $consulta);
 
     mysqli_query($enlace, $consulta);

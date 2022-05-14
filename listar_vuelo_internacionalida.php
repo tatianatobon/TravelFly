@@ -66,12 +66,6 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="bi bi-person-circle"></i><span>Listar Usuarios</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><i class="bi bi-mailbox2"></i><span>Noticias</span></a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="#"><i class="bi bi-chat-square-text-fill"></i><span>Foro</span></a>
       </li>
     </ul>
@@ -115,9 +109,10 @@
         <div class="container-fluid">
         <div class="card-body">
           <div class="row">
-            <div class="col-1">
+            <div class="col-2">
               <div class="text-center">
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCrearVuelo"><i class="bi bi-send-plus-fill"></i></button>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCrearVuelo"><i class="bi bi-plus-circle"></i></button>
+                <a class="btn btn-primary" href="vuelos_internacionalida_realizados.php" role="button"><i class="bi bi-send-check"></i> Vuelos Realizados</a>
               </div>
             </div>
           </div>
@@ -140,11 +135,23 @@
                 $consulta = "SELECT vuelo.id_vuelo, origen.ciudad_origen, vuelo.fecha_hora_salida, destino.ciudad_destino, 
                 DATE_ADD(DATE_ADD(vuelo.fecha_hora_salida, INTERVAL destino.tiempo_dif_ida HOUR), INTERVAL  tiempo_vuelo.cantidad_horas HOUR) AS fecha_hora_llegada,
                 vuelo.costo_vuelo, (vuelo.costo_vuelo + 230000) AS costo_primera_clase FROM vuelo 
-                INNER JOIN origen ON vuelo.id_ciudad_origen = origen.id_ciudad_origen INNER JOIN destino ON vuelo.id_ciudad_destino = destino.id_ciudad_destino 
-                INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo INNER JOIN tiempo_vuelo ON vuelo.id_cant_horas = tiempo_vuelo.id_cant_horas WHERE tipo_vuelo.id_tipo_vuelo = '2' ORDER BY id_vuelo;";
+                INNER JOIN origen ON vuelo.id_ciudad_origen = origen.id_ciudad_origen 
+                INNER JOIN destino ON vuelo.id_ciudad_destino = destino.id_ciudad_destino 
+                INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo 
+                INNER JOIN tiempo_vuelo ON vuelo.id_cant_horas = tiempo_vuelo.id_cant_horas WHERE tipo_vuelo.id_tipo_vuelo = '2' AND vuelo.estado = 'Activo' ORDER BY id_vuelo;";
                 $resultado = mysqli_query($enlace, $consulta);
 
-                while($fila = mysqli_fetch_array($resultado)){?>      
+                while($fila = mysqli_fetch_array($resultado)){?>  
+                  <?php
+                    date_default_timezone_set("America/Bogota");
+                    $fecha_actual = date("Y-m-d H:i:s");
+                    $fecha_entrada = $fila['fecha_hora_salida'];
+
+                    if($fecha_actual >= $fecha_entrada){
+                      $consulta = "UPDATE vuelo SET estado = 'Realizado' WHERE id_vuelo = $fila[id_vuelo]";
+                      mysqli_query($enlace, $consulta);
+                    }
+                  ?>      
                   <tr>
                     <td><center><?php echo $fila['ciudad_origen'];?></center></td>
                     <td><center><?php echo $fila['fecha_hora_salida'];?></center></td>

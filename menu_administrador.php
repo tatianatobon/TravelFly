@@ -71,12 +71,6 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="bi bi-person-circle"></i><span>Listar Usuarios</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><i class="bi bi-mailbox2"></i><span>Noticias</span></a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="#"><i class="bi bi-chat-square-text-fill"></i><span>Foro</span></a>
       </li>
     </ul>
