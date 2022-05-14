@@ -118,7 +118,7 @@
           </div>
           <br>
           <div class="table-responsive">
-            <table id="tablaAdmi" class="table table-striped" style="width:100%">
+            <table id="tablaAdmi" class="table table-striped table-bordered" style="width:100%">
               <thead>
                 <tr>
                   <th><center>Ciudad Origen</center></th>
