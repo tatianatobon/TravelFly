@@ -108,11 +108,125 @@
             </div>
             </li>
           </ul>
-          <?php
-            mysqli_close($enlace);
-          ?>
         </nav>
+
+        <b>
+        <center>
+            <font face="Times New Roman" size="8" color="Black">Bienvenido!!!</font>
+        </center>
+
+        </b>
+
+        <div class="container-fluid">
+          <!-- Vuelos Nacionales Activos -->
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text font-weight-bold text-primary text-uppercase mb-1">Vuelos Nacionales Activos</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <?php  
+                          $consulta = "SELECT suma_vuelo_nacional()";
+                          $resultado = mysqli_query($enlace, $consulta);
+                          $fila = mysqli_fetch_array($resultado);
+                          echo $fila['suma_vuelo_nacional()']; 
+                        ?>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fa fa-plane fa-2x text-gray-300" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container-fluid">
+            <!-- Vuelos Internacionales Activos -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text font-weight-bold text-success text-uppercase mb-1">Vuelos Internacionales Activos</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                          <?php  
+                            $consulta = "SELECT suma_vuelo_internacional()";
+                            $resultado = mysqli_query($enlace, $consulta);
+                            $fila = mysqli_fetch_array($resultado);
+                            echo $fila['suma_vuelo_internacional()'];  
+                          ?>
+                        </div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fa fa-plane fa-2x text-gray-300" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+
+          <div class="container-fluid">
+            <!-- Vuelos Nacionales Realizados -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text font-weight-bold text-info text-uppercase mb-1">Vuelos Nacionales Realizados</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <?php  
+                          $consulta = "SELECT suma_vuelo_nacional_realizado()";
+                          $resultado = mysqli_query($enlace, $consulta);
+                          $fila = mysqli_fetch_array($resultado);
+                          echo $fila['suma_vuelo_nacional_realizado()'];  
+                        ?>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                    <i class="bi bi-check2-all fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container-fluid">
+            <!-- Vuelos Internacionales Realizados -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text font-weight-bold text-warning text-uppercase mb-1">Vuelos Internacionales Realizados</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <?php  
+                          $consulta = "SELECT suma_vuelo_internacional_realizado()";
+                          $resultado = mysqli_query($enlace, $consulta);
+                          $fila = mysqli_fetch_array($resultado);
+                          echo $fila['suma_vuelo_internacional_realizado()'];  
+                        ?>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="bi bi-check2-all fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>  
+      </div>   
     </div>
+    <?php
+      mysqli_close($enlace);
+    ?>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

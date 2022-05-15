@@ -111,7 +111,7 @@
           <div class="row">
             <div class="col-2">
               <div class="text-center">
-              <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCrearVuelo"><i class="bi bi-plus-circle"></i></button>
+              <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCrearVuelo"><i class="fa fa-plus " aria-hidden="true"></i></button>
                 <a class="btn btn-primary" href="vuelos_internacionalreg_realizados.php" role="button"><i class="bi bi-send-check"></i> Vuelos Realizados</a>
               </div>
             </div>

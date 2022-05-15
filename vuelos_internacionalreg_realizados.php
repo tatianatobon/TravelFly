@@ -142,9 +142,9 @@
 
                 while($fila = mysqli_fetch_array($resultado)){?>
                   <tr>
-                    <td><center><?php echo $fila['ciudad_origen'];?></center></td>
-                    <td><center><?php echo $fila['fecha_hora_salida'];?></center></td>
                     <td><center><?php echo $fila['ciudad_destino'];?></center></td>
+                    <td><center><?php echo $fila['fecha_hora_salida'];?></center></td>
+                    <td><center><?php echo $fila['ciudad_origen'];?></center></td>
                     <td><center><?php echo $fila['fecha_hora_llegada'];?></center></td>
                     <td><center><?php echo $fila['costo_vuelo'];?></center></td>
                     <td><center><?php echo $fila['costo_primera_clase'];?></center></td>
