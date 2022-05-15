@@ -1,3 +1,9 @@
+
+
+
+
+
+
 <!-- Modal Editar Administrador -->
 <div class="modal fade" id="modalEditar<?php echo $fila['id_usuario']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
