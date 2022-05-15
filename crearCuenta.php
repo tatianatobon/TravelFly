@@ -98,11 +98,8 @@ $recibido=0;
 			        <label>Confirmar Contraseña</label><br>
 			        <input type="password" name="confirmPass" placeholder="Confirma la Contraseña" id="cr2" onclick=verificarContrasena() class="form-control" maxlength="30" pattern=".{8,}" >
 
-			        <div class="file-select" id="src-file1" >
-			          	<center>
-			            	<input type="file" name="foto" aria-label="Archivo">
-			          	</center>
-			        </div>
+			        <label>Elige una Foto de Perfil</label>
+                    <input type="file" name="foto" class="form-control">
 
 			        <div class="botonRecuperar">
 			          	<center>
