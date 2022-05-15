@@ -38,7 +38,7 @@
 
 <body id="page-top">
     <?php
-      $consulta = "SELECT * FROM usuario INNER JOIN rol ON usuario.id_rol = rol.id_rol WHERE rol.id_rol = '2' ORDER BY id_usuario";
+      $consulta = "SELECT * FROM usuario INNER JOIN rol ON usuario.id_rol = rol.id_rol WHERE rol.id_rol = '2'";
       $resultado = mysqli_query($enlace, $consulta);
       $fila = mysqli_fetch_array($resultado)
     ?>
@@ -53,9 +53,7 @@
       <br>
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link collapsed volCol" href="" data-toggle="modal" data-target="#modalEditar" aria-expanded="true" aria-controls="collapseUtilities" data-idprograma="<?php echo $fila['id_usuario']; ?>">
-        <i class="bi bi-gear-fill"></i><span>Editar Datos</span></a>
-        </a>
+        <a class="nav-link" href="editar_datos_admi.php"><i class="bi bi-gear-fill"></i><span>Editar Datos</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTree" aria-expanded="true" aria-controls="collapseTwo">
@@ -74,9 +72,6 @@
         <a class="nav-link" href="#"><i class="bi bi-chat-square-text-fill"></i><span>Foro</span></a>
       </li>
     </ul>
-    <!-- Modal Editar Administrador -->
-    <?php include('modal_editar_admi.php'); ?>
-    <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
       <div id="content">
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -242,27 +237,6 @@
   <!-- Page level plugins -->
   <script src="vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('#tablaAdmi').DataTable({
-        responsive: true,
-        autoWidth: false,
-        "language": {
-          "lengthMenu": "Mostrar _MENU_ registros por página",
-          "sProcessing": "Procesando...",
-          "zeroRecords": "No se han encontrado resultados",
-          "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-          "infoEmpty": "Mostrando registros del 0 al 0 total de 0 registros",
-          "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-          "search": "Buscar:",
-          "oPaginate": {
-            "sNext": "Siguiente",
-            "sPrevious": "Anterior"
-          },
-        }
-      });
-    });
-  </script>
 </body>
 
 </html>
