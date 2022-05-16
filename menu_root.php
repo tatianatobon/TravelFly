@@ -91,7 +91,7 @@
                 </thead>
                 <tbody>
                     <?php
-                    $consulta = "SELECT * FROM usuario INNER JOIN rol ON usuario.id_rol = rol.id_rol WHERE rol.id_rol = '2' ORDER BY id_usuario";
+                    $consulta = "SELECT * FROM usuario INNER JOIN rol ON usuario.id_rol = rol.id_rol INNER JOIN genero ON usuario.id_genero = genero.id_genero WHERE rol.id_rol = '2' ORDER BY id_usuario";
                     $resultado = mysqli_query($enlace, $consulta);
 
                     while($fila = mysqli_fetch_array($resultado)){?>      

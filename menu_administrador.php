@@ -40,7 +40,7 @@
     <?php
       $consulta = "SELECT * FROM usuario INNER JOIN rol ON usuario.id_rol = rol.id_rol WHERE rol.id_rol = '2'";
       $resultado = mysqli_query($enlace, $consulta);
-      $fila = mysqli_fetch_array($resultado)
+      $fila = mysqli_fetch_array($resultado);
     ?>
   <div id="wrapper">
     <!-- Sidebar -->
@@ -53,7 +53,7 @@
       <br>
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="editar_datos_admi.php"><i class="bi bi-gear-fill"></i><span>Editar Datos</span></a>
+        <a class="nav-link" href="editar_datos_admi.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>" ><i class="bi bi-gear-fill"></i><span>Editar Datos</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTree" aria-expanded="true" aria-controls="collapseTwo">

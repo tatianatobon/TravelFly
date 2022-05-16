@@ -11,7 +11,10 @@
 
 	if($row == true){
 
+		$id_usuario = $row[0];
 		$id_rol = $row[16];
+		
+		$_SESSION['id_usuario'] = $id_usuario;
 		$_SESSION['id_rol'] = $id_rol;
 
 		switch ($_SESSION['id_rol']){

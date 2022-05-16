@@ -20,7 +20,20 @@
 
                         <label>Numero de celular</label>
                         <input type="text" class="form-control" name="celular" class="form-control" placeholder="Ingresa tu Numero de Celular" pattern="[0-9]+" minlength="10" maxlength="10" required>
-                  
+
+                        <label>Genero</label>
+                        <select name="id_genero" style="width:38%; color: #515A5A;">
+                            <?php
+                                $consulta_mysql='select * from genero';
+                                $resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);
+                                while($lista=mysqli_fetch_assoc($resultado_consulta_mysql)){
+                                echo "<option  value='".$lista["id_genero"]."'>";
+                                echo $lista["tipo_genero"];
+                                echo "</option>";
+                                }
+                            ?>
+                        </select>
+
                         <div style="display: inline-block;text-align: left;">
 			          	<div style="text-align: left;">País Nacimiento</div>
 			          		<img src="" id="flag" width="40px" style="vertical-align: top;">

@@ -36,7 +36,11 @@
 </head>
 
 <body id="page-top">
-    
+    <?php
+      $consulta = "SELECT * FROM usuario INNER JOIN rol ON usuario.id_rol = rol.id_rol WHERE rol.id_rol = '2'";
+      $resultado = mysqli_query($enlace, $consulta);
+      $fila = mysqli_fetch_array($resultado)
+    ?>
   <div id="wrapper">
     <!-- Sidebar -->
     <ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -48,9 +52,7 @@
       <br>
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link collapsed volCol" href="" data-toggle="modal" data-target="#modalEditar" aria-expanded="true" aria-controls="collapseUtilities" data-idprograma="<?php echo $fila['id_usuario']; ?>">
-        <i class="bi bi-gear-fill"></i><span>Editar Datos</span></a>
-        </a>
+      <a class="nav-link" href="editar_datos_admi.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>" ><i class="bi bi-gear-fill"></i><span>Editar Datos</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTree" aria-expanded="true" aria-controls="collapseTwo">
@@ -69,9 +71,6 @@
         <a class="nav-link" href="#"><i class="bi bi-chat-square-text-fill"></i><span>Foro</span></a>
       </li>
     </ul>
-    <!-- Modal Editar Administrador -->
-    <?php include('modal_editar_admi.php'); ?>
-    <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
       <div id="content">
         <div>
