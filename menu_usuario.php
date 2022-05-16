@@ -56,7 +56,7 @@
         <a class="nav-link" href="editar_datos_usuario.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>" ><i class="bi bi-gear-fill"></i><span>Editar Datos</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="bi bi-credit-card-fill"></i><span>Agregar Tarjeta</span></a>
+        <a class="nav-link" href="agregar_tarjeta.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><i class="bi bi-credit-card-fill"></i><span>Agregar Tarjeta</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#"><i class="bi bi-envelope-check-fill"></i><span>Noticias</span></a>

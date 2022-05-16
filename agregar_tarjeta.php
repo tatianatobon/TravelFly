@@ -44,35 +44,35 @@
     <div id="wrapper">
         <!-- Sidebar -->
         <ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        <!-- Sidebar - imagen -->
-        <center>
-            <a class="navbar-brand" href="menu_usuario.php"><img src="img/Logotipo.png" alt="" width="65" height="0" class="rounded img-fluid d-inline-block align-text-top"></a>
-        </center>
-        <hr class="sidebar-divider my-0">
-        <br>
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item">
-            <a class="nav-link" href="editar_datos_usuario.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>" ><i class="bi bi-gear-fill"></i><span>Editar Datos</span></a>
-        </li>
-        <li class="nav-item">
+      <!-- Sidebar - imagen -->
+      <center>
+        <a class="navbar-brand" href="menu_usuario.php"><img src="img/Logotipo.png" alt="" width="65" height="0" class="rounded img-fluid d-inline-block align-text-top"></a>
+      </center>
+      <hr class="sidebar-divider my-0">
+      <br>
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" href="editar_datos_usuario.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>" ><i class="bi bi-gear-fill"></i><span>Editar Datos</span></a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="agregar_tarjeta.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><i class="bi bi-credit-card-fill"></i><span>Agregar Tarjeta</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#"><i class="bi bi-envelope-check-fill"></i><span>Noticias</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#"><i class="bi bi-clipboard2-check-fill"></i></i><span>Check-in</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#"><i class="bi bi-cart-check-fill"></i><span>Compras</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#"><i class="bi bi-chat-square-text-fill"></i><span>Foro</span></a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" href="eliminar_cuenta.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><i class="bi bi-person-dash-fill"></i><span>Eliminar Cuenta</span></a>
-        </li>
-        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="bi bi-envelope-check-fill"></i><span>Noticias</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="bi bi-clipboard2-check-fill"></i></i><span>Check-in</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="bi bi-cart-check-fill"></i><span>Compras</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="bi bi-chat-square-text-fill"></i><span>Foro</span></a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="eliminar_cuenta.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><i class="bi bi-person-dash-fill"></i><span>Eliminar Cuenta</span></a>
+      </li>
+    </ul>
         
         <!-- Apartado cerrar sesion --> 
         <div id="content-wrapper" class="d-flex flex-column">
@@ -107,34 +107,43 @@
                     </ul>
                 </nav>
                 <!-- Cuadro editar datos -->
-                <center>
-                <div class="card card-body" style="margin-top: 100px; max-width:100%;height:auto;">
+                <div class="card card-body " style="margin-top: -24px; ">
                     <div class="modal-body">
                         <div class="modal-content" style="padding: 20px; margin: auto; border: solid; border-radius: 10px;">
-                        <!--opcion eliminar cuenta-->
-                            <div class="modal-header bg-primary" >
-                                <h5 class="modal-title" id="exampleModalLabel" style="color: #FFFFFF; text-align: center;">¿Realmente desea eliminar su Cuenta?</h5>
-                            </div>
-                            <div class="modal-body">
-                                <div class="modal-content">
-                                    <form action="eliminar_usuario.php" method="post">
-                                        <input type="hidden" name="id_usuario" value="<?php echo $fila['id_usuario'];?>">
+                        <center><img src="img/tarjetas.png"></center><br>
+                            <form action="guardar_tarjeta.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>" method="post" enctype="multipart/form-data" id="formulario-register" name="fvalida">
 
-                                        <strong><h4><?php echo $fila['nombre'];?> <?php echo $fila['apellido'];?></h4></strong>
+                                <label>Tipo de Tarjeta a Ingresar</label><br>
+                                <select name="id_tipo_tarjeta" style="width:20%; color: #515A5A;" class="form-control-sm">
+                                    <?php
+                                        $consulta_mysql='select * from tipo_tarjeta';
+                                        $resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);
+                                        while($lista=mysqli_fetch_assoc($resultado_consulta_mysql)){
+                                        echo "<option  value='".$lista["id_tipo_tarjeta"]."'>";
+                                        echo $lista["tipo_tarjeta"];
+                                        echo "</option>";
+                                        }
+                                    ?>
+                                </select>
+                                <br>
 
-                                        <div class="modal-footer">
-                                            <a href="menu_usuario.php"><button type="button" class="btn btn-primary">Volver</button></a>
-                                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            
+                                <label>Nombre en la Tarjeta</label>
+			                    <input type="text" class="form-control" name="nombre_propietario" class="form-control" value="<?php echo $fila['nombre']?> <?php echo $fila['apellido']?>" pattern="[A-Za-z-Zñóéíáú ]+" minlength="10" maxlength="30">
+
+                                <label>Número de Tarjeta</label>
+			                    <input type="text" class="form-control" name="numTarjeta" class="form-control" placeholder="4000 1234 5678 9010" pattern="[0-9]+" minlength="16" maxlength="16" required>
+                                
+                                <label>Código de Seguridad (CVV)</label>
+			                    <input type="text" class="form-control" name="cvv" class="form-control" placeholder="000" pattern="[0-9]+" minlength="3" maxlength="3" required>
+
+                                <label>Fecha de Vencimiento</label>
+			                    <input type="date" name="fecha_vencimiento" style="width:38%;color: #515A5A;" placeholder="Fecha de nacimiento" required class="form-control" min = "2022-01-01" max = "2030-01-01">
+
+                                <div class="modal-footer"><button type="submit" class="btn btn-success">Agregar Tarjeta</button></div>
+                            </form>
                         </div>
-                        <!-- Aca Termina -->
                     </div>
                 </div>
-                </center>
             </div>
         </div>
         <?php
