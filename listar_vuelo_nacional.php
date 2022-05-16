@@ -92,7 +92,7 @@
                     </div>
                     <div class="modal-footer">
                       <a href="salir.php"><button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Si</button></a>
-                      <a href="listar_vuelo.php"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" >No</button></a>
+                      <a href="listar_vuelo_nacional.php"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" >No</button></a>
                     </div>
                   </div>
                 </div>
@@ -111,7 +111,7 @@
           <div class="row">
             <div class="col-2">
               <div class="text-center">
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCrearVuelo"><i class="fa fa-plus " aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCrearVuelo"><i class="fa fa-plus" aria-hidden="true"></i></button>
                 <a class="btn btn-primary" href="vuelos_nacionales_realizados.php" role="button"><i class="bi bi-send-check"></i> Vuelos Realizados</a>
               </div>
             </div>

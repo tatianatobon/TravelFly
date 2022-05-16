@@ -107,7 +107,7 @@
 
         <b>
         <center>
-            <font face="Times New Roman" size="8" color="Black">Bienvenido!!!</font>
+            <font face="Times New Roman" size="8" color="Black">Bienvenido(a)!!!</font>
         </center>
 
         </b>

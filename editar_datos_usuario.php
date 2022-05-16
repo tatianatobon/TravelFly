@@ -5,12 +5,11 @@
     if(!isset($_SESSION['id_rol'])){
         header("Location: InicioSesion.html");
     }else{
-        if ($_SESSION['id_rol'] != 2){
-            header("Location: menu_administrador.php");
+        if ($_SESSION['id_rol'] != 3){
+            header("Location: menu_usuario.php");
         }
     }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -45,33 +44,35 @@
     <div id="wrapper">
         <!-- Sidebar -->
         <ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <!-- Sidebar - imagen -->
-            <center>
-                <a class="navbar-brand" href="menu_administrador.php"><img src="img/Logotipo.png" alt="" width="65" height="0" class="rounded img-fluid d-inline-block align-text-top"></a>
-            </center>
-            <hr class="sidebar-divider my-0">
-            <br>
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" data-idprograma="<?php echo $fila['id_usuario']; ?>">
-                <i class="bi bi-gear-fill" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample2"></i><span>Editar Datos</span></a></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTree" aria-expanded="true" aria-controls="collapseTwo">
-                <i class="bi bi-send-fill"></i><span>Listar Vuelos</span></a>
-                <div id="collapseTree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded"> 
-                        <h6 class="collapse-header">Tipo de Vuelo:</h6>
-                        <a class="collapse-item" href="listar_vuelo_nacional.php">Nacional</a>
-                        <a class="collapse-item" href="listar_vuelo_internacionalida.php">Colombia --> Internacional</a>
-                        <a class="collapse-item" href="listar_vuelo_internacionalregreso.php">Internacional --> Colombia</a>
-                    </div>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="bi bi-chat-square-text-fill"></i><span>Foro</span></a>
-            </li>
-        </ul>
+      <!-- Sidebar - imagen -->
+      <center>
+        <a class="navbar-brand" href="menu_usuario.php"><img src="img/Logotipo.png" alt="" width="65" height="0" class="rounded img-fluid d-inline-block align-text-top"></a>
+      </center>
+      <hr class="sidebar-divider my-0">
+      <br>
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" href="editar_datos_usuario.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>" ><i class="bi bi-gear-fill"></i><span>Editar Datos</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="bi bi-credit-card-fill"></i><span>Agregar Tarjeta</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="bi bi-envelope-check-fill"></i><span>Noticias</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="bi bi-clipboard2-check-fill"></i></i><span>Check-in</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="bi bi-cart-check-fill"></i><span>Compras</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="bi bi-chat-square-text-fill"></i><span>Foro</span></a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="eliminar_cuenta.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><i class="bi bi-person-dash-fill"></i><span>Eliminar Cuenta</span></a>
+      </li>
+    </ul>
         
         <!-- Apartado cerrar sesion --> 
         <div id="content-wrapper" class="d-flex flex-column">
@@ -96,7 +97,7 @@
                                         <div class="modal-footer">
                                             <a href="salir.php"><button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Si</button>
                                             </a>
-                                            <a href="editar_datos_admi.php"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" >No</button>
+                                            <a href="editar_datos_usuario.php"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" >No</button>
                                             </a>
                                         </div>
                                     </div>
@@ -109,7 +110,7 @@
                 <div class="card card-body " style="margin-top: -24px; ">
                     <div class="modal-body">
                         <div class="modal-content" style="padding: 20px; margin: auto; border: solid; border-radius: 10px;">
-                            <form action="editar_administrador.php" method="post" id="formulario" enctype="multipart/form-data">
+                            <form action="editar_usuario.php" method="post" id="formulario" enctype="multipart/form-data">
 
                                 <input type="hidden" name="id_usuario" value="<?php echo $fila['id_usuario'];?>">
 

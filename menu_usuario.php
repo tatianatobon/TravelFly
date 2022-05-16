@@ -1,5 +1,5 @@
 <?php
-
+    include('conexion.php');
     session_start();
 
     if(!isset($_SESSION['id_rol'])){
@@ -10,130 +10,128 @@
         }
     }
 ?>
-<?php include('conexion.php'); ?>
+
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>TravelFly</title>
-    <link rel="stylesheet" type="text/css" href="css/estilos1.css">
+  <meta charset="utf-8"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+  <title>Menu Administrador</title>
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="fonts/fonts.css" rel="stylesheet">
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="css/estilo2.css" rel="stylesheet">
+  
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<!-- Data Table -->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+	<!-- Icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 </head>
 
-<body>
-
-	
-  <nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-
-      <p class="navbar-brand" >
-        <img src="img/Logotipo.png" alt="" width="30" height="24">
-      </p>
-      <p class="navbar-brand">
-        TravelFly Colombia
-      </p>
-
-      <div  class="container-fluid" style="text-align:right; margin: auto; ">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="float: right ">
-
-        <li class="nav-item">
-          <p style="text-align : right;"><a class="nav-link active" href="#">Historial De Compras</a></p>
-        </li>
-        <li class="nav-item">
-          <p style="text-align : right;"><a class="nav-link active" aria-current="page" href="#" >Check In</a> </p>
-        </li>        <li class="nav-item">
-          <p style="text-align : right;" ><a class="nav-link active" aria-current="page" href="#">Noticias</a></p>
-        </li>
-
-        <li class="nav-item">
-          <div class="container" style="align : right;">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSalir"    >
-              Cerrar Sesion
-            </button>
-          </div>
-        </li>
-<!-- Modal Salir-->
-<div class="modal fade" id="modalSalir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" >
-      <div class="modal-content ">
-          <div class="modal-header bg-primary" >
-              <h5 class="modal-title" id="exampleModalLabel" style="color: #FFFFFF; text-align: center;">Advertencia!!</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
-          </div>
-          <div class="modal-body">
-              <center>
-                  <h4>¿Está seguro de salir?</h4>  
-              </center>
-          </div>
-          <div class="modal-footer">
-              <a href="salir.php"><button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Si</button>
-              </a>
-              <a href="index.html"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" >No</button>
-              </a>
-          </div>
-      </div>
-  </div>
-</div>
-
-
-      </ul>
-      </div>
-         </div>
-  </div>
-
-</nav>
-
-        <div style="position: relative; left: 50; top: 50;">
-            <img src="https://www.hotelalmirantecartagena.com.co/blog-almirante/wp-content/uploads/sites/6/2021/12/blog-playa-banner2.jpg" class='eye'/>
-            <img src="https://bitly.hk/OCZ3z" class="eye2"/>
-            <img src="https://www.cjr.org/wp-content/uploads/2018/06/panorama-2117310_1920-1300x500.jpg" class="eye3"/>
-        </div>
-        
-        <div 
-            <h1></h1>
-        <h5 class="contenedor" style="text-align: center; border: 1px solid rgb(7, 7, 7);">Cartagena</h5>
+<body id="page-top">
+    <?php
+      $consulta = "SELECT * FROM usuario INNER JOIN rol ON usuario.id_rol = rol.id_rol WHERE rol.id_rol = '2'";
+      $resultado = mysqli_query($enlace, $consulta);
+      $fila = mysqli_fetch_array($resultado);
+    ?>
+  <div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+      <!-- Sidebar - imagen -->
+      <center>
+        <a class="navbar-brand" href="menu_usuario.php"><img src="img/Logotipo.png" alt="" width="65" height="0" class="rounded img-fluid d-inline-block align-text-top"></a>
+      </center>
+      <hr class="sidebar-divider my-0">
+      <br>
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" href="editar_datos_usuario.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>" ><i class="bi bi-gear-fill"></i><span>Editar Datos</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="bi bi-credit-card-fill"></i><span>Agregar Tarjeta</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="bi bi-envelope-check-fill"></i><span>Noticias</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="bi bi-clipboard2-check-fill"></i></i><span>Check-in</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="bi bi-cart-check-fill"></i><span>Compras</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="bi bi-chat-square-text-fill"></i><span>Foro</span></a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="eliminar_cuenta.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><i class="bi bi-person-dash-fill"></i><span>Eliminar Cuenta</span></a>
+      </li>
+    </ul>
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+          <ul class="navbar-nav ml-auto">
+            <div class="navbar-nav mr-auto">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSalir">Cerrar Sesión <i class="bi bi-box-arrow-right"></i></button>
+                <!-- Modal Salir-->
+                <div class="modal fade" id="modalSalir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" >
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary" >
+                                <h5 class="modal-title" id="exampleModalLabel" style="color: #FFFFFF; text-align: center;">Advertencia!!</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+                            </div>
+                            <div class="modal-body">
+                                <center>
+                                    <h4>¿Está seguro de salir?</h4>  
+                                </center>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="salir.php"><button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Si</button>
+                                </a>
+                                <a href="menu_usuario.php"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" >No</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            </li>
+          </ul>
+        </nav>
 
-        <div>
-            <h5 class="contenedor1" style="text-align: center; border: 1px solid rgb(7, 7, 7); ">Madrid</h5>
-        </div>
+        <b>
+        <center>
+            <font face="Times New Roman" size="8" color="Black">Bienvenido(a)!!!</font>
+        </center>
 
-        <div>
-            <h5 class="contenedor2" style="text-align: center ;border: 1px solid rgb(7, 7, 7);">Miami</h5>
-        </div>
-        <div>
-            <h5 class="contenedorReserva" style="text-align: center ;border: 2px solid rgb(7, 7, 7);background-color:rgb(202, 198, 198)">Reseravar vuelo</h5>
-        </div>
+        </b>
 
-        <div class="contenedorReservas" style="text-align: width= 500px height= 500px; ; border: 1px solid rgb(7, 7, 7); background-color:rgb(240, 232, 232)">
-          <input type="radio" name="transporte2" value="1">Ida y vuelta
+    <?php
+      mysqli_close($enlace);
+    ?>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="DataTables/datatables.min.js"></script>
   
-          <input type="radio" name="transporte2" value="2" checked>Solo ida
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        </div>
-          
-        
-        <div>
-            <h5 class="contenedorReserva2" style="text-align: center ;border: 2px solid rgb(7, 7, 7);background-color:rgb(202, 198, 198)">Gestionar tu reserva</h5>
-        </div>
-        <div>
-            <h5 class="contenedorReserva3" style="text-align: center ;border: 2px solid rgb(7, 7, 7);background-color:rgb(202, 198, 198)">Check-in</h5>
-        </div>
-        <div>
-            <h5 class="contenedorReserva4" style="text-align: center ;border: 2px solid rgb(7, 7, 7);background-color:rgb(202, 198, 198)">Estado del vuelo</h5>
-        </div>
-        
-        
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  <!-- Page level plugins -->
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 </body>
+
 </html>

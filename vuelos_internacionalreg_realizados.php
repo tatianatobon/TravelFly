@@ -87,7 +87,7 @@
                     </div>
                     <div class="modal-footer">
                       <a href="salir.php"><button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Si</button></a>
-                      <a href="listar_vuelo.php"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" >No</button></a>
+                      <a href="vuelos_internacionalreg_realizados.php"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" >No</button></a>
                     </div>
                   </div>
                 </div>
