@@ -9,6 +9,7 @@
             header("Location: menu_usuario.php");
         }
     }
+    $recibido=0;
 ?>
 
 <!DOCTYPE html>
@@ -108,6 +109,22 @@
         </center>
         <!-- DataTable -->
         </b>
+        <?php  
+          foreach ($_REQUEST as $var => $val) {
+          $$var=$val; 
+                    
+          }if($recibido == 1){?>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Advertencia!</strong> La Tarjeta que Intento Ingresar ya se encuentra Registrada. Vuelva a Intentar.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
+          <?php }else if($recibido == 2){?>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <strong>Exito!</strong> Los Datos de su Tarjeta fueron Ingresados Corectamente.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php }?>
         <div class="container-fluid">
         <div class="card-body">
           <div class="row">
