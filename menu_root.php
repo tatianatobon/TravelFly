@@ -104,10 +104,8 @@
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEliminar<?php echo $fila['id_usuario']; ?>"><i class="bi bi-trash-fill"></i></button>
                             <center></td>
                         </tr>
-                        <!-- Modal crear Administrador -->
-                        <?php include('modal_crear_admi.php'); ?>
-                        <!-- Modal Editar Administrador -->
-                        <?php include('modal_eliminar_admi.php'); ?>
+                        <!-- Modales Administrador -->
+                        <?php include('modales_administrador.php'); ?>
                     <?php  } 
                     mysqli_close($enlace);
                     ?>
