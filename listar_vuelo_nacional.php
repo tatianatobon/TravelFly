@@ -107,81 +107,82 @@
         <!-- DataTable -->
         </b>
         <div class="container-fluid">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-2">
-              <div class="text-center">
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCrearVuelo"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                <a class="btn btn-primary" href="vuelos_nacionales_realizados.php" role="button"><i class="bi bi-send-check"></i> Vuelos Realizados</a>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-2">
+                <div class="text-center">
+                  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCrearVuelo"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                  <a class="btn btn-primary" href="vuelos_nacionales_realizados.php" role="button"><i class="bi bi-send-check"></i> Vuelos Realizados</a>
+                </div>
               </div>
             </div>
-          </div>
-          <br>
-          <div class="table-responsive">
-            <table id="tablaAdmi" class="table table-striped table-bordered" style="width:100%">
-              <thead>
-                <tr>
-                  <th><center>Codigo de Vuelo</center></th>
-                  <th><center>Aerolinea</center></th>
-                  <th><center>Ciudad Origen</center></th>
-                  <th><center>Fecha y Hora de Salida</center></th>
-                  <th><center>Ciudad Destino</center></th>
-                  <th><center>Fecha y Hora de Llegada</center></th>
-                  <th><center>Valor Vuelo Clase Economica</center></th>
-                  <th><center>Valor Vuelo Primera Clase</center></th>
-                  <th><center>Opciones</center></th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                $consulta = "SELECT vuelo.id_vuelo, vuelo.codVuelo, aerolineas.nombre_aerolinea, origen_nacional.ciudad_origen, vuelo.fecha_hora_salida, destino_nacional.ciudad_destino, 
-                DATE_ADD(vuelo.fecha_hora_salida, INTERVAL tiempo_vuelo.cantidad_horas HOUR) AS fecha_hora_llegada, vuelo.costo_vuelo, (vuelo.costo_vuelo + 80000) AS costo_primera_clase FROM vuelo 
-                INNER JOIN origen_nacional ON vuelo.id_nacional_origen = origen_nacional.id_nacional_origen 
-                INNER JOIN destino_nacional ON vuelo.id_nacional_destino = destino_nacional.id_nacional_destino 
-                INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo
-                INNER JOIN tiempo_vuelo ON vuelo.id_cant_horas = tiempo_vuelo.id_cant_horas 
-                INNER JOIN aerolineas ON vuelo.id_aerolinea = aerolineas.id_aerolinea
-                WHERE tipo_vuelo.id_tipo_vuelo = '1' AND vuelo.estado = 'Activo' ORDER BY id_vuelo;";
-                $resultado = mysqli_query($enlace, $consulta);
-
-                while($fila = mysqli_fetch_array($resultado)){?>
-                  <?php
-                    date_default_timezone_set("America/Bogota");
-                    $fecha_actual = date("Y-m-d H:i:s");
-                    $fecha_entrada = $fila['fecha_hora_salida'];
-
-                    if($fecha_actual >= $fecha_entrada){
-                      $consulta = "UPDATE vuelo SET estado = 'Realizado' WHERE id_vuelo = $fila[id_vuelo]";
-                      mysqli_query($enlace, $consulta);
-                    }
-                  ?>    
-
+            <br>
+            <div class="table-responsive">
+              <table id="tablaAdmi" class="table table-striped table-bordered" style="width:100%">
+                <thead>
                   <tr>
-                    <td><center><?php echo $fila['codVuelo'];?></center></td>
-                    <td><center><?php echo $fila['nombre_aerolinea'];?></center></td>
-                    <td><center><?php echo $fila['ciudad_origen'];?></center></td>
-                    <td><center><?php echo $fila['fecha_hora_salida'];?></center></td>
-                    <td><center><?php echo $fila['ciudad_destino'];?></center></td>
-                    <td><center><?php echo $fila['fecha_hora_llegada'];?></center></td>
-                    <td><center><?php echo $fila['costo_vuelo'];?></center></td>
-                    <td><center><?php echo $fila['costo_primera_clase'];?></center></td>
-                    <td><center>
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarVuelo<?php echo $fila['id_vuelo']; ?>"><i class="bi bi-pencil-square"></i>
-                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEliminarVuelo<?php echo $fila['id_vuelo']; ?>"><i class="bi bi-trash-fill"></i>
-                    </button><center></td>
+                    <th><center>Codigo de Vuelo</center></th>
+                    <th><center>Aerolinea</center></th>
+                    <th><center>Ciudad Origen</center></th>
+                    <th><center>Fecha y Hora de Salida</center></th>
+                    <th><center>Ciudad Destino</center></th>
+                    <th><center>Fecha y Hora de Llegada</center></th>
+                    <th><center>Valor Vuelo Clase Economica</center></th>
+                    <th><center>Valor Vuelo Primera Clase</center></th>
+                    <th><center>Opciones</center></th>
                   </tr>
-                  <!-- Modal crear Vuelo -->
-                  <?php include('modales_vuelos_nacionales.php'); ?>
-                <?php  } 
-                  mysqli_close($enlace);
-                ?>
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  <?php
+                  $consulta = "SELECT vuelo.id_vuelo, vuelo.codVuelo, aerolineas.nombre_aerolinea, origen_nacional.ciudad_origen, vuelo.fecha_hora_salida, destino_nacional.ciudad_destino, 
+                  DATE_ADD(vuelo.fecha_hora_salida, INTERVAL tiempo_vuelo.cantidad_horas HOUR) AS fecha_hora_llegada, vuelo.costo_vuelo, (vuelo.costo_vuelo + 80000) AS costo_primera_clase FROM vuelo 
+                  INNER JOIN origen_nacional ON vuelo.id_nacional_origen = origen_nacional.id_nacional_origen 
+                  INNER JOIN destino_nacional ON vuelo.id_nacional_destino = destino_nacional.id_nacional_destino 
+                  INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo
+                  INNER JOIN tiempo_vuelo ON vuelo.id_cant_horas = tiempo_vuelo.id_cant_horas 
+                  INNER JOIN aerolineas ON vuelo.id_aerolinea = aerolineas.id_aerolinea
+                  WHERE tipo_vuelo.id_tipo_vuelo = '1' AND vuelo.estado = 'Activo' ORDER BY id_vuelo;";
+                  $resultado = mysqli_query($enlace, $consulta);
+
+                  while($fila = mysqli_fetch_array($resultado)){?>
+                    <?php
+                      date_default_timezone_set("America/Bogota");
+                      $fecha_actual = date("Y-m-d H:i:s");
+                      $fecha_entrada = $fila['fecha_hora_salida'];
+
+                      if($fecha_actual >= $fecha_entrada){
+                        $consulta = "UPDATE vuelo SET estado = 'Realizado' WHERE id_vuelo = $fila[id_vuelo]";
+                        mysqli_query($enlace, $consulta);
+                      }
+                    ?>    
+
+                    <tr>
+                      <td><center><?php echo $fila['codVuelo'];?></center></td>
+                      <td><center><?php echo $fila['nombre_aerolinea'];?></center></td>
+                      <td><center><?php echo $fila['ciudad_origen'];?></center></td>
+                      <td><center><?php echo $fila['fecha_hora_salida'];?></center></td>
+                      <td><center><?php echo $fila['ciudad_destino'];?></center></td>
+                      <td><center><?php echo $fila['fecha_hora_llegada'];?></center></td>
+                      <td><center><?php echo $fila['costo_vuelo'];?></center></td>
+                      <td><center><?php echo $fila['costo_primera_clase'];?></center></td>
+                      <td><center>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarVuelo<?php echo $fila['id_vuelo']; ?>"><i class="bi bi-pencil-square"></i>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEliminarVuelo<?php echo $fila['id_vuelo']; ?>"><i class="bi bi-trash-fill"></i>
+                      </button><center></td>
+                    </tr>
+                    <!-- Modal crear Vuelo -->
+                    <?php include('modales_vuelos_nacionales.php'); ?>
+                  <?php  } 
+                    mysqli_close($enlace);
+                  ?>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
         </div>
       </div>
     </div>
+  </div>
     
   <!-- JQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
