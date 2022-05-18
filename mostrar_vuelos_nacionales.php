@@ -115,10 +115,6 @@
                 </ul>
             </nav>
             </div>
-            <b>
-            <center>
-                <font face="Times New Roman" size="8" color="Black">Listado de Vuelos Nacionales</font>
-            </center>
             <!-- DataTable -->
             </b>
             <div class="container-fluid">
@@ -134,20 +130,15 @@
                 <table id="tablaAdmi" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                     <tr>
-                        <th><center>Codigo de Vuelo</center></th>
                         <th><center>Aerolinea</center></th>
-                        <th><center>Ciudad Origen</center></th>
-                        <th><center>Fecha y Hora de Salida</center></th>
-                        <th><center>Ciudad Destino</center></th>
-                        <th><center>Fecha y Hora de Llegada</center></th>
-                        <th><center>Valor Vuelo Clase Economica</center></th>
-                        <th><center>Valor Vuelo Primera Clase</center></th>
+                        <th><center>Datos de Salida</center></th>
+                        <th><center>Datos de Destino</center></th>
                         <th><center>Opciones</center></th>
                     </tr>
                     </thead>
                     <tbody>
                         <?php
-                        $consulta = "SELECT vuelo.id_vuelo, vuelo.codVuelo, aerolineas.nombre_aerolinea, origen_nacional.ciudad_origen, vuelo.fecha_hora_salida, destino_nacional.ciudad_destino, 
+                        $consulta = "SELECT vuelo.id_vuelo, vuelo.codVuelo, aerolineas.nombre_aerolinea, origen_nacional.ciudad_origen, vuelo.fecha_hora_salida, destino_nacional.ciudad_destino, tiempo_vuelo.id_cant_horas,
                         DATE_ADD(vuelo.fecha_hora_salida, INTERVAL tiempo_vuelo.cantidad_horas HOUR) AS fecha_hora_llegada, vuelo.costo_vuelo, (vuelo.costo_vuelo + 80000) AS costo_primera_clase FROM vuelo 
                         INNER JOIN origen_nacional ON vuelo.id_nacional_origen = origen_nacional.id_nacional_origen 
                         INNER JOIN destino_nacional ON vuelo.id_nacional_destino = destino_nacional.id_nacional_destino 
@@ -170,21 +161,49 @@
                             ?>    
 
                             <tr>
-                                <td><center><?php echo $fila['codVuelo'];?></center></td>
                                 <td><center><?php echo $fila['nombre_aerolinea'];?></center></td>
-                                <td><center><?php echo $fila['ciudad_origen'];?></center></td>
-                                <td><center><?php echo $fila['fecha_hora_salida'];?></center></td>
-                                <td><center><?php echo $fila['ciudad_destino'];?></center></td>
-                                <td><center><?php echo $fila['fecha_hora_llegada'];?></center></td>
-                                <td><center><?php echo $fila['costo_vuelo'];?></center></td>
-                                <td><center><?php echo $fila['costo_primera_clase'];?></center></td>
+                                <td><center><?php echo $fila['ciudad_origen'];?><br><?php echo $fila['fecha_hora_salida'];?></center></td>
+                                <td><center><?php echo $fila['ciudad_destino'];?><br><?php echo $fila['fecha_hora_llegada'];?></center></td>
                                 <td><center>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarVuelo<?php echo $fila['id_vuelo']; ?>"><i class="bi bi-pencil-square"></i>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEliminarVuelo<?php echo $fila['id_vuelo']; ?>"><i class="bi bi-trash-fill"></i>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalInfoVuelo<?php echo $fila['id_vuelo']; ?>"><i class="fa fa-info-circle"></i>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalclaseVuelo<?php echo $fila['id_vuelo']; ?>"><i class="fa fa-cart-plus"></i>
                                 </button><center></td>
                             </tr>
-                            <!-- Modal crear Vuelo -->
-                            <?php include('modales_vuelos_nacionales.php'); ?>
+                            <!-- Modal Info Vuelo -->
+                            <div class="modal fade" id="modalInfoVuelo<?php echo $fila['id_vuelo']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-primary" >
+                                            <h5 class="modal-title" id="exampleModalLabel" style="color: #FFFFFF; text-align: center;">Datos del Vuelo</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="modal-content">
+                                                <form action="" method="post" id="formulario">
+                                                    
+
+                                                    <strong><h5>Vuelo Co.<?php echo $fila['codVuelo'];?> <i class="fa fa-plane" aria-hidden="true"></i></h5></strong><br>
+                                                    <strong><h5>Aerolinea: <?php echo $fila['nombre_aerolinea'];?></h5></strong><br>
+                                                    <strong><h5><center>Origen:<br><?php echo $fila['ciudad_origen'];?><br><?php echo $fila['fecha_hora_salida'];?></center></h5></strong>
+                                                    <strong><h5><center>|</center></h5></strong>
+                                                    <strong><h5><center>|</center></h5></strong>
+                                                    <strong><h5><center>|</center></h5></strong>
+                                                    <strong><h5><center>|</center></h5></strong>
+                                                    <strong><h5><center>|</center></h5></strong>
+                                                    <strong><h5><center>|</center></h5></strong>
+                                                    <strong><h5><center><i class="fa fa-arrow-down" aria-hidden="true"></center></i></h5></strong>
+                                                    <strong><h5><center>Destino:<br><?php echo $fila['ciudad_destino'];?><br><?php echo $fila['fecha_hora_llegada'];?></center></h5></strong><br>
+                                                    <strong><h5>Tiempo de Vuelo: <?php echo $fila['id_cant_horas'];?> Horas</h5></strong><br>
+                                                    <strong><h5>Costo Clase Turista: <?php echo $fila['costo_vuelo'];?></h5></strong><br>
+                                                    <strong><h5>Costo Primera Clase: <?php echo $fila['costo_primera_clase'];?></h5></strong><br>
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                         <?php  } 
                             mysqli_close($enlace);
                         ?>
@@ -203,9 +222,6 @@
   <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"></script>
   <!-- Bootstrap js -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="DataTables/datatables.min.js"></script>
   
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>

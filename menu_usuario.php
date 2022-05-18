@@ -20,7 +20,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Menu Administrador</title>
+  <title>Menu Usuario</title>
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="fonts/fonts.css" rel="stylesheet">
