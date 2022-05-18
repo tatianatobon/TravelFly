@@ -9,6 +9,23 @@
             <div class="modal-body">
                 <div class="modal-content">
                     <form action="guardar_vuelo_internacionalregreso.php" method="post" id="formulario" enctype="multipart/form-data">
+
+                        <label>Codigo del Vuelo</label>
+                        <input type="text" class="form-control" name="codVuelo" class="form-control" placeholder="Ingrese Codigo del Vuelo" pattern="[A-Za-z-Zñóéíáú 0-9]+" minlength="5" maxlength="5" required>
+
+                        <label>Elija una Aerolinea</label>
+                        <select name="id_aerolinea" style="width:38%; color: #515A5A;" required>
+                            <?php
+                                $consulta_mysql='select * from aerolineas';
+                                $resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);
+                                while($lista=mysqli_fetch_assoc($resultado_consulta_mysql)){
+                                echo "<option  value='".$lista["id_aerolinea"]."'>";
+                                echo $lista["nombre_aerolinea"];
+                                echo "</option>";
+                                }
+                            ?>
+                        </select>
+
                         <label>Elija La Ciudad Salida</label>
                         <select name="id_ciudad_destino" style="width:38%; color: #515A5A;" required>
                             <?php
@@ -80,6 +97,22 @@
                 <div class="modal-content">
                     <form action="editar_vuelo_internacionalregreso.php" method="post" id="formulario" enctype="multipart/form-data">
                         <input type="hidden" name="id_vuelo" value="<?php echo $fila['id_vuelo'];?>">
+
+                        <label>Codigo del Vuelo</label>
+                        <input type="text" class="form-control" name="codVuelo" class="form-control" value="<?php echo $fila['codVuelo'];?>" disabled>
+
+                        <label>Elija una Aerolinea</label>
+                        <select name="id_aerolinea" style="width:38%; color: #515A5A;" disabled>
+                            <?php
+                                $consulta_mysql='select * from aerolineas';
+                                $resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);
+                                while($lista=mysqli_fetch_assoc($resultado_consulta_mysql)){
+                                echo "<option  value='".$lista["id_aerolinea"]."'>";
+                                echo $fila["nombre_aerolinea"];
+                                echo "</option>";
+                                }
+                            ?>
+                        </select>
 
                         <label>Ciudad de Salida</label>
                         <select name="id_ciudad_destino" style="width:38%; color: #515A5A;" disabled>

@@ -121,6 +121,8 @@
             <table id="tablaAdmi" class="table table-striped table-bordered" style="width:100%">
               <thead>
                 <tr>
+                  <th><center>Codigo de Vuelo</center></th>
+                  <th><center>Aerolinea</center></th>
                   <th><center>Ciudad Origen</center></th>
                   <th><center>Fecha y Hora de Salida</center></th>
                   <th><center>Ciudad Destino</center></th>
@@ -132,12 +134,14 @@
               </thead>
               <tbody>
                 <?php
-                $consulta = "SELECT vuelo.id_vuelo, origen_nacional.ciudad_origen, vuelo.fecha_hora_salida, destino_nacional.ciudad_destino, 
+                $consulta = "SELECT vuelo.id_vuelo, vuelo.codVuelo, aerolineas.nombre_aerolinea, origen_nacional.ciudad_origen, vuelo.fecha_hora_salida, destino_nacional.ciudad_destino, 
                 DATE_ADD(vuelo.fecha_hora_salida, INTERVAL tiempo_vuelo.cantidad_horas HOUR) AS fecha_hora_llegada, vuelo.costo_vuelo, (vuelo.costo_vuelo + 80000) AS costo_primera_clase FROM vuelo 
                 INNER JOIN origen_nacional ON vuelo.id_nacional_origen = origen_nacional.id_nacional_origen 
                 INNER JOIN destino_nacional ON vuelo.id_nacional_destino = destino_nacional.id_nacional_destino 
                 INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo
-                INNER JOIN tiempo_vuelo ON vuelo.id_cant_horas = tiempo_vuelo.id_cant_horas WHERE tipo_vuelo.id_tipo_vuelo = '1' AND vuelo.estado = 'Activo' ORDER BY id_vuelo;";
+                INNER JOIN tiempo_vuelo ON vuelo.id_cant_horas = tiempo_vuelo.id_cant_horas 
+                INNER JOIN aerolineas ON vuelo.id_aerolinea = aerolineas.id_aerolinea
+                WHERE tipo_vuelo.id_tipo_vuelo = '1' AND vuelo.estado = 'Activo' ORDER BY id_vuelo;";
                 $resultado = mysqli_query($enlace, $consulta);
 
                 while($fila = mysqli_fetch_array($resultado)){?>
@@ -153,6 +157,8 @@
                   ?>    
 
                   <tr>
+                    <td><center><?php echo $fila['codVuelo'];?></center></td>
+                    <td><center><?php echo $fila['nombre_aerolinea'];?></center></td>
                     <td><center><?php echo $fila['ciudad_origen'];?></center></td>
                     <td><center><?php echo $fila['fecha_hora_salida'];?></center></td>
                     <td><center><?php echo $fila['ciudad_destino'];?></center></td>
