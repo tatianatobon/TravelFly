@@ -11,8 +11,6 @@
     }
 ?>
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,7 +84,7 @@
                         <p> <?php echo $i["mensaje"] ?> <br> </p>
 
                             <h6>Respuesta <br></h6>
-                            <p><?php echo$i['repuestaAdministrador']?></p>
+                            <p><?php echo$i['respuestaAdministrador']?></p>
                         <form onsubmit="return valida_envia()" action="eliminarMensaje.php" method="post" enctype="multipart/form-data"name="fvalida">
                             <input type="hidden" name="id_mensaje" value="<?php echo $i['id_mensaje']  ?>">
                             <input type="submit" style="margin:auto;text-align:center; border-color:#F4F6F6; color: #3498DB;" value="Eliminar" >

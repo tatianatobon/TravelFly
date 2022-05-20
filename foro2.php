@@ -63,10 +63,10 @@
                     <div style="border: solid; border-radius: 10px; border-color: #85929E;margin: auto; margin-bottom: 5px; padding: 10px;">
                         <h6> <?php echo "De: ".$i["user"] ?>   <br> </h6>
                         <p> <?php echo $i["mensaje"] ?> <br> </p>
-                        <?php if( $int=strlen($i['repuestaAdministrador'])){?>
+                        <?php if( $int=strlen($i['respuestaAdministrador'])){?>
 
                             <h6>Respuesta <br></h6>
-                            <p><?php echo$i['repuestaAdministrador']?></p>
+                            <p><?php echo$i['respuestaAdministrador']?></p>
                 
                         <?php } else{?>
                             <form onsubmit="return valida_envia()" action="guardarrespuesta.php" method="post" enctype="multipart/form-data"name="fvalida">
