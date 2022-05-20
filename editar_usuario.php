@@ -14,5 +14,5 @@
 	$consulta = "UPDATE usuario SET nombre='$nombre', apellido='$apellido', celular='$celular', fechaNacimiento='$fechaNacimiento', direccion='$direccion', user='$user', pass='$pass', confirmPass='$confirmPass', foto='$nombre_imagen' WHERE id_usuario = '$id_usuario'"; 
 	mysqli_query($enlace, $consulta);
 	mysqli_close($enlace);
-	header("Location: menu_usuario.php");
+	header("Location: menu_administrador.php");
 ?>	
