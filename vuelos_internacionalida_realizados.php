@@ -67,7 +67,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="bi bi-chat-square-text-fill"></i><span>Foro</span></a>
+        <a class="nav-link" href="foro2.php"><i class="bi bi-chat-square-text-fill"></i><span>Foro</span></a>
       </li>
     </ul>
     <div id="content-wrapper" class="d-flex flex-column">

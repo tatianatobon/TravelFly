@@ -22,23 +22,29 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#"><img src="img/Logotipo.png" alt="" width="60" height="60" class="rounded img-fluid d-inline-block align-text-top"/></a>
+          <a class="navbar-brand" href="inicio.html"><img src="img/Logotipo.png" alt="" width="60" height="60" class="rounded img-fluid d-inline-block align-text-top"/></a>
         </div>
-          <ul class="navbar-nav mr-auto">
+        <div class="navbar-nav mr-auto">
+          <a class="navbar-brand" style="color: #ffffff">TravelFly</a>
+        </div>
+        
+        <div class="coontenedor" style="display:flex; align-items: center;">
+          <ul class="navbar-nav" style="padding-right: 10px;">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #ffffff">
                 Busca Vuelos
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="vuelos_nacionales_user.php">Vuelos Nacionales</a></li>
+                <li><a class="dropdown-item" href="vuelos_nacionales_user.php">Vuelos Nacionales</a></li>
                 <li><a class="dropdown-item" href="vuelos_internacionalesida_user.php">Vuelos internacionales Ida</a></li>
                 <li><a class="dropdown-item" href="vuelos_internacionalesreg_user.php">Vuelos Internacionales Regreso</a></li>
               </ul>
             </li>
           </ul>
-        <div class="navbar-nav mr-auto">
-          <i class="fa fa-sign-out"></i> <a href="InicioSesion.html" style="color: #ffffff">Iniciar Sesion </a>
-        </div>
+          <div class="navbar-nav mr-auto">
+            <i class="fa fa-sign-out"></i> <a href="InicioSesion.html" style="color: #ffffff">Iniciar Sesion </a>
+          </div>
+      </div>
       </div>
     </nav>
     </div>

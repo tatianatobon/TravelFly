@@ -1,102 +1,54 @@
-/* $(".pais").change(function(){
-    var valor = $(this).val();
-    $.ajax(
-        {
-            url: 'vista_ajax.php',
-            type: "post",
-            data: {
-                'valor' : valor,
-            },
-            success: function(result){
-                jQuery('.departamento').html(result);
-                    
-            } 
-        }
-    );
-}); */
 
 $(document).ready(function(){
-    /* var nombre = document.getElementById('nombre'); */
+    
 
-    $('#nombre').change(function(){
-       var name =$(this).val().trim();
-        name=name.split(/\s+/).join(' ');
-        $.ajax(
-            {
-                url: 'arreglo.php',
-                type: "post",
-                data: {
-                    'nombre' : 'nombre',
-                    'valor' : name,
-                },
-                success: function(result){
-                    jQuery('.nombre').html(result);
-                    $('#nombre').change(function(){
-                        var name =$(this).val().trim();
-                         name=name.split(/\s+/).join(' ');
-                         $.ajax(
-                             {
-                                 url: 'arreglo.php',
-                                 type: "post",
-                                 data: {
-                                     'nombre' : 'nombre',
-                                     'valor' : name,
-                                 },
-                                 success: function(result){
-                                     jQuery('.nombre').html(result);
-                                         
-                                 } 
-                             }
-                         );
-                     });
-                } 
-            }
-        );
+    $('.campos-vacios').on("change", '#nombre', function(){
+        var name = $('#nombre').val().trim();
+        var apellido = $('#apellido').val();
+        name = name.split(/\s+/).join(' ');
+        var html = '<div class="nombre">'+       
+                        '<label>Nombres</label>'+
+                        '<input type="text" class="form-control" id="nombre" name="nombre" class="form-control"'+
+                        'value = "'+name+'" placeholder="Ingresa tu Nombre" pattern="[A-Za-z-Zñóéíáú ]+" '+
+                        ' minlength="3" maxlength="30" required />'+
+                    '</div>'+
+                    '<div class="apellido">'+
+                        '<label>Apellidos</label>'+
+                        '<input type="text" class="form-control" id="apellido" name="apellido"class="form-control"'+
+                        'value = "'+apellido+'" placeholder="Ingresa tu Apellido" pattern="[A-Za-z-Zñóéíáú ]+" minlength="3" '+
+                        ' maxlength="30" required value>'+
+                    '</div>';
+        $('.nombre').remove();
+        $('.apellido').remove();
+
+        console.log('campos vacios')
+        $('.campos-vacios').append(html);
+        
     });
 
-    $('#apellido').change(function(){
-        var name =$(this).val().trim();
-         name=name.split(/\s+/).join(' ');
-         $.ajax(
-             {
-                 url: 'arreglo.php',
-                 type: "post",
-                 data: {
-                     'nombre' : 'nada',
-                     'valor' : name,
-                 },
-                 success: function(result){
-                     jQuery('.apellido').html(result);
-                     $('#apellido').change(function(){
-                        var name =$(this).val().trim();
-                         name=name.split(/\s+/).join(' ');
-                         $.ajax(
-                             {
-                                 url: 'arreglo.php',
-                                 type: "post",
-                                 data: {
-                                     'nombre' : 'nada',
-                                     'valor' : name,
-                                 },
-                                 success: function(result){
-                                     jQuery('.apellido').html(result);
-                                         
-                                 } 
-                             }
-                         );
-                     });
-                         
-                 } 
-             }
-         );
-     });
+    $('.campos-vacios').on("change", '#apellido', function(){
+        var apellido = $('#apellido').val().trim();
+        var name = $('#nombre').val();
+        apellido = apellido.split(/\s+/).join(' ');
+        var html = '<div class="nombre">'+       
+                        '<label>Nombres</label>'+
+                        '<input type="text" class="form-control" id="nombre" name="nombre" class="form-control"'+
+                        'value = "'+name+'" placeholder="Ingresa tu Nombre" pattern="[A-Za-z-Zñóéíáú ]+" '+
+                        ' minlength="3" maxlength="30" required />'+
+                    '</div>'+
+                    '<div class="apellido">'+
+                        '<label>Apellidos</label>'+
+                        '<input type="text" class="form-control" id="apellido" name="apellido"class="form-control"'+
+                        'value = "'+apellido+'" placeholder="Ingresa tu Apellido" pattern="[A-Za-z-Zñóéíáú ]+" minlength="3" '+
+                        ' maxlength="30" required value>'+
+                    '</div>';
+        $('.nombre').remove();
+        $('.apellido').remove();
 
-    var form = document.getElementById('formulario-register');
-        form.addEventListener('submit', function(evt){
-            evt.preventDefault();
-            nombre.value.trim();
-            console.log(nombre.value);
-            var mensajesError = [];
-            
-        });
+        console.log('campos vacios')
+        $('.campos-vacios').append(html);
+        
+    });
+
+
 });
