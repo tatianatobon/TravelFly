@@ -15,4 +15,4 @@
 	mysqli_query($enlace, $consulta);
 	mysqli_close($enlace);
 	header("Location: menu_administrador.php");
-?>	
+?>
