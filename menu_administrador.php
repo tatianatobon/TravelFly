@@ -70,7 +70,7 @@
         <a class="nav-link" href="#"><i class="bi bi-mailbox2"></i><span>Noticias</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="foro2.php"><i class="bi bi-chat-square-text-fill"></i><span>Foro</span></a>
+        <a class="nav-link" href="foro2.php"><i class="bi bi-chat-dots-fill"></i><span>Foro</span></a>
       </li>
     </ul>
 

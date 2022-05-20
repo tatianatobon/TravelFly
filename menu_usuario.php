@@ -20,7 +20,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Menu Administrador</title>
+  <title>Menu Usuario</title>
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="fonts/fonts.css" rel="stylesheet">
@@ -86,6 +86,9 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="Noticias.html" target="_blank"><i class="bi bi-chat-square-text-fill"></i><span>Noticias</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="forousuario.php" ><i class="bi bi-chat-dots-fill"></i><span>Foro</span></a>
       </li>
       
     </ul>
