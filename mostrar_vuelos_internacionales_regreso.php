@@ -203,6 +203,82 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Modal Mostrar Planes -->
+                            <div class="modal fade" id="modalclaseVuelo<?php echo $fila['id_vuelo']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" style="max-width:800px">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-primary" >
+                                            <h5 class="modal-title" id="exampleModalLabel" style="color: #FFFFFF; text-align: center;">Tipo de Tiquetes</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="modal-content">
+                                                <br>
+                                                <div style="border: solid; border-radius: 10px; border-color: #85929E;margin: auto; ">
+                                                    <h4 class="text-center">Clase Turista</h4>
+                                                </div>
+                                                <div style="border: solid; border-radius: 10px; border-color: #85929E;margin: auto; margin-bottom: 5px; padding: 10px;">
+                                                
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <ul>
+                                                                <li style="list-style: none;"><span class="icon-briefcase"> 1 equipaje de mano (10kg) + morral</span></li>
+                                                                <li style="list-style: none;"><span class="icon-luggage"> 1 equipaje de bodega (20kg) </span></li>
+                                                                <li style="list-style: none;"><span class="icon-airline_seat_recline_extra"> Check-in y asiento standar</span></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col">
+                                                            <br><br>
+                                                            <h3><p>$ <?= $fila['costo_vuelo'];?> COP</p></h3>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <br>
+                                                            <div>
+                                                                <a href="#"><button type="button" class="btn btn-primary">Reservar Tiquete</button></a>
+                                                            </div>
+                                                            <div style="margin-top: 4px;">
+                                                                <a href="#"><button type="button" class="btn btn-danger">Comprar Tiquete</button></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <br>
+                                                <div style="border: solid; border-radius: 10px; border-color: #85929E;margin: auto; ">
+                                                    <h4 class="text-center">Primera Clase</h4>
+                                                </div>
+                                                <div style="border: solid; border-radius: 10px; border-color: #85929E;margin: auto; margin-bottom: 5px; padding: 10px;">
+                                                    <div class="primera-clase">
+                                                        
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <ul>
+                                                                    <li style="list-style: none;"><span class="icon-briefcase"> 1 equipaje de mano (10kg) + morral</span></li>
+                                                                    <li style="list-style: none;"><span class="icon-luggage"> 1 equipaje de bodega (45kg) </span></li>
+                                                                    <li style="list-style: none;"><span class="icon-airline_seat_recline_extra"> Check-in y asiento primera clase</span></li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col">
+                                                                <br><br>
+                                                                <h3><p>$ <?= $fila['costo_primera_clase'];?> COP</p></h3>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <br>
+                                                                <div>
+                                                                    <a href="#"><button type="button" class="btn btn-primary">Reservar Tiquete</button></a>
+                                                                </div>
+                                                                <div style="margin-top: 4px;">
+                                                                    <a href="#"><button type="button" class="btn btn-danger">Comprar Tiquete</button></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             
                         <?php  } 
                             mysqli_close($enlace);
