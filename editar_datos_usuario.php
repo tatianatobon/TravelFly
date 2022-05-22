@@ -123,7 +123,7 @@
                 <div class="card card-body " style="margin-top: -24px; ">
                     <div class="modal-body">
                         <div class="modal-content" style="padding: 20px; margin: auto; border: solid; border-radius: 10px;">
-                            <form action="editar_usuario.php" method="post" id="formulario" enctype="multipart/form-data">
+                            <form action="editar_usuario1.php" method="post" id="formulario" enctype="multipart/form-data">
 
                                 <input type="hidden" name="id_usuario" value="<?php echo $fila['id_usuario'];?>">
 
