@@ -174,3 +174,11 @@
     left : 240px;
     z-index: 4;
   } 
+
+  .preguntas-buscador label{
+    padding-bottom: 25px;
+  } 
+  
+  .preguntas-buscador button{
+    margin-top: 42px;
+  }

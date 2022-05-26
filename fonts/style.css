@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('icomoon.eot?18z5zy');
-  src:  url('icomoon.eot?18z5zy#iefix') format('embedded-opentype'),
-    url('icomoon.ttf?18z5zy') format('truetype'),
-    url('icomoon.woff?18z5zy') format('woff'),
-    url('icomoon.svg?18z5zy#icomoon') format('svg');
+  src:  url('icomoon.eot?5xobn6');
+  src:  url('icomoon.eot?5xobn6#iefix') format('embedded-opentype'),
+    url('icomoon.ttf?5xobn6') format('truetype'),
+    url('icomoon.woff?5xobn6') format('woff'),
+    url('icomoon.svg?5xobn6#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -28,11 +28,26 @@
 .icon-airline_seat_recline_extra:before {
   content: "\e900";
 }
+.icon-flight_land:before {
+  content: "\e903";
+}
+.icon-flight_takeoff:before {
+  content: "\e904";
+}
+.icon-date_range:before {
+  content: "\e905";
+}
 .icon-work_outline:before {
   content: "\e901";
 }
+.icon-person_add_alt_1:before {
+  content: "\e906";
+}
 .icon-luggage:before {
   content: "\e902";
+}
+.icon-calendar:before {
+  content: "\e907";
 }
 .icon-briefcase:before {
   content: "\e9ae";
