@@ -33,6 +33,9 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 	<!-- Icons -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+  <script defer src="js/crearCuenta.js"></script>
+	<script src="js/tools.js"></script>
 </head>
 
 <body id="page-top">
@@ -227,6 +230,17 @@
             });
         });
     </script>
+    <script>
+      function valida_envia(){
+          
+          if(!verificarContrasenaVuelo()){
+            return false
+          }
+          return true
+        }
+          
+    </script>
+
 </body>
 
 </html>

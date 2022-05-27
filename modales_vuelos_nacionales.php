@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
                 <div class="modal-content">
-                    <form action="guardar_vuelo_nacional.php" method="post" id="formulario" enctype="multipart/form-data">
+                    <form onsubmit="return valida_envia()"action="guardar_vuelo_nacional.php" method="post" id="formulario" enctype="multipart/form-data">
 
                         <label>Codigo del Vuelo</label>
                         <input type="text" class="form-control" name="codVuelo" class="form-control" placeholder="Ingrese Codigo del Vuelo" pattern="[A-Za-z-Zñóéíáú 0-9]+" minlength="5" maxlength="5" required>
@@ -27,7 +27,7 @@
                         </select>
 
                         <label>Elija La Ciudad Salida</label>
-                        <select name="id_nacional_origen" style="width:38%; color: #515A5A;" required>
+                        <select name="id_nacional_origen" id="cr1" style="width:38%; color: #515A5A;" required>
                             <?php
                                 $consulta_mysql='select * from origen_nacional';
                                 $resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);
@@ -43,7 +43,7 @@
                         <input type="datetime-local" class="form-control" style="width:70%; color: #515A5A;" name="fecha_hora_salida" class="form-control" placeholder=" " min = "2022-05-01" required>
 
                         <label>Elija La Ciudad Destino</label>
-                        <select name="id_nacional_destino" style="width:38%; color: #515A5A;" required>
+                        <select name="id_nacional_destino" id="cr2" style="width:38%; color: #515A5A;" required>
                             <?php
                                 $consulta_mysql='select * from destino_nacional';
                                 $resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);

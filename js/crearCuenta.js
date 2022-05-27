@@ -19,3 +19,16 @@ function verificarContrasena(){
     }
     return true
 }
+function verificarContrasenaVuelo(){
+    contrasena1=document.getElementById("cr1").value
+    contrasena2=document.getElementById("cr2").value
+    if(contrasena1.includes(" ")){
+        alert("no puede contener espacios")
+        return false
+    }
+    if(contrasena1===contrasena2){     
+        alert("los vuelos son iguales ")
+        return false
+    }
+    return true
+}

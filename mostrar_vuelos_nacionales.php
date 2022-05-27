@@ -36,6 +36,8 @@
 	<!-- Icons -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="fonts/style.css">
+    <script defer src="js/crearCuenta.js"></script>
+		<script src="js/tools.js"></script>
 </head>
 
 <body id="page-top">
@@ -331,6 +333,7 @@
             });
         });
     </script>
+
 </body>
 
 </html>
