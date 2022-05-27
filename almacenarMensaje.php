@@ -5,7 +5,7 @@
 	$$var=$val;
 	}
 	
-	$consulta = "INSERT INTO foro (id_mensaje, user, mensaje, respuestaAdministrador) VALUES (NULL, '$user', '$mensaje', NULL)";
+	$consulta = "INSERT INTO foro (id_mensaje, user, mensaje, respuestaAdministrador) VALUES ('$id_mensaje', '$user', '$mensaje', NULL)";
 	mysqli_query($enlace, $consulta);
 	mysqli_close($enlace);
 	header("Location: forousuario.php");
