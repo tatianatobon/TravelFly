@@ -59,7 +59,7 @@
         <a class="nav-link" href="mostrar_tarjetas.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><i class="bi bi-credit-card-fill"></i><span>Agregar Tarjeta</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="bi bi-envelope-check-fill"></i><span>Noticias</span></a>
+        <a class="nav-link" href="noticias.php"><i class="bi bi-envelope-check-fill"></i><span>Noticias</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="administrar_vuelo_usuario.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><i class="bi bi-clipboard2-check-fill"></i></i><span>Organiza tu Vuelo</span></a>
@@ -83,6 +83,11 @@
       <li class="nav-item">
         <a class="nav-link" href="forousuario.php"><i class="bi bi-chat-square-text-fill"></i><span>Foro</span></a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="editar_compra.php"><i class="bi bi-chat-square-text-fill"></i><span>Editar compras</span></a>
+      </li>
+
       <li class="nav-item">
       <a class="nav-link" href="eliminar_cuenta.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><i class="bi bi-person-dash-fill"></i><span>Eliminar Cuenta</span></a>
       </li>
