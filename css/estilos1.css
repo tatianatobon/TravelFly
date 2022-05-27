@@ -8,6 +8,24 @@
     text-align: center;
     
 }
+
+.carrusel {
+ 
+  background-size: cover;
+  background-repeat:no-repeat;
+  background-position-x:center;
+  background-position-y:center;
+  opacity: 1;
+  height: 900px;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  padding:0 0 5px 5px ;
+  border-left: 0px;
+  
+}
+
+
 .btn-menu{
   display: inline-block;
   user-select: none;
@@ -57,9 +75,9 @@
 
 .eye{
     position:absolute;
-    height:87px;
-    width:226px;
-    top: 450px;
+    height:100px;
+    width:400px;
+    top: 550px;
     left : 280px;
     z-index: 4;
   }
@@ -150,8 +168,8 @@
   
   .contenedorReservas{
     position:absolute;
-    height:180px;
-    width:800px;
+    height:300px;
+    width:8000px;
     top:220px;
     left : 240px;
     z-index: 4;
