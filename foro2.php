@@ -132,7 +132,7 @@
                                     <form onsubmit="return valida_envia()" action="guardarrespuesta.php" method="post" enctype="multipart/form-data"name="fvalida">
                                         <input type="text" name="Respuesta" placeholder="Respuesta" class="form" style="width:80%; font-size: 18px;" >
                                         <input type="hidden" name="id_mensaje" value="<?php echo $i["id_mensaje"] ?>">
-                                        <input type="submit" style="margin:auto;text-align:center; border-color:#F4F6F6; color: #3498DB;" >
+                                        <button type="submit" class="btn btn-primary">Enviar</button>
                                     </form>
                                 <?php }  ?>
                             </div> 

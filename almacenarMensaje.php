@@ -9,5 +9,5 @@
 	mysqli_query($enlace, $consulta);
 	mysqli_close($enlace);
 	header("Location: forousuario.php");
-    
+	
 ?>	

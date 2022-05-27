@@ -62,7 +62,7 @@
         <a class="nav-link" href="#"><i class="bi bi-envelope-check-fill"></i><span>Noticias</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="bi bi-clipboard2-check-fill"></i></i><span>Check-in</span></a>
+      <a class="nav-link" href="administrar_vuelo_usuario.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><i class="bi bi-clipboard2-check-fill"></i></i><span>Organiza tu Vuelo</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#"><i class="bi bi-cart-check-fill"></i><span>Mis Vuelos</span></a>
@@ -140,7 +140,7 @@
                 <form onsubmit="return valida_envia()" action="almacenarMensaje.php" method="post" enctype="multipart/form-data"name="fvalida">
                     <input type="text" name="mensaje" placeholder="       Realiza tu pregunta" class="form" style="width:90%; font-size: 18px; margin:auto;" >
                     <input type="hidden" name="user" value="<?php echo $usuario['user']  ?>">
-                    <input type="submit" style="margin:auto;text-align:center; border-color:#F4F6F6; color: #3498DB;" >
+                    <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>
             </div>
 
@@ -160,7 +160,7 @@
                             <p><?php echo$i['respuestaAdministrador']?></p>
                         <form onsubmit="return valida_envia()" action="eliminarMensaje.php" method="post" enctype="multipart/form-data"name="fvalida">
                             <input type="hidden" name="id_mensaje" value="<?php echo $i['id_mensaje']  ?>">
-                            <input type="submit" style="margin:auto;text-align:center; border-color:#F4F6F6; color: #3498DB;" value="Eliminar" >
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>             
                     </div> 
                 <?php }  ?>
