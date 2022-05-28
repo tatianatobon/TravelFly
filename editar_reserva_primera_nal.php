@@ -38,7 +38,14 @@
 
 <body id="page-top">
     <?php
-      $consulta = "SELECT * FROM usuario INNER JOIN rol ON usuario.id_rol = rol.id_rol WHERE rol.id_rol = '2'";
+      $consulta = "SELECT vuelo.id_vuelo, vuelo.codVuelo, aerolineas.nombre_aerolinea, origen_nacional.ciudad_origen, vuelo.fecha_hora_salida, destino_nacional.ciudad_destino, tiempo_vuelo.id_cant_horas,
+      DATE_ADD(vuelo.fecha_hora_salida, INTERVAL tiempo_vuelo.cantidad_horas HOUR) AS fecha_hora_llegada, vuelo.costo_vuelo, (vuelo.costo_vuelo + 80000) AS costo_primera_clase FROM vuelo 
+      INNER JOIN origen_nacional ON vuelo.id_nacional_origen = origen_nacional.id_nacional_origen 
+      INNER JOIN destino_nacional ON vuelo.id_nacional_destino = destino_nacional.id_nacional_destino 
+      INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo
+      INNER JOIN tiempo_vuelo ON vuelo.id_cant_horas = tiempo_vuelo.id_cant_horas 
+      INNER JOIN aerolineas ON vuelo.id_aerolinea = aerolineas.id_aerolinea
+      WHERE tipo_vuelo.id_tipo_vuelo = '1' AND vuelo.estado = 'Activo'";
       $resultado = mysqli_query($enlace, $consulta);
       $fila = mysqli_fetch_array($resultado);
     ?>
@@ -118,71 +125,74 @@
             </div>
             </li>
           </ul>
-        </nav>
-                
-            
-           
+        </nav> 
         <div style="width: 95%;margin:auto ;margin-top: 5px;" class="row">
           <center><img src="img/carritoeditar.jpeg" height="60" alt="Responsive image" class="rounded img-fluid d-inline-block align-text-top"></center>
-              
-              <h5>Tus productos</h5>
-
+          
+          <div class="col-10 my-auto mx-auto">
+            <br><br><br>
+              <h3>Tus productos</h3>
+            <br>
+          </div>
               <div style="border: solid; border-radius: 10px; border-color: #85929E; width: 900px" class="col-6 my-auto mx-auto row">
-
-                
 
                 <div style=" width: 300px; " class="col-6 my-auto mx-auto">
 
                   <ul style="list-style:none; padding-left: 1px; ">
-                    <li><b>Codigo de vuelo: </b> per23</li>
-                    <li><b>Salida:</b>Pereira</li>
-                    <li><b>Destino:</b>Bogota</li>
-                    <li><b>Puesto:</b>123</li>
-                    <li><b>Fecha salida:</b> 12/02/2023</li>
-                    <li><b>Feccha llegada:</b>13/02/2023<</li>
-                    <li><b>Tipo de plan:</b>Primera clase</li>
+                    <li><b>Codigo de vuelo: </b><?php echo $fila['codVuelo'];?></li>
+                    <li><b>Salida: </b><?php echo $fila['ciudad_origen'];?></li>
+                    <li><b>Destino: </b><?php echo $fila['ciudad_destino'];?></li>
+                    <li><b>Fecha salida: </b> <?php echo $fila['fecha_hora_salida'];?></li>
+                    <li><b>Feccha llegada: </b><?php echo $fila['fecha_hora_llegada'];?></li>
+                    <li><b>Tipo de plan: </b>Primera Clase</li>
                   </ul>
-                  
-                   
+
                 </div>
 
                 <div style=" width: 250px;  margin-top: 10px; text-align: center;" class="col-4">
-
+                  <br>
                   <h5>Precio</h5>
-                  <p> $ 980001 COP</p>
-                   
+                  <p> $ <?php echo $fila['costo_primera_clase'];?> COP</p>
                 </div>
-
                 <div style=" width: 250px; margin-top: 10px; " class="col-4">
+                <br>
 
-                  <select name="cantidadVuelos" class="form-control">
-                    <option value="1">1 Adultos</option>
-                    <option value="2">2 Adultos</option>
-                    <option value="3">3 Adultos</option>
-                    <option value="4">4 Adultos</option>
-                    <option value="5">5 Adultos</option>
-                    
-                  </select>
-                   
+                <?php
+                  $consulta = "SELECT * FROM num_tiquetes";
+                  $resultado = mysqli_query($enlace, $consulta);
+                  $fila = mysqli_fetch_array($resultado);
+                ?>
+
+              <label><h5>Numero de Tiquetes</h5></label><br>
+                <select name="id_num_personas" >
+                    <?php
+                        $consulta_mysql='select * from num_tiquetes';
+                        $resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);
+                        while($lista=mysqli_fetch_assoc($resultado_consulta_mysql)){
+                          echo "<option  value='".$lista["id_num_personas"]."'>";
+                          echo $lista["tipo_personas"];
+                          echo "</option>";
+                        }
+                    ?>
+                </select>
                 </div>
-
-                
-
-          
               </div>
 
-             
+              <?php
+                  $consulta = "SELECT vuelo.id_vuelo, num_tiquetes.id_num_personas, vuelo_cantpersonas.id_vuelo_cantpersonas, (vuelo.costo_vuelo + 80000)*num_tiquetes.cantidad_personas AS valor_compra FROM vuelo_cantpersonas
+                  INNER JOIN vuelo ON vuelo_cantpersonas.id_vuelo = vuelo.id_vuelo INNER JOIN num_tiquetes ON vuelo_cantpersonas.id_num_personas = num_tiquetes.id_num_personas";
+                  $resultado = mysqli_query($enlace, $consulta);
+                  $fila = mysqli_fetch_array($resultado);
+                ?>
+
               <div style="border: solid; border-radius: 10px; border-color: #85929E; width: 300px; " class="col-4 my-auto mx-auto">
 
-                <div style="border: solid; border-radius: 10px; border-color: #85929E; "> <h5> Subtotal $ 98000021 COP </h5> </div>
+                <div style="border: solid; border-radius: 10px; border-color: #85929E; "> <h5> Subtotal $<?php echo $fila['valor_compra'];?> COP </h5> </div>
 
                 <p style="text-align: center; margin-top: 20px; "> <a href="#"> <button class=" btn btn-primary"> Finalizar compra </button> </a></p>
                    
-              </div> 
-               
+              </div>  
         </div>
-
-   
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

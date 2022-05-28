@@ -33,29 +33,18 @@
                                 }
                             ?>
                         </select>
+                        <br>
 
-                        <div style="display: inline-block;text-align: left;">
-			          	<div style="text-align: left;">País Nacimiento</div>
-			          		<img src="" id="flag" width="40px" style="vertical-align: top;">
-			          		<select id="paises" name="pais" onchange="actualizarEstados();actualizarCiudades();actualizarBandera()"></select>
+                        <img src="" id="flag" width="40px" style="vertical-align: top;">
+                        <div style="display: inline-block;text-align: left; width:38%">
+                        País Nacimiento <select id="paises" name="pais" onchange="actualizarEstados();actualizarCiudades();actualizarBandera()"></select>
+                        Estado <br><select id="estados" name="estado" onchange="actualizarCiudades()"></select><br>
+                        Ciudad <br><select id="ciudades" name="ciudad"></select>
                         </div>
-                        <div style="display: inline-block;text-align: left;">
-                            Estado
-                            <br>
-                            <select id="estados" name="estado" onchange="actualizarCiudades()"></select>
-                        </div>
-                        <div style="display: inline-block;text-align: left;">
-                            Ciudad
-                            <br>
-                            <select id="ciudades" name="ciudad"></select>
-                        </div>
-
+                        <br>
                         <label>Email</label>
                         <input type="email" class="form-control" name="email" class="form-control" placeholder="Ingresa tu Correo"  maxlength="30" required>
-
-                        <label>Contraseña</label>
-                        <input type="password" name="pass" placeholder="Ingresa una Contraseña"  class="form-control" maxlength="30" pattern=".{8,}" required>
-
+                            </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-success">Crear Administrador</button>
                         </div>

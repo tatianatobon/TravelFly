@@ -12,7 +12,7 @@
 			header("Location: menu_root.php?recibido=1");
 	}else{
 		$consulta = "INSERT INTO usuario(nombre, apellido, documento, celular, id_genero, pais, estado, ciudad, email, pass, id_rol) 
-		VALUES ('$nombre', '$apellido', '$documento', '$celular', '$id_genero', '$pais', '$estado', '$ciudad', '$email', '$pass', '2')";
+		VALUES ('$nombre', '$apellido', '$documento', '$celular', '$id_genero', '$pais', '$estado', '$ciudad', '$email', '$documento', '2')";
 
 		mysqli_query($enlace, $consulta);
 		header("Location: menu_root.php?recibido=2");
