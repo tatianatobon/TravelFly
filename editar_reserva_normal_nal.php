@@ -190,7 +190,7 @@
 
                 <div style="border: solid; border-radius: 10px; border-color: #85929E; "> <h5> Subtotal $<?php echo $fila['valor_compra'];?> COP </h5> </div>
 
-                <p style="text-align: center; margin-top: 20px; "> <a href="#"> <button class=" btn btn-primary"> Pagar </button> </a></p>
+                <p style="text-align: center; margin-top: 20px; "> <a href="finalizar_compra.php?codVuelo=<?php echo $fila['codVuelo']; ?>?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"> <button class=" btn btn-primary"> Pagar </button> </a></p>
                    
               </div>  
         </div>
