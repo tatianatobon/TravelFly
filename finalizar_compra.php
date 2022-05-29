@@ -37,11 +37,7 @@
 </head>
 
 <body id="page-top">
-    <?php
-      $consulta = "SELECT * FROM usuario INNER JOIN rol ON usuario.id_rol = rol.id_rol WHERE rol.id_rol = '2'";
-      $resultado = mysqli_query($enlace, $consulta);
-      $fila = mysqli_fetch_array($resultado);
-    ?>
+  
   <div id="wrapper">
     <!-- Sidebar -->
     <ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -126,10 +122,34 @@
         </nav>
 
         <b>
-        
+          <div style="border: solid; border-radius: 10px; border-color: #85929E; width: 300px; " class="col-4 my-auto mx-auto">
+             <div style="border: solid; border-radius: 10px; border-color: #85929E;"> <h5> Valor a Pagar <br> $<?php echo $fila['valor_compra'];?> COP </h5> </div>   
+          </div>
+          <br>
 
+          <?php
+            $consulta = "SELECT usuario.id_usuario, tarjeta.numtarjeta, tiquete.id_tiquete FROM usuario INNER JOIN tarjeta ON usuario.id_usuario = tarjeta.id_usuario
+            INNER JOIN tiquete ON usuario.id_usuario = tiquete.id_usuario WHERE usuario.id_usuario = $_SESSION[id_usuario]";
+            $resultado = mysqli_query($enlace, $consulta);
+            $fila = mysqli_fetch_array($resultado);
+          ?>
+
+          <div style="border: solid; border-radius: 10px; border-color: #85929E; width: 300px; " class="col-4 my-auto mx-auto">
+             <label><h5>Elige medio de pago</h5></label><br>
+                <select name="numtarjeta" >
+                    <?php
+                        $consulta_mysql='select * from tarjeta';
+                        $resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);
+                        while($lista=mysqli_fetch_assoc($resultado_consulta_mysql)){
+                          echo "<option  value='".$lista["numtarjeta"]."'>";
+                          echo $lista["numtarjeta"];
+                          echo "</option>";
+                        }
+                    ?>
+                </select>   
+                <p style="text-align: center; margin-top: 20px; "> <a href="#"> <button type="button" class="btn btn-primary"> Pagar </button> </a></p>
+          </div>
         </b>
-
     <?php
       mysqli_close($enlace);
     ?>

@@ -179,7 +179,7 @@
               </div>
 
               <?php
-                  $consulta = "SELECT vuelo.id_vuelo, num_tiquetes.id_num_personas, vuelo_cantpersonas.id_vuelo_cantpersonas, (vuelo.costo_vuelo + 80000)*num_tiquetes.cantidad_personas AS valor_compra FROM vuelo_cantpersonas
+                  $consulta = "SELECT vuelo.id_vuelo, vuelo.codVuelo, num_tiquetes.id_num_personas, vuelo_cantpersonas.id_vuelo_cantpersonas, (vuelo.costo_vuelo + 80000)*num_tiquetes.cantidad_personas AS valor_compra FROM vuelo_cantpersonas
                   INNER JOIN vuelo ON vuelo_cantpersonas.id_vuelo = vuelo.id_vuelo INNER JOIN num_tiquetes ON vuelo_cantpersonas.id_num_personas = num_tiquetes.id_num_personas";
                   $resultado = mysqli_query($enlace, $consulta);
                   $fila = mysqli_fetch_array($resultado);
@@ -189,7 +189,7 @@
 
                 <div style="border: solid; border-radius: 10px; border-color: #85929E; "> <h5> Subtotal $<?php echo $fila['valor_compra'];?> COP </h5> </div>
 
-                <p style="text-align: center; margin-top: 20px; "> <a href="finalizar_compra.php?codVuelo=<?php echo $fila['codVuelo']; ?>?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"> <button class=" btn btn-primary"> Finalizar compra </button> </a></p>
+                <p style="text-align: center; margin-top: 20px; "> <a href="finalizar_compra.php?codVuelo=<?php echo $fila['codVuelo']; ?>?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"> <button class=" btn btn-primary"> Realizar Compra </button> </a></p>
                    
               </div>  
         </div>
