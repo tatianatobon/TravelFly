@@ -234,11 +234,9 @@
                                                         <div class="col-3">
                                                             <br>
                                                             <div>
-                                                                <a href="#"><button type="button" class="btn btn-primary">Reservar Tiquete</button></a>
+                                                            <a href="editar_reserva_normal_inter2.php?codVuelo=<?php echo $fila['codVuelo']; ?>?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><button type="button" class="btn btn-primary">Reservar Tiquete</button></a>
                                                             </div>
-                                                            <div style="margin-top: 4px;">
-                                                                <a href="#"><button type="button" class="btn btn-danger">Comprar Tiquete</button></a>
-                                                            </div>
+                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -265,10 +263,7 @@
                                                             <div class="col-3">
                                                                 <br>
                                                                 <div>
-                                                                    <a href="#"><button type="button" class="btn btn-primary">Reservar Tiquete</button></a>
-                                                                </div>
-                                                                <div style="margin-top: 4px;">
-                                                                    <a href="#"><button type="button" class="btn btn-danger">Comprar Tiquete</button></a>
+                                                                <a href="editar_reserva_primera_inter2.php?codVuelo=<?php echo $fila['codVuelo']; ?>?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><button type="button" class="btn btn-primary">Reservar Tiquete</button></a>
                                                                 </div>
                                                             </div>
                                                         </div>

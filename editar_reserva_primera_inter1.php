@@ -38,14 +38,15 @@
 
 <body id="page-top">
     <?php
-      $consulta = "SELECT vuelo.id_vuelo, vuelo.codVuelo, aerolineas.nombre_aerolinea, origen_nacional.ciudad_origen, vuelo.fecha_hora_salida, destino_nacional.ciudad_destino, tiempo_vuelo.id_cant_horas,
-      DATE_ADD(vuelo.fecha_hora_salida, INTERVAL tiempo_vuelo.cantidad_horas HOUR) AS fecha_hora_llegada, vuelo.costo_vuelo, (vuelo.costo_vuelo + 80000) AS costo_primera_clase FROM vuelo 
-      INNER JOIN origen_nacional ON vuelo.id_nacional_origen = origen_nacional.id_nacional_origen 
-      INNER JOIN destino_nacional ON vuelo.id_nacional_destino = destino_nacional.id_nacional_destino 
-      INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo
-      INNER JOIN tiempo_vuelo ON vuelo.id_cant_horas = tiempo_vuelo.id_cant_horas 
+      $consulta = "SELECT vuelo.id_vuelo, vuelo.codVuelo, aerolineas.nombre_aerolinea, origen.ciudad_origen, vuelo.fecha_hora_salida, destino.ciudad_destino, tiempo_vuelo.id_cant_horas,
+      DATE_ADD(DATE_ADD(vuelo.fecha_hora_salida, INTERVAL destino.tiempo_dif_ida HOUR), INTERVAL  tiempo_vuelo.cantidad_horas HOUR) AS fecha_hora_llegada,
+      vuelo.costo_vuelo, (vuelo.costo_vuelo + 230000) AS costo_primera_clase FROM vuelo 
+      INNER JOIN origen ON vuelo.id_ciudad_origen = origen.id_ciudad_origen 
+      INNER JOIN destino ON vuelo.id_ciudad_destino = destino.id_ciudad_destino 
+      INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo 
       INNER JOIN aerolineas ON vuelo.id_aerolinea = aerolineas.id_aerolinea
-      WHERE tipo_vuelo.id_tipo_vuelo = '1' AND vuelo.estado = 'Activo'";
+      INNER JOIN tiempo_vuelo ON vuelo.id_cant_horas = tiempo_vuelo.id_cant_horas 
+      WHERE tipo_vuelo.id_tipo_vuelo = '2' AND vuelo.estado = 'Activo' ORDER BY id_vuelo;";
       $resultado = mysqli_query($enlace, $consulta);
       $fila = mysqli_fetch_array($resultado);
     ?>
@@ -139,7 +140,7 @@
                 <li><b>Destino: </b><?php echo $fila['ciudad_destino'];?></li>
                 <li><b>Fecha salida: </b> <?php echo $fila['fecha_hora_salida'];?></li>
                 <li><b>Feccha llegada: </b><?php echo $fila['fecha_hora_llegada'];?></li>
-                <li><b>Tipo de plan: </b>Clase Turista</li>
+                <li><b>Tipo de plan: </b>Primera clase</li>
               </ul>
             </div>
 

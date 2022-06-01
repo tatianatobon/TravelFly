@@ -127,73 +127,50 @@
           </ul>
         </nav> 
         <div style="width: 95%;margin:auto ;margin-top: 5px;" class="row">
-          <center><img src="img/carritoeditar.jpeg" height="60" alt="Responsive image" class="rounded img-fluid d-inline-block align-text-top"></center>
-          
+        <center><img src="img/carritoeditar.jpeg" height="60" alt="Responsive image" class="rounded img-fluid d-inline-block align-text-top"></center>
           <div class="col-10 my-auto mx-auto">
-            <br><br><br>
-              <h3>Tus productos</h3>
-            <br>
+            <br><br><br><center><h3>Tus productos</h3></center><br>
           </div>
-              <div style="border: solid; border-radius: 10px; border-color: #85929E; width: 900px" class="col-6 my-auto mx-auto row">
+          <div style="border: solid; border-radius: 10px; border-color: #85929E; width: 900px" class="col-6 my-auto mx-auto row">
+            <div style=" width: 300px; " class="col-6 my-auto mx-auto">
+              <ul style="list-style:none; padding-left: 1px; ">
+                <li><b>Codigo de vuelo: </b><?php echo $fila['codVuelo'];?></li>
+                <li><b>Salida: </b><?php echo $fila['ciudad_origen'];?></li>
+                <li><b>Destino: </b><?php echo $fila['ciudad_destino'];?></li>
+                <li><b>Fecha salida: </b> <?php echo $fila['fecha_hora_salida'];?></li>
+                <li><b>Feccha llegada: </b><?php echo $fila['fecha_hora_llegada'];?></li>
+                <li><b>Tipo de plan: </b>Clase Turista</li>
+              </ul>
+            </div>
 
-                <div style=" width: 300px; " class="col-6 my-auto mx-auto">
+            <div style=" width: 250px;  margin-top: 10px; text-align: center;" class="col-4"><br>
+              <h5>Precio</h5><p> $ <?php echo $fila['costo_vuelo'];?> COP</p>
+            </div>
 
-                  <ul style="list-style:none; padding-left: 1px; ">
-                    <li><b>Codigo de vuelo: </b><?php echo $fila['codVuelo'];?></li>
-                    <li><b>Salida: </b><?php echo $fila['ciudad_origen'];?></li>
-                    <li><b>Destino: </b><?php echo $fila['ciudad_destino'];?></li>
-                    <li><b>Fecha salida: </b> <?php echo $fila['fecha_hora_salida'];?></li>
-                    <li><b>Feccha llegada: </b><?php echo $fila['fecha_hora_llegada'];?></li>
-                    <li><b>Tipo de plan: </b>Clase Turista</li>
-                  </ul>
-
-                </div>
-
-                <div style=" width: 250px;  margin-top: 10px; text-align: center;" class="col-4">
-                  <br>
-                  <h5>Precio</h5>
-                  <p> $ <?php echo $fila['costo_vuelo'];?> COP</p>
-                </div>
-                <div style=" width: 250px; margin-top: 10px; " class="col-4">
-                <br>
-
-                <?php
-                  $consulta = "SELECT * FROM num_tiquetes";
-                  $resultado = mysqli_query($enlace, $consulta);
-                  $fila = mysqli_fetch_array($resultado);
-                ?>
-
+            <div style=" width: 250px; margin-top: 10px; " class="col-4"><br>
+              <?php
+                $consulta = "SELECT * FROM num_tiquetes";
+                $resultado = mysqli_query($enlace, $consulta);
+                $fila = mysqli_fetch_array($resultado);
+              ?>
               <label><h5>Numero de Tiquetes</h5></label><br>
-                <select name="id_num_personas" >
-                    <?php
-                        $consulta_mysql='select * from num_tiquetes';
-                        $resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);
-                        while($lista=mysqli_fetch_assoc($resultado_consulta_mysql)){
-                          echo "<option  value='".$lista["id_num_personas"]."'>";
-                          echo $lista["tipo_personas"];
-                          echo "</option>";
-                        }
-                    ?>
-                </select>
-                </div>
-              </div>
-
+              <select name="id_num_personas" >
                 <?php
-                  $consulta = "SELECT vuelo.id_vuelo, vuelo.codVuelo, num_tiquetes.id_num_personas, vuelo_cantpersonas.id_vuelo_cantpersonas, 
-                  (vuelo.costo_vuelo * num_tiquetes.cantidad_personas) AS valor_compra FROM vuelo_cantpersonas
-                  INNER JOIN vuelo ON vuelo_cantpersonas.id_vuelo = vuelo.id_vuelo INNER JOIN num_tiquetes ON vuelo_cantpersonas.id_num_personas = num_tiquetes.id_num_personas";
-                  $resultado = mysqli_query($enlace, $consulta);
-                  $fila = mysqli_fetch_array($resultado);
+                  $consulta_mysql='select * from num_tiquetes';
+                  $resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);
+                  while($lista=mysqli_fetch_assoc($resultado_consulta_mysql)){
+                  echo "<option  value='".$lista["id_num_personas"]."'>";
+                  echo $lista["tipo_personas"];
+                  echo "</option>";
+                  }
                 ?>
-
-              <div style="border: solid; border-radius: 10px; border-color: #85929E; width: 300px; " class="col-4 my-auto mx-auto">
-
-                <div style="border: solid; border-radius: 10px; border-color: #85929E; "> <h5> Subtotal $<?php echo $fila['valor_compra'];?> COP </h5> </div>
-
-                <p style="text-align: center; margin-top: 20px; "> <a href="finalizar_compra.php?codVuelo=<?php echo $fila['codVuelo']; ?>?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"> <button type="button" class="btn btn-primary"> Realizar Compra </button> </a></p>
-                   
-              </div>  
+              </select>
+              <p style="text-align: center; margin-top: 50px; "> <a href="finalizar_compra.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"> <button type="button" class="btn btn-primary"> Realizar Compra </button> </a></p>
+            </div>
+          </div>  
         </div>
+      </div>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
