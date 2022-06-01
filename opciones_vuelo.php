@@ -119,17 +119,16 @@
                 <div style="border: solid; border-radius: 10px; border-color: #85929E; margin-bottom: 5px; padding: 10px;">
                     <div class="contenedorCuadro col-sm-12 col-lg-3">
                     <p style="text-align: center;"><img src="img/Logotipo.png" alt="" class="rounded img-fluid d-inline-block align-text-top" ></p>
-                    <h2 style="text-align: center;">Gestiona tu Compra</h2>
+                    <h2 style="text-align: center;">Gestiona tu Vuelo</h2>
                     <br>
                     <h5 style="text-align: center;">Realiza Tu Check-in o cambio de silla en digital. Recuerda tienes desde 48 a 3 horas antes de vuelos Internacionales
                     o 2 horas antes para vuelos Nacionales</h5>
                     <br>
                     <div class="contenedorFormulario">
-                        <form action="verificar_datos_pasajero.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>" method="post" name="Formulario">
-                            <input type="text" name="codVuelo" class="form-control" placeholder="Ingresa Codigo del Vuelo" minlength="5" maxlength="5" required>
-                            <br>
                             <center>
-                                <button type="submit" class="btn btn-primary">Mostrar Opciones</button>	
+                            <a href="#?codVuelo=<?php echo $fila['codVuelo']; ?>?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><button type="button" class="btn btn-primary"><i class="bi bi-person-plus-fill"></i> Añadir Pasajeros</button></a><br><br>
+                            <a href="#?codVuelo=<?php echo $fila['codVuelo']; ?>?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><button type="button" class="btn btn-success"><i class="bi bi-clipboard2-check-fill"></i> Check-In</button></a><br><br>
+                            <a href="#?codVuelo=<?php echo $fila['codVuelo']; ?>?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><button type="button" class="btn btn-danger"><i class="bi bi-pin-fill"></i> Cambio de Silla</button></a><br><br>
                             </center>
                         </form>
                     </div>                                                      
