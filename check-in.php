@@ -1,14 +1,25 @@
 <?php
-    include('conexion.php');
-    session_start();
-
-    if(!isset($_SESSION['id_rol'])){
-        header("Location: InicioSesion.html");
-    }else{
-        if ($_SESSION['id_rol'] != 3){
-            header("Location: menu_usuario.php");
-        }
-    }
+     include('conexion.php');
+     session_start();
+ 
+     if(!isset($_SESSION['id_rol'])){
+         header("Location: InicioSesion.html");
+     }else{
+         if ($_SESSION['id_rol'] != 3){
+             header("Location: menu_usuario.php");
+         }
+     }
+     $consulta = "SELECT vuelo.id_vuelo, vuelo.codVuelo, aerolineas.nombre_aerolinea, origen_nacional.ciudad_origen, vuelo.fecha_hora_salida, destino_nacional.ciudad_destino, tiempo_vuelo.id_cant_horas, 
+        DATE_ADD(vuelo.fecha_hora_salida, INTERVAL tiempo_vuelo.cantidad_horas HOUR) AS fecha_hora_llegada, vuelo.costo_vuelo, (vuelo.costo_vuelo + 80000) AS costo_primera_clase FROM vuelo 
+       INNER JOIN origen_nacional ON vuelo.id_nacional_origen = origen_nacional.id_nacional_origen 
+       INNER JOIN destino_nacional ON vuelo.id_nacional_destino = destino_nacional.id_nacional_destino 
+        
+       INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo
+       INNER JOIN tiempo_vuelo ON vuelo.id_cant_horas = tiempo_vuelo.id_cant_horas 
+       INNER JOIN aerolineas ON vuelo.id_aerolinea = aerolineas.id_aerolinea
+       WHERE tipo_vuelo.id_tipo_vuelo = '1' AND vuelo.estado = 'Activo'";
+       $resultado = mysqli_query($enlace, $consulta);
+       $fila = mysqli_fetch_array($resultado);
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +68,7 @@
         <a class="nav-link" href="#"><i class="bi bi-envelope-check-fill"></i><span>Noticias</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="administrar_vuelo_usuario.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><i class="bi bi-clipboard2-check-fill"></i></i><span>Organiza tu Vuelo</span></a>
+      <a class="nav-link" href="administrar_vuelo_usuario.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><i class="bi bi-clipboard2-check-fill"></i></i><span>Organiza tu Vuelo</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#"><i class="bi bi-cart-check-fill"></i><span>Mis Vuelos</span></a>
@@ -113,33 +124,48 @@
             </div>
             </li>
           </ul>
-        </nav>
+        </nav> 
         <b>
-            <center>
-                <div style="border: solid; border-radius: 10px; border-color: #85929E; margin-bottom: 5px; padding: 10px;">
-                    <div class="contenedorCuadro col-sm-12 col-lg-3">
-                    <p style="text-align: center;"><img src="img/Logotipo.png" alt="" class="rounded img-fluid d-inline-block align-text-top" ></p>
-                    <h2 style="text-align: center;">Gestiona tu Compra</h2>
-                    <br>
-                    <h5 style="text-align: center;">Realiza Tu Check-in o cambio de silla en digital. Recuerda tienes desde 48 a 3 horas antes de vuelos Internacionales
-                    o 2 horas antes para vuelos Nacionales</h5>
-                    <br>
-                    <div class="contenedorFormulario">
-                        <form action="verificar_datos_cliente.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>" method="post" name="Formulario">
-                            <input type="text" name="codVuelo" class="form-control" placeholder="Ingresa Codigo del Vuelo" minlength="5" maxlength="5" required>
-                            <br>
-                            <center>
-                                <button type="submit" class="btn btn-primary">Mostrar Opciones</button>	
-                            </center>
-                        </form>
-                    </div>                                                      
-                </div>
-            </center>
+          <center>
+          <div style="border: solid; border-radius: 10px; border-color: #85929E; margin-bottom: 5px; padding: 10px;">
+            <div class="contenedorCuadro col-sm-12 col-lg-3">
+              <p style="text-align: center;"><img src="img/Logotipo.png" alt="" class="rounded img-fluid d-inline-block align-text-top" ></p>
+              <h2 style="text-align: center;">Check-In</h2><br>
+
+              <div style=" width: 300px; " class="col-6 my-auto mx-auto">
+                <ul style="list-style:none; padding-left: 1px; ">
+                  <li><b>Codigo de vuelo: </b><?php echo $fila['codVuelo'];?></li>
+                  <li><b>Salida: </b><?php echo $fila['ciudad_origen'];?></li>
+                  <li><b>Destino: </b><?php echo $fila['ciudad_destino'];?></li>
+                  <li><b>Fecha salida: </b> <?php echo $fila['fecha_hora_salida'];?></li>
+                  <li><b>Feccha llegada: </b><?php echo $fila['fecha_hora_llegada'];?></li>
+                  <li><b>Tipo de plan: </b>Clase Turista</li>
+                </ul>
+              </div>
+              
+              <div class="contenedorFormulario">
+                <center>
+                  <a href="opciones_vuelo.php"><button type="button" class="btn btn-danger"><i class="bi bi-arrow-bar-left"></i> Volver</button></a><br><br>
+                  </center>
+              </div>                                                      
+            </div>
+          </div>
+          </center>
         </b>
-	</div>
-    <?php
-      mysqli_close($enlace);
-    ?>
+        
+            <?php
+              mysqli_close($enlace);
+            ?>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- contenedor de contenido -->
+      </div>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -151,10 +177,11 @@
 
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
+  
   <!-- Page level plugins -->
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <!-- <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script> -->
+  <!-- archivo para la cuenta de venta -->
 </body>
 
 </html>

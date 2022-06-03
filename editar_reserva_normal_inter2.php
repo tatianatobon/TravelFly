@@ -29,7 +29,7 @@
         $id_genero = $_POST['id_genero-'.$i];
         $telefono = $_POST['telefono-'.$i];
         $email = $_POST['email-'.$i]; 
-        $consulta = "INSERT INTO viajero(nombre, apellido, fecha_nacimiento, documento, id_genero, telefono, email)VALUES ($nombre,$apellido,$fecha,$documento, $id_genero,$telefono, $email)";
+        $consulta = "INSERT INTO viajero(nombre, apellido, fecha_nacimiento, documento, id_genero, telefono, email)VALUES ('$nombre', '$apellido', '$fecha', '$documento', '$id_genero', '$telefono', '$email')";
 		    mysqli_query($enlace, $consulta);
       endfor;
     }

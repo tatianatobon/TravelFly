@@ -161,9 +161,9 @@
               </div>
 
               <div style=" width: 250px;  margin-top: 10px; text-align: center;" class="col-4"><br>
-                <h5>Precio</h5><p > $ <?php echo $fila['costo_vuelo'];?> COP</p>
+                <h5>Precio</h5><p > $ <?php echo $fila['costo_primera_clase'];?> COP</p>
               </div>
-              <input type="hidden" id="costo-vuelo" value="<?= $fila['costo_vuelo'];?>" >
+              <input type="hidden" id="costo-vuelo" value="<?= $fila['costo_primera_clase'];?>" >
               <div style=" width: 250px; margin-top: 10px; " class="col-4"><br>
                 <?php
                   $consulta = "SELECT * FROM num_tiquetes";
@@ -196,7 +196,7 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content"  style="width : 700px;">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Datos Pago</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>

@@ -161,9 +161,9 @@
               </div>
 
               <div style=" width: 250px;  margin-top: 10px; text-align: center;" class="col-4"><br>
-                <h5>Precio</h5><p > $ <?php echo $fila['costo_vuelo'];?> COP</p>
+                <h5>Precio</h5><p > $ <?php echo $fila['costo_primera_clase'];?> COP</p>
               </div>
-              <input type="hidden" id="costo-vuelo" value="<?= $fila['costo_vuelo'];?>" >
+              <input type="hidden" id="costo-vuelo" value="<?= $fila['costo_primera_clase'];?>" >
               <div style=" width: 250px; margin-top: 10px; " class="col-4"><br>
                 <?php
                   $consulta = "SELECT * FROM num_tiquetes";

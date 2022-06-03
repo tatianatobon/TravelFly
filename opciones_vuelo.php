@@ -9,6 +9,9 @@
             header("Location: menu_usuario.php");
         }
     }
+    $consulta = "SELECT * FROM vuelo";
+       $resultado = mysqli_query($enlace, $consulta);
+       $fila = mysqli_fetch_array($resultado);
 ?>
 
 <!DOCTYPE html>
@@ -115,25 +118,21 @@
           </ul>
         </nav>
         <b>
-            <center>
-                <div style="border: solid; border-radius: 10px; border-color: #85929E; margin-bottom: 5px; padding: 10px;">
-                    <div class="contenedorCuadro col-sm-12 col-lg-3">
-                    <p style="text-align: center;"><img src="img/Logotipo.png" alt="" class="rounded img-fluid d-inline-block align-text-top" ></p>
-                    <h2 style="text-align: center;">Gestiona tu Vuelo</h2>
-                    <br>
-                    <h5 style="text-align: center;">Realiza Tu Check-in o cambio de silla en digital. Recuerda tienes desde 48 a 3 horas antes de vuelos Internacionales
-                    o 2 horas antes para vuelos Nacionales</h5>
-                    <br>
-                    <div class="contenedorFormulario">
-                            <center>
-                            <a href="#?codVuelo=<?php echo $fila['codVuelo']; ?>?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><button type="button" class="btn btn-primary"><i class="bi bi-person-plus-fill"></i> Añadir Pasajeros</button></a><br><br>
-                            <a href="#?codVuelo=<?php echo $fila['codVuelo']; ?>?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><button type="button" class="btn btn-success"><i class="bi bi-clipboard2-check-fill"></i> Check-In</button></a><br><br>
-                            <a href="#?codVuelo=<?php echo $fila['codVuelo']; ?>?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><button type="button" class="btn btn-danger"><i class="bi bi-pin-fill"></i> Cambio de Silla</button></a><br><br>
-                            </center>
-                        </form>
-                    </div>                                                      
-                </div>
-            </center>
+          <center>
+          <div style="border: solid; border-radius: 10px; border-color: #85929E; margin-bottom: 5px; padding: 10px;">
+            <div class="contenedorCuadro col-sm-12 col-lg-3">
+              <p style="text-align: center;"><img src="img/Logotipo.png" alt="" class="rounded img-fluid d-inline-block align-text-top" ></p>
+              <h2 style="text-align: center;">Gestiona tu Vuelo</h2><br>
+              <h5 style="text-align: center;">Realiza Tu Check-in o cambio de silla en digital. Recuerda tienes desde 48 a 3 horas antes de vuelos Internacionales o 2 horas antes para vuelos Nacionales</h5><br>
+              <div class="contenedorFormulario">
+                <center>
+                  <a href="check-in.php?codVuelo=<?php echo $fila['codVuelo']; ?>?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><button type="button" class="btn btn-success"><i class="bi bi-clipboard2-check-fill"></i> Check-In</button></a><br><br>
+                  <a href="cambiar-silla.php?codVuelo=<?php echo $fila['codVuelo']; ?>?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"><button type="button" class="btn btn-danger"><i class="bi bi-pin-fill"></i> Cambio de Silla</button></a><br><br>
+                  </center>
+              </div>                                                      
+            </div>
+          </div>
+          </center>
         </b>
 	</div>
     <?php
