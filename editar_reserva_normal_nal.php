@@ -20,7 +20,7 @@
        $resultado = mysqli_query($enlace, $consulta);
        $fila = mysqli_fetch_array($resultado);
  
-     if(isset($_POST)){
+     if(isset($_POST['cantidad'])){
        for($i = 1; $i <= $_POST['cantidad']; $i++):
          $nombre = $_POST['nombre-'.$i];
          $apellido = $_POST['apellido-'.$i];
@@ -32,7 +32,7 @@
          $consulta = "INSERT INTO viajero(nombre, apellido, fecha_nacimiento, documento, id_genero, telefono, email)VALUES ($nombre,$apellido,$fecha,$documento, $id_genero,$telefono, $email)";
          mysqli_query($enlace, $consulta);
        endfor;
-     }
+     } 
 ?>
 
 <!DOCTYPE html>
