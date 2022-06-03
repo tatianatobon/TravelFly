@@ -127,49 +127,109 @@
             </li>
           </ul>
         </nav> 
-        <div style="width: 95%;margin:auto ;margin-top: 5px;" class="row">
-        <center><img src="img/carritoeditar.jpeg" height="60" alt="Responsive image" class="rounded img-fluid d-inline-block align-text-top"></center>
-          <div class="col-10 my-auto mx-auto">
-            <br><br><br><center><h3>Tus productos</h3></center><br>
-          </div>
-          <div style="border: solid; border-radius: 10px; border-color: #85929E; width: 900px" class="col-6 my-auto mx-auto row">
-            <div style=" width: 300px; " class="col-6 my-auto mx-auto">
-              <ul style="list-style:none; padding-left: 1px; ">
-                <li><b>Codigo de vuelo: </b><?php echo $fila['codVuelo'];?></li>
-                <li><b>Salida: </b><?php echo $fila['ciudad_origen'];?></li>
-                <li><b>Destino: </b><?php echo $fila['ciudad_destino'];?></li>
-                <li><b>Fecha salida: </b> <?php echo $fila['fecha_hora_salida'];?></li>
-                <li><b>Feccha llegada: </b><?php echo $fila['fecha_hora_llegada'];?></li>
-                <li><b>Tipo de plan: </b>Clase Turista</li>
-              </ul>
+        <div class="viajero">
+          <div style="width: 95%;margin:auto ;margin-top: 5px;" class="row">
+            <center><img src="img/carritoeditar.jpeg" height="60" alt="Responsive image" class="rounded img-fluid d-inline-block align-text-top"></center>
+            <div class="col-10 my-auto mx-auto">
+              <br><br><br><center><h3>Tus productos</h3></center><br>
             </div>
+            <div style="border: solid; border-radius: 10px; border-color: #85929E; width: 900px" class="col-6 my-auto mx-auto row">
+              <div style=" width: 300px; " class="col-6 my-auto mx-auto">
+                <ul style="list-style:none; padding-left: 1px; ">
+                  <li><b>Codigo de vuelo: </b><?php echo $fila['codVuelo'];?></li>
+                  <li><b>Salida: </b><?php echo $fila['ciudad_origen'];?></li>
+                  <li><b>Destino: </b><?php echo $fila['ciudad_destino'];?></li>
+                  <li><b>Fecha salida: </b> <?php echo $fila['fecha_hora_salida'];?></li>
+                  <li><b>Feccha llegada: </b><?php echo $fila['fecha_hora_llegada'];?></li>
+                  <li><b>Tipo de plan: </b>Clase Turista</li>
+                </ul>
+              </div>
 
-            <div style=" width: 250px;  margin-top: 10px; text-align: center;" class="col-4"><br>
-              <h5>Precio</h5><p> $ <?php echo $fila['costo_vuelo'];?> COP</p>
-            </div>
-
-            <div style=" width: 250px; margin-top: 10px; " class="col-4"><br>
-              <?php
-                $consulta = "SELECT * FROM num_tiquetes";
-                $resultado = mysqli_query($enlace, $consulta);
-                $fila = mysqli_fetch_array($resultado);
-              ?>
-              <label><h5>Numero de Tiquetes</h5></label><br>
-              <select name="id_num_personas" >
+              <div style=" width: 250px;  margin-top: 10px; text-align: center;" class="col-4"><br>
+                <h5>Precio</h5><p > $ <?php echo $fila['costo_vuelo'];?> COP</p>
+              </div>
+              <input type="hidden" id="costo-vuelo" value="<?= $fila['costo_vuelo'];?>" >
+              <div style=" width: 250px; margin-top: 10px; " class="col-4"><br>
                 <?php
-                  $consulta_mysql='select * from num_tiquetes';
-                  $resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);
-                  while($lista=mysqli_fetch_assoc($resultado_consulta_mysql)){
-                  echo "<option  value='".$lista["id_num_personas"]."'>";
-                  echo $lista["tipo_personas"];
-                  echo "</option>";
-                  }
+                  $consulta = "SELECT * FROM num_tiquetes";
+                  $resultado = mysqli_query($enlace, $consulta);
+                  $fila = mysqli_fetch_array($resultado);
                 ?>
-              </select>
-              <p style="text-align: center; margin-top: 50px; "> <a href="finalizar_compra.php?id_usuario=<?php echo $_SESSION['id_usuario']; ?>"> <button type="button" class="btn btn-primary"> Realizar Compra </button> </a></p>
+                <label><h5>Numero de Tiquetes</h5></label><br>
+                <select name="id_num_personas" id="num_personas" >
+                  <?php
+                    $consulta_mysql='select * from num_tiquetes';
+                    $resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);
+                    while($lista=mysqli_fetch_assoc($resultado_consulta_mysql)){
+                    echo "<option  value='".$lista["id_num_personas"]."-".$lista["cantidad_personas"]."'>";
+                    echo $lista["tipo_personas"];
+                    echo "</option>";
+                    }
+                  ?>
+                </select>
+                <!-- Button trigger modal -->
+                <p style="text-align: center; margin-top: 50px; ">
+                  <button type="button" class="btn btn-primary compra" data-toggle="modal" data-target="#exampleModal">
+                    Realizar Compra
+                  </button>
+                  </p>
+              </div>
+            </div>  
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content"  style="width : 700px;">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <b>
+                  <div style="border: solid; border-radius: 10px; border-color: #85929E; width: 300px; " class="col-4 my-auto mx-auto valor-pago">
+                      
+                  </div>
+                  <br>
+
+                  <?php
+                    $consulta = "SELECT usuario.id_usuario, tarjeta.numtarjeta, tiquete.id_tiquete FROM usuario INNER JOIN tarjeta ON usuario.id_usuario = tarjeta.id_usuario
+                    INNER JOIN tiquete ON usuario.id_usuario = tiquete.id_usuario WHERE usuario.id_usuario = $_SESSION[id_usuario]";
+                    $resultado = mysqli_query($enlace, $consulta);
+                    $fila = mysqli_fetch_array($resultado);
+                  ?>
+
+                  <div style="border: solid; border-radius: 10px; border-color: #85929E; width: 300px; " class="col-4 my-auto mx-auto">
+                    <label><h5>Elige medio de pago</h5></label><br>
+                        <select name="numtarjeta" >
+                            <?php
+                                $consulta_mysql='select * from tarjeta';
+                                $resultado_consulta_mysql=mysqli_query($enlace,$consulta_mysql);
+                                while($lista=mysqli_fetch_assoc($resultado_consulta_mysql)){
+                                  echo "<option  value='".$lista["numTarjeta"]."'>";
+                                  echo $lista["numTarjeta"];
+                                  echo "</option>";
+                                }
+                            ?>
+                        </select>  
+                        
+                      <input type="hidden" name="id-usuario" id="usuario" value="<?= $_SESSION['id_usuario'];?>"> 
+                      <input type="hidden" name="id-vuelo" id="vuelo" value="<?php echo $fila['codVuelo'];?>"> 
+                        <p style="text-align: center; margin-top: 20px; "> <button type="button" class="btn btn-primary pagar"> Pagar </button></p>
+                  </div>
+                </b>
+            <?php
+              mysqli_close($enlace);
+            ?>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
             </div>
-          </div>  
-        </div>
+          </div>
+        </div><!-- contenedor de contenido -->
       </div>
     </div>
   </div>
@@ -183,10 +243,57 @@
 
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
+  
   <!-- Page level plugins -->
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <!-- <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script> -->
+  <!-- archivo para la cuenta de venta -->
+  <script>
+    $('.compra').click(function(){
+        let valor = $('#costo-vuelo').val();
+        let cantidad = $('#num_personas').val();
+        /* cantidad = cantidad.split('-'); */
+        valor = valor * cantidad[3];
+        $('.cantidad').remove();
+        $('#personas').remove();
+        let html = '<div class="cantidad" style="border: solid; border-radius: 10px; border-color: #85929E;">'+
+         '<h5> Valor a Pagar <br> $'+ valor+' COP </h5> </div>'+
+         '<input type="hidden" id="personas" value="'+cantidad[3]+'">';  
+        $('.valor-pago').append(html);
+    });
+    $('.pagar').click(function(){
+        const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result1= ' ';
+        const charactersLength = characters.length;
+        for ( let i = 0; i < 7; i++ ) {
+          result1 += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        console.log(result1);
+        let clase = 2;
+        let usuario = $('usuario').val();
+        let vuelo = $('vuelo').val();
+        let canti = $('#personas').val();
+        $("#popupBusquedaParroquia").modal('hide');//ocultamos el modal
+        $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
+        $('.modal-backdrop').remove();//eliminamos el backdrop del modal
+            jQuery.ajax({
+                type: "post",
+                url: 'datos-viajero.php',
+                data: {
+                    tiquete:  result1 ,
+                    clase: clase,
+                    usuario: usuario,
+                    vuelo: vuelo,
+                    /* cantidad_form = canti, */
+                },
+                
+                success: function(result){
+                    $('.viajero').html(result);
+                }
+            });
+        
+    });
+  </script>
 </body>
 
 </html>

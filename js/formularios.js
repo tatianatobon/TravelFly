@@ -50,5 +50,11 @@ $(document).ready(function(){
         
     });
 
+    $('.compra').click(function(){
+        let valor = $('#costo-vuelo').val();
+        let cantidad = $('#num_personas').val();
+        console.log(valor) 
+        console.log('hola')
+    });
 
 });
