@@ -9,6 +9,30 @@
             header("Location: menu_usuario.php");
         }
     }
+    $consulta = "SELECT vuelo.id_vuelo, vuelo.codVuelo, aerolineas.nombre_aerolinea, origen_nacional.ciudad_origen, vuelo.fecha_hora_salida, destino_nacional.ciudad_destino, tiempo_vuelo.id_cant_horas,
+      DATE_ADD(vuelo.fecha_hora_salida, INTERVAL tiempo_vuelo.cantidad_horas HOUR) AS fecha_hora_llegada, vuelo.costo_vuelo, (vuelo.costo_vuelo + 80000) AS costo_primera_clase FROM vuelo 
+      INNER JOIN origen_nacional ON vuelo.id_nacional_origen = origen_nacional.id_nacional_origen 
+      INNER JOIN destino_nacional ON vuelo.id_nacional_destino = destino_nacional.id_nacional_destino 
+      INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo
+      INNER JOIN tiempo_vuelo ON vuelo.id_cant_horas = tiempo_vuelo.id_cant_horas 
+      INNER JOIN aerolineas ON vuelo.id_aerolinea = aerolineas.id_aerolinea
+      WHERE tipo_vuelo.id_tipo_vuelo = '1' AND vuelo.estado = 'Activo'";
+      $resultado = mysqli_query($enlace, $consulta);
+      $fila = mysqli_fetch_array($resultado);
+
+    if(isset($_POST)){
+      for($i = 1; $i <= $_POST['cantidad']; $i++):
+        $nombre = $_POST['nombre-'.$i];
+        $apellido = $_POST['apellido-'.$i];
+        $documento = $_POST['documento-'.$i];
+        $fecha = $_POST['fecha-'.$i];
+        $id_genero = $_POST['id_genero-'.$i];
+        $telefono = $_POST['telefono-'.$i];
+        $email = $_POST['email-'.$i]; 
+        $consulta = "INSERT INTO viajero(nombre, apellido, fecha_nacimiento, documento, id_genero, telefono, email)VALUES ($nombre,$apellido,$fecha,$documento, $id_genero,$telefono, $email)";
+		    mysqli_query($enlace, $consulta);
+      endfor;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -251,7 +275,7 @@
   <script>
     $('.compra').click(function(){
         let valor = $('#costo-vuelo').val();
-        let cantidad = $('#num_personas').val();
+        var cantidad = $('#num_personas').val();
         /* cantidad = cantidad.split('-'); */
         valor = valor * cantidad[3];
         $('.cantidad').remove();
@@ -260,38 +284,39 @@
          '<h5> Valor a Pagar <br> $'+ valor+' COP </h5> </div>'+
          '<input type="hidden" id="personas" value="'+cantidad[3]+'">';  
         $('.valor-pago').append(html);
-    });
-    $('.pagar').click(function(){
-        const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        let result1= ' ';
-        const charactersLength = characters.length;
-        for ( let i = 0; i < 7; i++ ) {
-          result1 += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-        console.log(result1);
-        let clase = 2;
-        let usuario = $('usuario').val();
-        let vuelo = $('vuelo').val();
-        let canti = $('#personas').val();
-        $("#popupBusquedaParroquia").modal('hide');//ocultamos el modal
-        $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
-        $('.modal-backdrop').remove();//eliminamos el backdrop del modal
-            jQuery.ajax({
-                type: "post",
-                url: 'datos-viajero.php',
-                data: {
-                    tiquete:  result1 ,
-                    clase: clase,
-                    usuario: usuario,
-                    vuelo: vuelo,
-                    /* cantidad_form = canti, */
-                },
-                
-                success: function(result){
-                    $('.viajero').html(result);
-                }
-            });
+        $('.pagar').click(function(){
+          const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+          let result1= ' ';
+          const charactersLength = characters.length;
+          for ( let i = 0; i < 7; i++ ) {
+            result1 += characters.charAt(Math.floor(Math.random() * charactersLength));
+          }
+          console.log(result1);
+          let clase = 2;
+          let usuario = $('usuario').val();
+          let vuelo = $('vuelo').val();
+          let canti = cantidad[3];
+          console.log(canti)
+          $("#popupBusquedaParroquia").modal('hide');//ocultamos el modal
+          $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
+          $('.modal-backdrop').remove();//eliminamos el backdrop del modal
+              jQuery.ajax({
+                  type: "post",
+                  url: 'datos-viajero.php',
+                  data: {
+                      tiquete:  result1 ,
+                      clase: clase,
+                      usuario: usuario,
+                      vuelo: vuelo,
+                      canti: canti, 
+                  },
+                  
+                  success: function(result){
+                      $('.viajero').html(result);
+                  }
+              });
         
+      });
     });
   </script>
 </body>
