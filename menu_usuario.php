@@ -125,12 +125,44 @@
           </ul>
         </nav>
 
-        <b>
-        <center>
-            <font face="Times New Roman" size="8" color="Black">Bienvenido(a)!!!</font>
-        </center>
+        <div class="row">
+      <div class="col">
+        <div class="carrusel">
+          <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            
+            <div class="carousel-inner">
+              <div class="carousel-item active" data-bs-interval="10000">
+                <img src="img/error.jpg" class="d-block w-100" alt="...">
+                
+              </div>
+              
+            </div>
+           
+          </div>
+          </div>
+      </div>
+      <div class="col">
+        <div class="carrusel">
+          <div id="carouselExampleDark2" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel-indicators" height="200px" width="200px">
+              <button type="button" data-bs-target="#carouselExampleDark2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleDark2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleDark2" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active" data-bs-interval="10000">
+                <img src="img/salir.jpg" class="d-block w-100" alt="...">
+              </div>
+              
+              </div>
+            </div>
+            
+          </div>
+          </div>
+      </div>
+    </div>
 
-        </b>
+    
 
     <?php
       mysqli_close($enlace);
