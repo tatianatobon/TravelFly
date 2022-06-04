@@ -261,9 +261,10 @@
                         </select>  
                         
                       <input type="hidden" name="id-usuario" id="usuario" value="<?= $_SESSION['id_usuario'];?>"> 
-                      <input type="hidden" name="id-vuelo" id="vuelo" value="<?php echo $fila['codVuelo'];?>"> 
-                        <p style="text-align: center; margin-top: 20px; "> <button type="button" class="btn btn-primary pagar"> Pagar </button></p>
+                      <p style="text-align: center; margin-top: 20px; "> <button type="button" class="btn btn-primary pagar"> Pagar </button></p>
                   </div>
+                   
+                        
                 </b>
             <?php
               mysqli_close($enlace);
