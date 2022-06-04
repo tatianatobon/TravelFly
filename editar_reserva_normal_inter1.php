@@ -20,19 +20,50 @@
       $resultado = mysqli_query($enlace, $consulta);
       $fila = mysqli_fetch_array($resultado);
 
-    if(isset($_POST['cantidad'])){
-      for($i = 1; $i <= $_POST['cantidad']; $i++):
-        $nombre = $_POST['nombre-'.$i];
-        $apellido = $_POST['apellido-'.$i];
-        $documento = $_POST['documento-'.$i];
-        $fecha = $_POST['fecha-'.$i];
-        $id_genero = $_POST['id_genero-'.$i];
-        $telefono = $_POST['telefono-'.$i];
-        $email = $_POST['email-'.$i]; 
-        $consulta = "INSERT INTO viajero(nombre, apellido, fecha_nacimiento, documento, id_genero, telefono, email)VALUES ('$nombre','$apellido','$fecha','$documento', '$id_genero','$telefono', '$email')";
-		    mysqli_query($enlace, $consulta);
-      endfor;
-    }
+      $tiquetes = array();
+      if (array_key_exists('cantidad', $_POST) && $_POST['cantidad']  != '') {
+        
+        if(isset($_POST['cantidad'])){
+          $cantidad = $_POST['cantidad'];
+        
+        for($i = 1; $i <= $cantidad; $i++):
+          $silla = rand(1, 196);
+          $usuario = $_SESSION['id_usuario'];
+          $nombre = $_POST['nombre-'.$i];
+          $apellido = $_POST['apellido-'.$i];
+          $documento = $_POST['documento-'.$i];
+          $fecha = $_POST['fecha-'.$i];
+          $id_genero = $_POST['id_genero-'.$i];
+          $telefono = $_POST['telefono-'.$i];
+          $email = $_POST['email-'.$i]; 
+          $consulta = "INSERT INTO viajero(nombre, apellido, fecha_nacimiento, documento, id_genero, telefono, email)VALUES ('$nombre','$apellido','$fecha','$documento', '$id_genero','$telefono', '$email')";
+          mysqli_query($enlace, $consulta);
+          $consulta2 = "INSERT INTO asiento(estado_asiento, numAsiento) VALUES ('Ocupado', '$silla')";
+          mysqli_query($enlace, $consulta2);
+          $consulta3 = "SELECT MAX(id_asiento) AS id_asiento FROM asiento Where 1";
+          $respuesta1 = mysqli_query($enlace, $consulta3);
+          $resultado1 = mysqli_fetch_array($respuesta1);
+          $consulta4 = "SELECT MAX(id_viajero) AS id_viajero FROM viajero Where 1";
+          $respuesta2 = mysqli_query($enlace, $consulta4);
+          $resultado2 = mysqli_fetch_array($respuesta2);
+          $viajero = $resultado2['id_viajero'];
+          $asiento = $resultado1['id_asiento'];
+          $vuelo = $fila['codVuelo'];
+          $consulta7 = "SELECT id_vuelo FROM vuelo WHERE `codVuelo` = '$vuelo' ";
+          $respuesta4 = mysqli_query($enlace, $consulta7);
+          $resultado4 = mysqli_fetch_array($respuesta4);
+          $id_vuelo = $resultado4['id_vuelo'];
+          $consulta5 = "INSERT INTO tiquete(id_clase, id_usuario, id_viajero, id_asiento, id_vuelo) VALUES('2', '$usuario', '$viajero', '$asiento', '$id_vuelo')";
+          mysqli_query($enlace, $consulta5);
+          $consulta6 = "SELECT MAX(id_tiquete) AS id_tiquete FROM tiquete Where 1";
+          $respuesta3 = mysqli_query($enlace, $consulta6);
+          $resultado3 = mysqli_fetch_array($respuesta3);
+          array_push($tiquetes, $resultado3['id_tiquete']);
+          
+        endfor;
+        
+        unset($_POST['cantidad']);
+      }}
 ?>
 
 <!DOCTYPE html>

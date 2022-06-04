@@ -3,7 +3,7 @@
     session_start();
 
     if(!isset($_SESSION['id_rol'])){
-        header("Location: InicioSesion.html");
+        header("Location: InicioSesion.php");
     }else{
         if ($_SESSION['id_rol'] != 2){
             header("Location: menu_administrador.php");
