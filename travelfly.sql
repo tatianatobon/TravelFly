@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.3.0-dev+20220513.fb9d9feb74
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-05-2022 a las 16:40:08
+-- Tiempo de generación: 01-06-2022 a las 05:24:30
 -- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.5
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,58 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `travelfly`
 --
+
+DELIMITER $$
+--
+-- Funciones
+--
+CREATE DEFINER=`root`@`localhost` FUNCTION `suma_vuelo_internacional` () RETURNS INT(10) NO SQL BEGIN 
+DECLARE cantidad int;
+SELECT COUNT(id_vuelo) INTO cantidad FROM vuelo INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo WHERE tipo_vuelo.id_tipo_vuelo = '2' AND vuelo.estado = 'Activo' OR tipo_vuelo.id_tipo_vuelo = '3' AND vuelo.estado = 'Activo';
+RETURN cantidad;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `suma_vuelo_internacional_realizado` () RETURNS INT(10) NO SQL BEGIN 
+DECLARE cantidad int;
+SELECT COUNT(id_vuelo) INTO cantidad FROM vuelo INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo WHERE tipo_vuelo.id_tipo_vuelo = '2' AND vuelo.estado = 'Realizado' OR tipo_vuelo.id_tipo_vuelo = '3' AND vuelo.estado = 'Realizado';
+RETURN cantidad;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `suma_vuelo_nacional` () RETURNS INT(10) NO SQL BEGIN 
+DECLARE cantidad int;
+SELECT COUNT(id_vuelo) INTO cantidad FROM vuelo INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo WHERE tipo_vuelo.id_tipo_vuelo = '1' AND vuelo.estado = 'Activo';
+RETURN cantidad;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `suma_vuelo_nacional_realizado` () RETURNS INT(10) NO SQL BEGIN 
+DECLARE cantidad int;
+SELECT COUNT(id_vuelo) INTO cantidad FROM vuelo INNER JOIN tipo_vuelo ON vuelo.id_tipo_vuelo = tipo_vuelo.id_tipo_vuelo WHERE tipo_vuelo.id_tipo_vuelo = '1' AND vuelo.estado = 'Realizado';
+RETURN cantidad;
+END$$
+
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `aerolineas`
+--
+
+CREATE TABLE `aerolineas` (
+  `id_aerolinea` int(10) NOT NULL,
+  `nombre_aerolinea` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `aerolineas`
+--
+
+INSERT INTO `aerolineas` (`id_aerolinea`, `nombre_aerolinea`) VALUES
+(1, 'Avianca Airlines'),
+(2, 'Viva Air'),
+(3, 'LATAM Airlines'),
+(4, 'United Airlines'),
+(5, 'American Airlines');
 
 -- --------------------------------------------------------
 
@@ -169,10 +221,20 @@ INSERT INTO `destino_nacional` (`id_nacional_destino`, `ciudad_destino`) VALUES
 
 CREATE TABLE `foro` (
   `id_mensaje` int(10) NOT NULL,
-  `user` int(10) NOT NULL,
+  `user` varchar(30) NOT NULL,
   `mensaje` varchar(500) NOT NULL,
   `respuestaAdministrador` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `foro`
+--
+
+INSERT INTO `foro` (`id_mensaje`, `user`, `mensaje`, `respuestaAdministrador`) VALUES
+(3, '0', 'Cuales son los tipos de vuelos?', 'Primera Clase y Clase Economica'),
+(4, '0', 'Que destinos internacionales tienen?', 'gran variedad entre los que estan new york y miami'),
+(12, 'juan12', 'hola', 'hola'),
+(13, 'juan12', 'Cuales son los tipos de vuelos?', 'varios');
 
 -- --------------------------------------------------------
 
@@ -193,6 +255,33 @@ INSERT INTO `genero` (`id_genero`, `tipo_genero`) VALUES
 (1, 'Hombre'),
 (2, 'Mujer'),
 (3, 'Sin especificar');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `num_tiquetes`
+--
+
+CREATE TABLE `num_tiquetes` (
+  `id_num_personas` int(10) NOT NULL,
+  `cantidad_personas` int(10) NOT NULL,
+  `tipo_personas` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `num_tiquetes`
+--
+
+INSERT INTO `num_tiquetes` (`id_num_personas`, `cantidad_personas`, `tipo_personas`) VALUES
+(10, 1, '1 Adulto'),
+(11, 2, '2 Adultos'),
+(12, 3, '3 Adultos'),
+(13, 4, '4 Adultos'),
+(14, 5, '5 Adultos'),
+(15, 2, '1 Niño y 1 Adulto'),
+(16, 3, '1 Niño y 2 Adultos'),
+(17, 4, '2 Niños y 2 Adultos'),
+(18, 5, '3 niños y 2 Adultos');
 
 -- --------------------------------------------------------
 
@@ -307,10 +396,20 @@ CREATE TABLE `tarjeta` (
   `id_tipo_tarjeta` int(11) NOT NULL,
   `numTarjeta` varchar(16) NOT NULL,
   `nombre_propietario` varchar(30) NOT NULL,
-  `fecha_expiacion` date NOT NULL,
+  `fecha_vencimiento` date NOT NULL,
   `cvv` varchar(3) NOT NULL,
+  `saldo_actual` int(10) NOT NULL,
   `id_usuario` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tarjeta`
+--
+
+INSERT INTO `tarjeta` (`id_tipo_tarjeta`, `numTarjeta`, `nombre_propietario`, `fecha_vencimiento`, `cvv`, `saldo_actual`, `id_usuario`) VALUES
+(1, '4004542121177524', 'Juan Esteban Duque Posso', '2026-05-20', '755', 70000000, 44),
+(1, '4004542121178512', 'Tarzar rey de la selva', '2025-05-14', '789', 70000000, 26),
+(2, '4005488444512121', 'Tarzan rey', '2024-06-16', '013', 70000000, 26);
 
 -- --------------------------------------------------------
 
@@ -438,9 +537,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido`, `documento`, `celular`, `fechaNacimiento`, `id_genero`, `pais`, `estado`, `ciudad`, `direccion`, `email`, `user`, `pass`, `confirmPass`, `foto`, `id_rol`) VALUES
-(1, 'Juan Esteban', 'Duque Posso', '1113456741', '3182950546', '2022-03-10', 1, 'Colombia', 'Valle del Cauca', 'Cartago', 'carrera 1G # 35 a 13', 'juanPosso@gmail.com', 'juan1', '123456', '123456', '', 3),
 (2, 'Luis Sebastian', 'Urbano Luna ', '1112792007', '3145351793', '2022-03-01', 1, 'Colombia', 'Nariño', 'Belen', 'Carrera 1G # 35 A 13', 'sebastian.urbano1@utp.edu.co', 'Sebas1013', 'sebas1013', 'sebas1013', NULL, 1),
-(3, 'Danna Sofia', 'Torrez Marin', '1112756778', '3203450546', '2022-03-01', 2, 'Colombia', 'Risaralda', 'Pereira', 'Carrera 10 # 21 13', 'danna_s@gmail.com', 'dannastar', 'danna12345', NULL, NULL, 2),
+(3, 'Danna Sofia', 'Torrez Marin', '1112756778', '3203450546', '2004-01-01', 2, 'Colombia', 'Risaralda', 'Pereira', 'Carrera 10 # 21 13', 'danna_s@gmail.com', 'dannastar', 'danna12345', '', '', 2),
 (4, 'Alice', 'Matius Haunter', '1117451781', '3203124578', '2012-04-03', 1, 'Colombia', 'Nariño', 'Belen', 'calle 25 A 13', 'alice.sao@gmail.com', 'Alice123', '123456789', '123456789', NULL, 2),
 (5, 'Alejandra', 'Salazar Martinez', '1117547895', '3182950355', '2003-10-01', 1, 'Colombia', 'Amazonas', 'Córdoba', 'calle 13 12-56', 'salazar.m@gmail.com', 'Salazar_Aleja', '12345678', '12345678', '', 2),
 (6, 'Miguel Angel', 'Botero Cardenas', '1110774156', '3147895244', '2000-02-17', 1, 'Colombia', 'Guayas', 'Acacia', 'transversal 1ra #13-55', 'mm_angel@gmail.com', 'Migue_Angel', '98745612', '78945612', '', 2),
@@ -459,7 +557,10 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido`, `documento`, `celular
 (37, 'Luis Sebastian', 'Torrez Lozano', '1214454887', '1215121202', '2003-12-30', 1, 'Afganistán', 'Afghanistan', 'Baglan', 'carrera 1G # 35 a 13', 'ssgi@gmail.com', '11211', '112345678', '12345678', '', 3),
 (38, 'Sebastian', 'Torrez Lozano', '1544871212', '3122154595', '0000-00-00', NULL, 'Afganistán', 'Afghanistan', 'Baglan', NULL, 'sluna@utp.edu.co', NULL, '12345678', NULL, NULL, 2),
 (39, 'luis', 'suarez', '1445421212', '3351121212', '0000-00-00', NULL, 'Afganistán', 'Afghanistan', 'Baglan', NULL, 'ssuarez@gmail.com', NULL, '12345678', NULL, NULL, 2),
-(40, 'juanito', 'perez arcila', '1114788552', '3202145875', '2003-12-30', 1, 'Afganistán', 'Afghanistan', 'Baglan', 'carrera 1G # 35 a 13', 'arci@gmail.com', '12345678', '12345678', '12345678', '', 3);
+(40, 'juanito', 'perez arcila', '1114788552', '3202145875', '2003-12-30', 1, 'Afganistán', 'Afghanistan', 'Baglan', 'carrera 1G # 35 a 13', 'arci@gmail.com', '12345678', '12345678', '12345678', '', 3),
+(41, 'Olivia', 'Rodrigo de Luna', '1124478551', '3214578855', '2000-02-10', 2, 'Estados Unidos', 'New York', 'New York', 'carrera 1A # 3 a 10', 'oli_rodrigo@gamil.com', 'Olivia_R', 'olivia123', 'olivia123', '', 2),
+(44, 'Juan Esteban', 'Duque Posso', '1101554874', '3214785221', '2003-12-31', 1, 'Afganistán', 'Afghanistan', 'Baglan', 'carrera 1G # 35 a 13', 'juanPosso@gmail.com', 'juan12', 'juan12345', 'juan12345', '', 3),
+(45, 'ana angel', 'ruiz toro', '1117885556', '3203451414', NULL, 2, 'Colombia', 'Amazonas', 'Abisinia', NULL, 'angel_@gmail.com', NULL, '1117885556', NULL, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -486,6 +587,8 @@ CREATE TABLE `viajero` (
 
 CREATE TABLE `vuelo` (
   `id_vuelo` int(10) NOT NULL,
+  `id_aerolinea` int(10) NOT NULL,
+  `codVuelo` varchar(5) NOT NULL,
   `id_tipo_vuelo` int(10) NOT NULL,
   `fecha_hora_salida` datetime NOT NULL,
   `id_nacional_origen` int(10) DEFAULT NULL,
@@ -494,7 +597,7 @@ CREATE TABLE `vuelo` (
   `id_ciudad_destino` int(10) DEFAULT NULL,
   `costo_vuelo` int(10) NOT NULL,
   `foto_vuelo` varchar(50) DEFAULT NULL,
-  `estado` enum('Activo','Realizado','Cancelado','') NOT NULL DEFAULT 'Activo',
+  `estado` enum('Activo','Completo','Realizado','Cancelado') NOT NULL DEFAULT 'Activo',
   `id_cant_horas` int(10) NOT NULL,
   `cant_sillas` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -503,23 +606,42 @@ CREATE TABLE `vuelo` (
 -- Volcado de datos para la tabla `vuelo`
 --
 
-INSERT INTO `vuelo` (`id_vuelo`, `id_tipo_vuelo`, `fecha_hora_salida`, `id_nacional_origen`, `id_nacional_destino`, `id_ciudad_origen`, `id_ciudad_destino`, `costo_vuelo`, `foto_vuelo`, `estado`, `id_cant_horas`, `cant_sillas`) VALUES
-(21, 1, '2022-05-12 09:33:00', 3, 24, NULL, NULL, 150000, NULL, 'Realizado', 10, 0),
-(23, 1, '2022-05-13 01:45:00', 4, 3, NULL, NULL, 100000, '', 'Realizado', 2, 0),
-(24, 2, '2022-05-22 23:06:38', NULL, NULL, 2, 2, 800000, NULL, 'Activo', 9, 0),
-(25, 3, '2022-05-15 00:00:00', NULL, NULL, 4, 3, 1500000, NULL, 'Activo', 2, 0),
-(26, 1, '2022-05-13 09:21:00', 5, 1, NULL, NULL, 78000, '', 'Realizado', 6, 0),
-(27, 2, '2022-05-15 10:15:00', NULL, NULL, 1, 1, 320000, '', 'Activo', 6, 0),
-(29, 3, '2022-05-12 11:00:00', NULL, NULL, 1, 1, 1200000, '', 'Activo', 4, 0),
-(30, 1, '2022-05-12 13:00:00', 1, 5, NULL, NULL, 59000, '', 'Realizado', 4, 0),
-(31, 1, '2022-05-12 13:20:00', 4, 11, NULL, NULL, 120000, '', 'Realizado', 1, 0),
-(32, 1, '2022-05-12 22:30:00', 4, 5, NULL, NULL, 80000, 'new_york.jpg', 'Realizado', 5, 0),
-(34, 1, '2022-05-13 20:00:00', 5, 2, NULL, NULL, 20000, '', 'Realizado', 5, 0),
-(35, 1, '2022-05-14 03:19:26', 5, 24, NULL, NULL, 320000, NULL, 'Activo', 7, 0);
+INSERT INTO `vuelo` (`id_vuelo`, `id_aerolinea`, `codVuelo`, `id_tipo_vuelo`, `fecha_hora_salida`, `id_nacional_origen`, `id_nacional_destino`, `id_ciudad_origen`, `id_ciudad_destino`, `costo_vuelo`, `foto_vuelo`, `estado`, `id_cant_horas`, `cant_sillas`) VALUES
+(52, 3, 'FG447', 1, '2022-07-26 15:45:00', 3, 5, NULL, NULL, 250000, 'bogota.jpeg', 'Activo', 4, 150),
+(53, 5, 'SL103', 2, '2022-07-26 08:47:00', NULL, NULL, 4, 3, 1500000, 'new_york.jpg', 'Activo', 7, 250),
+(54, 4, 'C10P5', 3, '2022-08-18 22:47:00', NULL, NULL, 1, 5, 1300000, 'pereira.webp', 'Activo', 9, 250),
+(55, 2, 'SD788', 1, '2022-05-17 23:16:00', 2, 1, NULL, NULL, 152000, '', 'Realizado', 1, 150),
+(56, 3, 'Pe455', 1, '2022-05-21 23:30:00', 3, 25, NULL, NULL, 145000, 'pere.webp', 'Realizado', 3, 150),
+(57, 2, 'KK785', 1, '2022-05-28 23:26:00', 1, 6, NULL, NULL, 180000, '', 'Cancelado', 3, 150),
+(59, 5, 'ED145', 2, '2022-05-20 23:34:00', NULL, NULL, 1, 5, 460000, 'miami.jpg', 'Realizado', 5, 250),
+(60, 4, 'YU345', 2, '2022-05-17 23:39:00', NULL, NULL, 2, 1, 452000, '', 'Realizado', 1, 250),
+(61, 4, 'SS234', 2, '2022-05-28 23:38:00', NULL, NULL, 1, 4, 458000, '', 'Cancelado', 4, 250),
+(62, 4, 'SQ754', 3, '2022-05-17 23:49:00', NULL, NULL, 2, 3, 1500000, '', 'Realizado', 1, 250),
+(63, 1, 'ME789', 3, '2022-05-21 23:50:00', NULL, NULL, 3, 1, 980000, 'Medellín.jpg', 'Realizado', 1, 250),
+(64, 2, '78FGT', 1, '2022-05-21 23:44:00', 2, 6, NULL, NULL, 78000, '', 'Cancelado', 3, 150),
+(65, 5, '45TDF', 3, '2022-05-21 23:49:00', NULL, NULL, 1, 1, 780000, '', 'Realizado', 4, 250);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vuelo_cantpersonas`
+--
+
+CREATE TABLE `vuelo_cantpersonas` (
+  `id_vuelo_cantpersonas` int(10) NOT NULL,
+  `id_vuelo` int(10) NOT NULL,
+  `id_num_personas` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `aerolineas`
+--
+ALTER TABLE `aerolineas`
+  ADD PRIMARY KEY (`id_aerolinea`);
 
 --
 -- Indices de la tabla `asiento`
@@ -571,14 +693,19 @@ ALTER TABLE `destino_nacional`
 -- Indices de la tabla `foro`
 --
 ALTER TABLE `foro`
-  ADD PRIMARY KEY (`id_mensaje`),
-  ADD KEY `user` (`user`);
+  ADD PRIMARY KEY (`id_mensaje`);
 
 --
 -- Indices de la tabla `genero`
 --
 ALTER TABLE `genero`
   ADD PRIMARY KEY (`id_genero`);
+
+--
+-- Indices de la tabla `num_tiquetes`
+--
+ALTER TABLE `num_tiquetes`
+  ADD PRIMARY KEY (`id_num_personas`);
 
 --
 -- Indices de la tabla `origen`
@@ -669,11 +796,26 @@ ALTER TABLE `vuelo`
   ADD KEY `id_ciudad_origen` (`id_ciudad_origen`),
   ADD KEY `id_ciudad_destino` (`id_ciudad_destino`),
   ADD KEY `id_estado` (`estado`),
-  ADD KEY `id_cant_horas` (`id_cant_horas`);
+  ADD KEY `id_cant_horas` (`id_cant_horas`),
+  ADD KEY `id_aerolinea` (`id_aerolinea`);
+
+--
+-- Indices de la tabla `vuelo_cantpersonas`
+--
+ALTER TABLE `vuelo_cantpersonas`
+  ADD PRIMARY KEY (`id_vuelo_cantpersonas`),
+  ADD KEY `id_vuelo` (`id_vuelo`),
+  ADD KEY `id_num_personas` (`id_num_personas`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `aerolineas`
+--
+ALTER TABLE `aerolineas`
+  MODIFY `id_aerolinea` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `asiento`
@@ -721,13 +863,19 @@ ALTER TABLE `destino_nacional`
 -- AUTO_INCREMENT de la tabla `foro`
 --
 ALTER TABLE `foro`
-  MODIFY `id_mensaje` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_mensaje` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `genero`
 --
 ALTER TABLE `genero`
   MODIFY `id_genero` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `num_tiquetes`
+--
+ALTER TABLE `num_tiquetes`
+  MODIFY `id_num_personas` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `origen`
@@ -781,7 +929,7 @@ ALTER TABLE `tiquete`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT de la tabla `viajero`
@@ -793,7 +941,13 @@ ALTER TABLE `viajero`
 -- AUTO_INCREMENT de la tabla `vuelo`
 --
 ALTER TABLE `vuelo`
-  MODIFY `id_vuelo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id_vuelo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+
+--
+-- AUTO_INCREMENT de la tabla `vuelo_cantpersonas`
+--
+ALTER TABLE `vuelo_cantpersonas`
+  MODIFY `id_vuelo_cantpersonas` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
@@ -817,12 +971,6 @@ ALTER TABLE `check-in`
 ALTER TABLE `compra`
   ADD CONSTRAINT `compra_ibfk_1` FOREIGN KEY (`id_carrito`) REFERENCES `carrito_compras` (`id_carrito`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `compra_ibfk_2` FOREIGN KEY (`numTarjeta`) REFERENCES `tarjeta` (`numTarjeta`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `foro`
---
-ALTER TABLE `foro`
-  ADD CONSTRAINT `foro_ibfk_1` FOREIGN KEY (`user`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `reserva`
@@ -869,12 +1017,17 @@ ALTER TABLE `vuelo`
   ADD CONSTRAINT `vuelo_ibfk_3` FOREIGN KEY (`id_nacional_destino`) REFERENCES `destino_nacional` (`id_nacional_destino`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `vuelo_ibfk_4` FOREIGN KEY (`id_ciudad_origen`) REFERENCES `origen` (`id_ciudad_origen`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `vuelo_ibfk_5` FOREIGN KEY (`id_ciudad_destino`) REFERENCES `destino` (`id_ciudad_destino`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `vuelo_ibfk_8` FOREIGN KEY (`id_cant_horas`) REFERENCES `tiempo_vuelo` (`id_cant_horas`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `vuelo_ibfk_8` FOREIGN KEY (`id_cant_horas`) REFERENCES `tiempo_vuelo` (`id_cant_horas`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `vuelo_ibfk_9` FOREIGN KEY (`id_aerolinea`) REFERENCES `aerolineas` (`id_aerolinea`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `vuelo_cantpersonas`
+--
+ALTER TABLE `vuelo_cantpersonas`
+  ADD CONSTRAINT `vuelo_cantpersonas_ibfk_1` FOREIGN KEY (`id_vuelo`) REFERENCES `vuelo` (`id_vuelo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `vuelo_cantpersonas_ibfk_2` FOREIGN KEY (`id_num_personas`) REFERENCES `num_tiquetes` (`id_num_personas`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-
