@@ -3,7 +3,7 @@
     session_start();
 
     if(!isset($_SESSION['id_rol'])){
-        header("Location: InicioSesion.php");
+        header("Location: InicioSesion.html");
     }else{
         if ($_SESSION['id_rol'] != 2){
             header("Location: menu_administrador.php");
@@ -111,11 +111,13 @@
             <font face="Times New Roman" size="8" color="Black">Bienvenido(a)!!!</font>
         </center>
 
-        </b>
-
+        </br>
+        <br>
+        <div class="row">
+      <div class="col">
         <div class="container-fluid">
           <!-- Vuelos Nacionales Activos -->
-          <div class="col-xl-3 col-md-6 mb-4">
+          <div class="col mr-2">
             <div class="card border-left-primary shadow h-100 py-2">
               <div class="card-body">
                 <div class="row no-gutters align-items-center">
@@ -138,10 +140,11 @@
               </div>
             </div>
           </div>
-
+          </div>
+          <div class="col">
           <div class="container-fluid">
             <!-- Vuelos Internacionales Activos -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col mr-2">
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -164,10 +167,11 @@
               </div>
             </div> 
           </div>
-
+</div>
+<div class="col">
           <div class="container-fluid">
             <!-- Vuelos Nacionales Realizados -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col mr-2">
               <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -190,10 +194,11 @@
               </div>
             </div>
           </div>
-
+</div>
+<div class="col">
           <div class="container-fluid">
             <!-- Vuelos Internacionales Realizados -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col mr-2">
               <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -220,11 +225,13 @@
         </div>  
       </div>   
     </div>
+ </div>
+  
     <?php
       mysqli_close($enlace);
     ?>
   </div>
-
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <script type="text/javascript" src="DataTables/datatables.min.js"></script>
   
